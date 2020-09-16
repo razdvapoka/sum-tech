@@ -14,6 +14,10 @@ const loadFont = (font) => new FontFaceObserver(font).load()
 
 const Intro = () => {
   const [isFontLoaded, setIsFontLoaded] = useState(false)
+  const [bl, setBl] = useState(null)
+  const [blTextLine1, setBlTextLine1] = useState('BLACK')
+  const [blTextLine2, setBlTextLine2] = useState('MAGIC')
+  const [blText, setBlText] = useState(null)
   const [mat, setMat] = useState(null)
   const [params, setParams] = useState({
     uVolatility: 3,
@@ -25,14 +29,17 @@ const Intro = () => {
 
   useEffect(() => {
     if (isFontLoaded && !mat) {
-      const text = new window.Blotter.Text('SUMMA<br/>TECHNOLOGIAE', {
-        family: 'Redaction20',
-        size: 140,
-        leading: 1,
-        fill: '#ffffff',
-        padding: 50,
-        textAlign: 'center',
-      })
+      const text = new window.Blotter.Text(
+        `${blTextLine1}<br/>${blTextLine2}`,
+        {
+          family: 'Redaction20',
+          size: 240,
+          leading: 1,
+          fill: '#ffffff',
+          padding: 50,
+          textAlign: 'center',
+        }
+      )
       const material = new window.Blotter.LiquidDistortMaterial()
       material.uniforms.uSpeed.value = params.uSpeed
       material.uniforms.uVolatility.value = params.uVolatility
@@ -48,6 +55,17 @@ const Intro = () => {
       removeAllChildren(elem)
       scope.appendTo(elem)
       setMat(material)
+      setBl(blotter)
+      setBlText(text)
+
+      const toggle = () => {
+        if (blotter._renderer._currentAnimationLoop) {
+          blotter.stop()
+        } else {
+          blotter.start()
+        }
+      }
+      elem.addEventListener('click', toggle)
     }
   }, [isFontLoaded, mat, setMat])
 
@@ -144,6 +162,34 @@ const Intro = () => {
                 step={1}
                 value={params.uFollowMouse}
                 onChange={handleParamChange}
+              />
+            </div>
+            <div className="mt-3 flex justify-between">
+              <label className="mr-4">first line</label>
+              <input
+                name="firstLine"
+                type="text"
+                value={blTextLine1}
+                onChange={(e) => {
+                  const newLine = e.target.value
+                  blText.value = `${newLine}<br/>${blTextLine2}`
+                  bl.needsUpdate = true
+                  setBlTextLine1(newLine)
+                }}
+              />
+            </div>
+            <div className="mt-3 flex justify-between">
+              <label className="mr-4">second line</label>
+              <input
+                name="secondLine"
+                type="text"
+                value={blTextLine2}
+                onChange={(e) => {
+                  const newLine = e.target.value
+                  blText.value = `${blTextLine1}<br/>${newLine}`
+                  bl.needsUpdate = true
+                  setBlTextLine2(newLine)
+                }}
               />
             </div>
           </div>
