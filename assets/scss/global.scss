@@ -1,0 +1,62 @@
+// @import '~normalize.css'; т.к. включен в tailwind
+@import './fonts';
+@import './config';
+@import './typography';
+
+/*! purgecss start ignore */
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+html {
+  font-size: calc(10 / 1440 * 100vw); // 10px on 1440px width
+  background-color: color(black);
+  color: color(white);
+}
+
+a,
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.touchevents a:hover {
+  color: inherit;
+}
+
+body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-style: normal;
+  font-weight: normal;
+}
+
+input {
+  background-color: transparent;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+button:focus,
+a:focus {
+  outline: 0;
+}
+
+/*! purgecss end ignore */

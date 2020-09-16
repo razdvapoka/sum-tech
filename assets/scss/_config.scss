@@ -1,0 +1,46 @@
+$ff-red: 'Redaction20', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+
+$screens: (
+  tablet: 768,
+  desktop: 1024,
+  desktop1280: 1280,
+  desktop1360: 1360,
+);
+
+$style-system-screens: (tablet, desktop, desktop1280, desktop1360);
+
+$font-styles: (
+  x1: (
+    font-family: $ff-red,
+    font-size: 2rem,
+    line-height: 34/30,
+  ),
+);
+
+// дублируется в tailwind.config.js
+$colors: (
+  black: (
+    base: #000,
+  ),
+  white: (
+    base: #fff,
+  ),
+  red: (
+    base: #ac282a,
+  ),
+  grey: (
+    base: #787878,
+  ),
+  altGrey: (
+    base: #666666,
+  ),
+  lightGrey: (
+    base: #c8c8c8,
+  ),
+  darkGrey: (
+    base: #2c353d,
+  ),
+);
+
+$color-primary: map_get(map_get($colors, black), base);
+$color-secondary: map_get(map_get($colors, white), base);

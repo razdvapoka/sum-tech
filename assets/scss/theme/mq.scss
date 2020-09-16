@@ -1,0 +1,9 @@
+@mixin mediaQuery($bpt) {
+  @if (map_has_key($screens, $bpt)) {
+    @media (min-width: #{map_get($screens, $bpt) / 16}em) {
+      @content;
+    }
+  } @else {
+    @error 'No breakpoint named #{$bpt}';
+  }
+}
