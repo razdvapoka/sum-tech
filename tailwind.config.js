@@ -18,7 +18,7 @@ module.exports = {
       black: '#1b1b1b',
       purple: '#855aff',
     },
-    spacing: range(31).reduce(
+    spacing: range(41).reduce(
       (acc, step) => ({
         ...acc,
         [step]: `${(step * 5) / 10}rem`,

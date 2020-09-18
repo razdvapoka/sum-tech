@@ -1,7 +1,14 @@
-import { Page } from '../components'
+import mockData from '../mock'
+import Home from '../components/home'
 
-const Home = () => {
-  return <Page></Page>
+const HomePage = (props) => {
+  return <Home {...props} />
 }
 
-export default Home
+export const getServerSideProps = async ({ query }) => {
+  return {
+    props: mockData,
+  }
+}
+
+export default HomePage
