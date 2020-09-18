@@ -1,6 +1,13 @@
 @font-face {
   font-family: 'Redaction20';
-  src: url('../fonts/Redaction_20-Regular.woff2') format('woff2');
+  src: url('../fonts/Redaction_20-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Redaction';
+  src: url('../fonts/Redaction-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }

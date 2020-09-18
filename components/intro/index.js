@@ -76,7 +76,7 @@ const Intro = () => {
   const [mat, setMat] = useState(null)
   const [bl, setBl] = useState(null)
   const [scope, setScope] = useState(null)
-  const [isConfigOpen, setIsConfigOpen] = useState(false)
+  const [isConfigOpen] = useState(false)
   const [params, setParams] = useState({
     uVolatility: 3,
     uSpeed: 0.5,

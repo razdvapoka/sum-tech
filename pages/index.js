@@ -1,12 +1,7 @@
 import { Page } from '../components'
-import Intro from '../components/intro'
 
 const Home = () => {
-  return (
-    <Page>
-      <Intro />
-    </Page>
-  )
+  return <Page></Page>
 }
 
 export default Home

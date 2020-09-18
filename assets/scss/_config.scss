@@ -1,4 +1,5 @@
-$ff-red: 'Redaction20', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+$ff-red-20-bold: 'Redaction20', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+$ff-red-reg: 'Redaction', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 
 $screens: (
   tablet: 768,
@@ -10,35 +11,69 @@ $screens: (
 $style-system-screens: (tablet, desktop, desktop1280, desktop1360);
 
 $font-styles: (
-  x1: (
-    font-family: $ff-red,
-    font-size: 2rem,
-    line-height: 34/30,
+  s1: (
+    font-family: $ff-red-reg,
+    font-size: 1.6rem,
+    line-height: 1.11,
+  ),
+  s2: (
+    font-family: $ff-red-reg,
+    font-size: 1.6rem,
+    line-height: 1,
+    text-transform: uppercase,
+  ),
+  s3: (
+    font-family: $ff-red-reg,
+    font-size: 1.6rem,
+    line-height: 1.09,
+    text-transform: uppercase,
+  ),
+  m: (
+    font-family: $ff-red-reg,
+    font-size: 2.4rem,
+    line-height: 1.09,
+  ),
+  l1: (
+    font-family: $ff-red-reg,
+    font-size: 3.2rem,
+    line-height: 1.03,
+    text-transform: uppercase,
+  ),
+  l2: (
+    font-family: $ff-red-reg,
+    font-size: 3.2rem,
+    line-height: 1.09,
+  ),
+  xl: (
+    font-family: $ff-red-reg,
+    font-size: 5rem,
+    line-height: 1,
+    text-transform: uppercase,
+  ),
+  xxl: (
+    font-family: $ff-red-20-bold,
+    font-size: 11rem,
+    line-height: 0.9,
+    text-transform: uppercase,
+  ),
+  xxxl: (
+    font-family: $ff-red-20-bold,
+    font-size: 15rem,
+    line-height: 0.9,
+    text-transform: uppercase,
   ),
 );
 
 // дублируется в tailwind.config.js
 $colors: (
   black: (
-    base: #000,
+    base: #1b1b1b,
   ),
   white: (
     base: #fff,
   ),
-  red: (
-    base: #ac282a,
-  ),
-  grey: (
-    base: #787878,
-  ),
-  altGrey: (
-    base: #666666,
-  ),
-  lightGrey: (
-    base: #c8c8c8,
-  ),
-  darkGrey: (
-    base: #2c353d,
+  purple: (
+    base: #855aff,
   ),
 );
 

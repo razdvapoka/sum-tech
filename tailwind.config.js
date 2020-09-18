@@ -15,12 +15,8 @@ module.exports = {
   theme: {
     colors: {
       white: '#ffffff',
-      black: '#000000',
-      red: '#AC282A',
-      grey: '#787878',
-      altGrey: '#666666',
-      lightGrey: '#C8C8C8',
-      darkGrey: '#2C353D',
+      black: '#1b1b1b',
+      purple: '#855aff',
     },
     spacing: range(31).reduce(
       (acc, step) => ({
