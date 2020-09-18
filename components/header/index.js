@@ -1,7 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
+import cn from 'classnames'
 
 import Typograf from '../typograph'
+import styles from './styles.module.scss'
 
 const Header = ({ text, seminarCount }) => {
   return (
@@ -20,7 +22,7 @@ const Header = ({ text, seminarCount }) => {
         <div className="border-b border-white text-s2 pb-1">{`${seminarCount} seminars`}</div>
       </div>
       <div className="col-6">
-        <Typograf className="text-s1">{text}</Typograf>
+        <Typograf className={cn('text-s1', styles.headerText)}>{text}</Typograf>
       </div>
       <div className="col-6 hover:text-purple">
         <a

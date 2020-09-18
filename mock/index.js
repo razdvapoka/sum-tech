@@ -1,10 +1,10 @@
 export default {
   headerText: `
-In September 1974, the American science-fiction writer Philipp K. Dick, wrote a letter to the FBI,
+<p>In September 1974, the American science-fiction writer Philipp K. Dick, wrote a letter to the FBI,
 claiming that there was a communist conspiracy disguised as science-fiction literature. This
 conspiracy was orchestrated by a communist committee, which — according to Philipp K. Dick —
-operated under the name of “Stanislaw Lem”.<br/>
-While of course he was neither a committee, nor a conspiracy; Stanislaw Lem was a writer that produced a body of work so vast and so far-reaching, that it is easy to understand Philipp K. Dick’s refusal to accept that it was the work of only one person.<br/><br/>
+operated under the name of “Stanislaw Lem”.</p>
+<p>While of course he was neither a committee, nor a conspiracy; Stanislaw Lem was a writer that produced a body of work so vast and so far-reaching, that it is easy to understand Philipp K. Dick’s refusal to accept that it was the work of only one person.<p/><br/>
 Summa Technologiae School is organized in cooperation between e-flux and Adam Mickeiwicz Institute and curated by Julieta Aranda.
 `,
   seminarCount: 6,
@@ -27,4 +27,10 @@ Summa Technologiae School is organized in cooperation between e-flux and Adam Mi
   ],
   objective: `
 The main objective of this project is to try to understand the extension of Lem’s influence, across time, across geography and across disciplines. Stanislaw Lem's works addresses the human condition unflinchingly and yet with humor; he used speculations on technology as a way to speak to philosophy, and philosophy as a means with which to understand technological developments, the nature of intelligence, and the possibility of communication both with other forms of intelligence but more importantly, with ourselves across timespans and distance.`,
+  lemPhoto: '/lem.jpg',
+  lemBio: `
+  <p>Stanislaw Lem was a Polish writer of science fiction and essays on various subjects, including philosophy, futurology, and literary criticism. Many of his science fiction stories include satire and humor. Lem's books have been translated into 41 languages and have sold over 45 million copies. From the 1950s to 2000s, he published many books, both science fiction and philosophical/futurological. Worldwide, he is best known as the author of the 1961 novel Solaris, which has been made into a feature film three times. In 1976, Theodore Sturgeon wrote that Lem was the most widely read science fiction writer in the world. The total print of Lem's books is over 30 million copies.</p>
+  <p>Lem's works explore philosophical themes through speculation on technology, the nature of intelligence, the impossibility of communication with and understanding of alien intelligence, despair about human limitations, and humanity's place in the universe. They are sometimes presented as fiction, but others are in the form of essays or philosophical books.</p>
+  <p>Translating his works is difficult due to passages with elaborate word formation, idiomatic wordplay, alien or robotic poetry, and puns.</p>
+  `,
 }

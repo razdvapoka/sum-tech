@@ -21,7 +21,7 @@ export function Page({ headerText, seminarCount, children }) {
       >
         <Header text={headerText} seminarCount={seminarCount} />
         <Intro />
-        <div className="absolute left-0 bottom-0 w-full text-center text-s2">
+        <div className="absolute left-0 bottom-0 w-full text-center text-s2 mb-2">
           scroll down
         </div>
       </div>
