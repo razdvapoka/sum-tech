@@ -1,3 +1,7 @@
+import { set } from 'date-fns'
+
+const date = new Date()
+
 export default {
   headerText: `
 <p>In September 1974, the American science-fiction writer Philipp K. Dick, wrote a letter to the FBI,
@@ -33,4 +37,51 @@ The main objective of this project is to try to understand the extension of Lem�
   <p>Lem's works explore philosophical themes through speculation on technology, the nature of intelligence, the impossibility of communication with and understanding of alien intelligence, despair about human limitations, and humanity's place in the universe. They are sometimes presented as fiction, but others are in the form of essays or philosophical books.</p>
   <p>Translating his works is difficult due to passages with elaborate word formation, idiomatic wordplay, alien or robotic poetry, and puns.</p>
   `,
+  seminarsDescription: `
+The seminars will begin in the fall of 2020. Each seminar will meet at its own frequency (some of them every two weeks, some of them monthly, some of them every two months) and they will run the length of an “academic” semester. Half of the participants to each seminar will be there by invitation, and the seminar leaders will choose the other half through a process of open application.
+  `,
+  seminars: [
+    {
+      date: set(date, { year: 2020, month: 9, date: 21 }).toJSON(),
+      name: 'dilemmas',
+      leader: 'name surname',
+      slug: 'dilemmas',
+      diagram: '/sem-bg-1.svg',
+    },
+    {
+      date: set(date, { year: 2020, month: 10, date: 5 }).toJSON(),
+      name: 'two evolutions',
+      leader: 'Anton Vidokle',
+      slug: 'two-evolutions',
+      diagram: '/sem-bg-1.svg',
+    },
+    {
+      date: set(date, { year: 2020, month: 10, date: 25 }).toJSON(),
+      name: 'space civilizations',
+      leader: 'Anton Vidokle',
+      slug: 'space-civilizations',
+      diagram: '/sem-bg-1.svg',
+    },
+    {
+      date: set(date, { year: 2020, month: 10, date: 31 }).toJSON(),
+      name: 'Intel-lectronics',
+      leader: 'Anton Vidokle',
+      slug: 'intel-lectronics',
+      diagram: '/sem-bg-1.svg',
+    },
+    {
+      date: set(date, { year: 2020, month: 11, date: 5 }).toJSON(),
+      name: 'Prolegomena to Omnipotence',
+      leader: 'Anton Vidokle',
+      slug: 'prolegomena-to-omnipotence',
+      diagram: '/sem-bg-1.svg',
+    },
+    {
+      date: set(date, { year: 2020, month: 11, date: 16 }).toJSON(),
+      name: 'phantomology',
+      leader: 'Anton Vidokle',
+      slug: 'phantomology',
+      diagram: '/sem-bg-1.svg',
+    },
+  ],
 }
