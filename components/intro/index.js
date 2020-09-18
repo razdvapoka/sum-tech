@@ -12,9 +12,71 @@ const removeAllChildren = (element) => {
 
 const loadFont = (font) => new FontFaceObserver(font).load()
 
+const Configuration = ({ params, handleParamChange }) => {
+  return (
+    <div className={cn('p-5 fixed right-0 top-0 text-x1', styles.settings)}>
+      <div className="flex justify-between">
+        <label className="mr-4">explosiveness</label>
+        <input
+          name="uVolatility"
+          type="number"
+          step={0.1}
+          value={params.uVolatility}
+          onChange={handleParamChange}
+        />
+      </div>
+      <div className="mt-3 flex justify-between">
+        <label className="mr-4">speed</label>
+        <input
+          name="uSpeed"
+          type="number"
+          step={0.1}
+          value={params.uSpeed}
+          onChange={handleParamChange}
+        />
+      </div>
+      <div className="mt-3 flex justify-between">
+        <label className="mr-4">max coeff</label>
+        <input
+          name="uMaxCoeff"
+          type="number"
+          step={0.01}
+          value={params.uMaxCoeff}
+          onChange={handleParamChange}
+        />
+      </div>
+      <div className="mt-3 flex justify-between">
+        <label className="mr-4">radius</label>
+        <input
+          name="uRadius"
+          type="number"
+          step={0.01}
+          value={params.uRadius}
+          onChange={handleParamChange}
+        />
+      </div>
+      <div className="mt-3 flex justify-between">
+        <label className="mr-4">follow mouse</label>
+        <input
+          name="uFollowMouse"
+          type="number"
+          min={0}
+          max={1}
+          step={1}
+          value={params.uFollowMouse}
+          onChange={handleParamChange}
+        />
+      </div>
+    </div>
+  )
+}
+
 const Intro = () => {
   const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [mat, setMat] = useState(null)
+  const [bl, setBl] = useState(null)
+  const [scope, setScope] = useState(null)
+  const [isConfigOpen, setIsConfigOpen] = useState(false)
   const [params, setParams] = useState({
     uVolatility: 3,
     uSpeed: 0.5,
@@ -27,8 +89,8 @@ const Intro = () => {
     if (isFontLoaded && !mat) {
       const text = new window.Blotter.Text('SUMMA<br/>TECHNOLOGIAE', {
         family: 'Redaction20',
-        size: 140,
-        leading: 1,
+        size: 150,
+        leading: 0.9,
         fill: '#ffffff',
         padding: 50,
         textAlign: 'center',
@@ -38,7 +100,9 @@ const Intro = () => {
       material.uniforms.uVolatility.value = params.uVolatility
       material.uniforms.uMaxCoeff.value = params.uMaxCoeff
       material.uniforms.uRadius.value = params.uRadius
-      material.uniforms.uFollowMouse.value = 0.0
+      material.uniforms.uFollowMouse.value = 1.0
+      material.uniforms.uMouseX.value = -100.0
+      material.uniforms.uMouseY.value = -100.0
 
       const blotter = new window.Blotter(material, {
         texts: text,
@@ -48,8 +112,10 @@ const Intro = () => {
       removeAllChildren(elem)
       scope.appendTo(elem)
       setMat(material)
+      setScope(scope)
+      setBl(blotter)
     }
-  }, [isFontLoaded, mat, setMat])
+  }, [isFontLoaded, mat, setMat, setBl])
 
   useEffect(() => {
     if (!isFontLoaded) {
@@ -65,12 +131,40 @@ const Intro = () => {
     mat.uniforms.uMouseY.value = y / rect.height
   }
 
-  useEffect(() => {
-    if (mat) {
-      const elem = document.getElementById('text')
-      elem.addEventListener('mousemove', handleMouseMove)
+  const toggleBlotter = () => {
+    if (scope) {
+      if (scope.playing) {
+        scope.pause()
+      } else {
+        scope.play()
+      }
     }
-  }, [mat, handleMouseMove])
+  }
+
+  const startBlotter = () => {
+    if (scope) {
+      scope.play()
+    }
+  }
+
+  const stopBlotter = (e) => {
+    if (scope) {
+      mat.uniforms.uMouseX.value = -100.0
+      mat.uniforms.uMouseY.value = -100.0
+      setTimeout(() => {
+        scope.pause()
+      }, 200)
+    }
+  }
+
+  useEffect(() => {
+    if (bl) {
+      // bl.start()
+      return () => {
+        bl.stop()
+      }
+    }
+  }, [bl])
 
   const handleParamChange = (e) => {
     const name = e.target.name
@@ -89,64 +183,19 @@ const Intro = () => {
         <script src="/liquidDistortMaterial.js" />
       </Head>
       <div>
-        <div id="text" />
-        {mat && (
-          <div
-            className={cn('p-5 fixed right-0 top-0 text-x1', styles.settings)}
-          >
-            <div className="flex justify-between">
-              <label className="mr-4">explosiveness</label>
-              <input
-                name="uVolatility"
-                type="number"
-                step={0.1}
-                value={params.uVolatility}
-                onChange={handleParamChange}
-              />
-            </div>
-            <div className="mt-3 flex justify-between">
-              <label className="mr-4">speed</label>
-              <input
-                name="uSpeed"
-                type="number"
-                step={0.1}
-                value={params.uSpeed}
-                onChange={handleParamChange}
-              />
-            </div>
-            <div className="mt-3 flex justify-between">
-              <label className="mr-4">max coeff</label>
-              <input
-                name="uMaxCoeff"
-                type="number"
-                step={0.01}
-                value={params.uMaxCoeff}
-                onChange={handleParamChange}
-              />
-            </div>
-            <div className="mt-3 flex justify-between">
-              <label className="mr-4">radius</label>
-              <input
-                name="uRadius"
-                type="number"
-                step={0.01}
-                value={params.uRadius}
-                onChange={handleParamChange}
-              />
-            </div>
-            <div className="mt-3 flex justify-between">
-              <label className="mr-4">follow mouse</label>
-              <input
-                name="uFollowMouse"
-                type="number"
-                min={0}
-                max={1}
-                step={1}
-                value={params.uFollowMouse}
-                onChange={handleParamChange}
-              />
-            </div>
-          </div>
+        <div
+          className={cn(styles.introBox, 'flex justify-center')}
+          id="text"
+          onMouseMove={handleMouseMove}
+          onMouseEnter={startBlotter}
+          onMouseLeave={stopBlotter}
+          onClick={toggleBlotter}
+        />
+        {bl && isConfigOpen && (
+          <Configuration
+            params={params}
+            handleParamChange={handleParamChange}
+          />
         )}
       </div>
     </div>
