@@ -1,0 +1,17 @@
+.keywords {
+  height: 32vw;
+}
+
+@keyframes keyword-anim {
+  to {
+    transform: translateY(calc(100% / -3));
+  }
+}
+
+.keywordsInner {
+  animation: keyword-anim 5s linear infinite;
+  &:hover,
+  &Paused {
+    animation-play-state: paused;
+  }
+}

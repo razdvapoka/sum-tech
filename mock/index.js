@@ -25,4 +25,6 @@ Summa Technologiae School is organized in cooperation between e-flux and Adam Mi
     'Political tendencies',
     'Architecture',
   ],
+  objective: `
+The main objective of this project is to try to understand the extension of Lem’s influence, across time, across geography and across disciplines. Stanislaw Lem's works addresses the human condition unflinchingly and yet with humor; he used speculations on technology as a way to speak to philosophy, and philosophy as a means with which to understand technological developments, the nature of intelligence, and the possibility of communication both with other forms of intelligence but more importantly, with ourselves across timespans and distance.`,
 }

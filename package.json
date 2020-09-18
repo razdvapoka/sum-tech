@@ -32,6 +32,7 @@
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-use": "^15.3.4",
     "typograf": "^6.11.1"
   },
   "devDependencies": {
