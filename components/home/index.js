@@ -265,7 +265,7 @@ const Home = ({
   }, [speakers])
 
   return (
-    <Page headerText={headerText} seminarCount={seminars.items.count}>
+    <Page headerText={headerText} seminarCount={seminars.items.length}>
       <div className="grid mt-36">
         <div className="col-8" />
         <div className="col-14">
