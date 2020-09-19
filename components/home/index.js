@@ -10,7 +10,8 @@ import styles from './styles.module.scss'
 
 const Footer = ({ contact, follow }) => {
   return (
-    <footer>
+    <footer className="relative">
+      <div className={styles.anchorTarget} id="contact" />
       <div className="grid mt-18">
         <div className="col-4" />
         <div className="col-10">
@@ -266,54 +267,69 @@ const Home = ({
 
   return (
     <Page headerText={headerText} seminarCount={seminars.items.length}>
-      <div className="grid mt-36">
-        <div className="col-8" />
-        <div className="col-14">
-          <Typograf className="text-l2">{description}</Typograf>
+      <section className="relative">
+        <div className={styles.anchorTarget} id="about" />
+        <div className="grid mt-36">
+          <div className="col-8" />
+          <div className="col-14">
+            <Typograf className="text-l2">{description}</Typograf>
+          </div>
         </div>
-      </div>
-      <div className="grid mt-36">
-        <div className="col-4" />
-        <div className="col-20">
-          <Keywords keywords={keywords} />
+        <div className="grid mt-36">
+          <div className="col-4" />
+          <div className="col-20">
+            <Keywords keywords={keywords} />
+          </div>
         </div>
-      </div>
-      <div className="grid mt-36">
-        <div className="col-8" />
-        <div className="col-14">
-          <Typograf className="text-l2">{objective}</Typograf>
+        <div className="grid mt-36">
+          <div className="col-8" />
+          <div className="col-14">
+            <Typograf className="text-l2">{objective}</Typograf>
+          </div>
         </div>
-      </div>
-      <Lem {...lem} />
-      {closestSeminar && <ClosestSeminar {...closestSeminar} />}
-      <Seminars {...seminars} />
-      <Outcomes {...outcomes} />
-      <Speakers speakers={leaders} className="mt-18" />
+        <Lem {...lem} />
+      </section>
+      <section className="relative">
+        <div className={styles.anchorTarget} id="seminars" />
+        {closestSeminar && <ClosestSeminar {...closestSeminar} />}
+        <Seminars {...seminars} />
+        <Outcomes {...outcomes} />
+      </section>
+      <section className="relative">
+        <div className={styles.anchorTarget} id="leaders" />
+        <Speakers speakers={leaders} className="mt-18" />
+      </section>
       <div className={cn('grid', styles.secondPhase)}>
         <div className="col-4" />
         <div className={cn('col-19 text-xxl', styles.secondPhase)}>
           <div dangerouslySetInnerHTML={{ __html: secondPhase }} />
         </div>
       </div>
-      <Speakers speakers={others} className="mt-36" />
+      <section className="relative">
+        <div className={styles.anchorTarget} id="speakers" />
+        <Speakers speakers={others} className="mt-36" />
+      </section>
       <div className="grid mt-36">
         <div className="col-4" />
         <div className="col-20">
           <Keywords keywords={keywords} />
         </div>
       </div>
-      <Application {...application} />
-      <div className="grid mt-18">
-        <div className="col-4" />
-        <a
-          href="https://example.com"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="block col-20 border border-white py-13 text-xxl text-center"
-        >
-          apply
-        </a>
-      </div>
+      <section className="relative">
+        <div className={styles.anchorTarget} id="apply" />
+        <Application {...application} />
+        <div className="grid mt-18">
+          <div className="col-4" />
+          <a
+            href="https://example.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="block col-20 border border-white py-13 text-xxl text-center"
+          >
+            apply
+          </a>
+        </div>
+      </section>
       <Footer follow={follow} contact={contact} />
     </Page>
   )

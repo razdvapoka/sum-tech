@@ -62,3 +62,9 @@
   background-size: cover;
   background-position: center;
 }
+
+.anchorTarget {
+  position: absolute;
+  top: -2rem;
+  visibility: hidden;
+}

@@ -1,10 +1,11 @@
+import { useIntersection } from 'react-use'
 import Head from 'next/head'
 import React, { useRef } from 'react'
 import cn from 'classnames'
-import { useIntersection } from 'react-use'
 
 import Header from '../header'
 import Intro from '../intro'
+import Menu from '../menu'
 import styles from './styles.module.scss'
 
 export function Page({ headerText, seminarCount, children }) {
@@ -15,10 +16,16 @@ export function Page({ headerText, seminarCount, children }) {
   })
   const isMainVisible = intersection && intersection.isIntersecting
 
+  const introIntersectionRef = useRef(null)
+  const introIntersection = useIntersection(introIntersectionRef, {
+    root: null,
+    rootMargin: '0px',
+  })
+  const isIntroHidden =
+    introIntersection != null && !introIntersection.isIntersecting
+
   return (
-    <div
-      className={cn('min-h-screen flex flex-col px-2 pb-30', styles.container)}
-    >
+    <div className={cn('min-h-screen flex flex-col px-2', styles.container)}>
       <Head>
         <title>Summa Technologiae</title>
         <link rel="icon" href="/favicon.ico" />
@@ -28,6 +35,7 @@ export function Page({ headerText, seminarCount, children }) {
           'h-screen flex flex-col justify-between relative',
           styles.introBox
         )}
+        ref={introIntersectionRef}
       >
         <Header text={headerText} seminarCount={seminarCount} />
         <Intro />
@@ -41,8 +49,10 @@ export function Page({ headerText, seminarCount, children }) {
           scroll down
         </div>
       </div>
+      {isIntroHidden && <Menu />}
       <main ref={intersectionRef}>{children}</main>
       <footer />
+      <div className="h-screen" />
     </div>
   )
 }
