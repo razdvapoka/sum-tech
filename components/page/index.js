@@ -8,7 +8,9 @@ import styles from './styles.module.scss'
 
 export function Page({ headerText, seminarCount, children }) {
   return (
-    <div className={cn('min-h-screen flex flex-col px-2', styles.container)}>
+    <div
+      className={cn('min-h-screen flex flex-col px-2 pb-30', styles.container)}
+    >
       <Head>
         <title>Summa Technologiae</title>
         <link rel="icon" href="/favicon.ico" />

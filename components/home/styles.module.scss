@@ -28,7 +28,37 @@
   }
 }
 
+.secondPhase {
+  margin-top: 26.5rem;
+}
+
 .secondPhase em {
   font-style: normal;
   color: color(purple);
+}
+
+.columnText {
+  p + p {
+    margin-top: 1.76rem;
+  }
+
+  a {
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: color(purple);
+  }
+}
+
+.credits {
+  padding-right: 12rem;
+}
+
+.logos {
+  width: 29.8rem;
+  height: 4.3rem;
+  background-image: url(/logos.svg);
+  background-size: cover;
+  background-position: center;
 }

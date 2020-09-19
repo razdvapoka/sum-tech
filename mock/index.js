@@ -164,4 +164,39 @@ The seminars will begin in the fall of 2020. Each seminar will meet at its own f
     },
   ],
   secondPhase: `the second phase of the project will be <em>a series of conferences</em> which will take place in 2021`,
+  application: {
+    who: `
+      <p>Applicants must have a first degree from a recognized university or institution of higher education, or provide documentation indicating that they will earn such a first degree before enrolment in a CEU master's program.</p>
+      <p>For its one-year U.S.-accredited master's programs, CEU normally accepts students who have completed four years of undergraduate university study. Applicants with a three-year bachelor's degree will be considered for two-year master's programs.</p>
+      <p>Admission into the U.S.-accredited one-year programs with a three-year bachelor's degree may be possible pending the University Provost's approval in particular cases, based on the recommendation of the academic unit in question.</p>
+      <p>Students enrolled in a master's program at CEU must not be simultaneously enrolled in another higher education institution, unless they provide official documentation about having obtained a leave of absence from the other institution for the entire duration of their studies at CEU. Admitted students are required, if applicable, to indicate enrolment at another institution in the matriculation form at the beginning of their studies at CEU.</p>
+    `,
+    how: `
+      <p>Applicants must have a first degree from a recognized university or institution of higher education, or provide documentation indicating that they will earn such a first degree before enrolment in a CEU master's program.</p>
+      <p>For its one-year U.S.-accredited master's programs, CEU normally accepts students who have completed four years of undergraduate university study. Applicants with a three-year bachelor's degree will be considered for two-year master's programs.</p>
+      <p>Admission into the U.S.-accredited one-year programs with a three-year bachelor's degree may be possible pending the University Provost's approval in particular cases, based on the recommendation of the academic unit in question.</p>
+      <p>Students enrolled in a master's program at CEU must not be simultaneously enrolled in another higher education institution, unless they provide official documentation about having obtained a leave of absence from the other institution for the entire duration of their studies at CEU. Admitted students are required, if applicable, to indicate enrolment at another institution in the matriculation form at the beginning of their studies at CEU.</p>
+    `,
+    requirements: `
+      <p>The language of instruction for all master's, doctoral and non-degree programs offered by Central European University is English.</p>
+      <p>Candidates must demonstrate proficiency in English by submitting standardized English language test scores.</p>
+      <p>Candidates whose first language is English are normally exempt from this requirement.</p>
+      <p>For further information refer to the Application Checklist.</p>
+    `,
+  },
+  contact: `
+    <p>
+      <a href="mailto:summetechnologiae@e-flux.com">summetechnologiae@e-flux.com</a><br/>
+      <a href="mailto:applications@iam.com">applications@iam.com</a>
+    </p>
+    <p>
+      311 East Broadway<br/>
+      New York, NY 10002, USA
+    </p>
+  `,
+  follow: `
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+    <a href="https://example.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+  `,
 }

@@ -8,6 +8,95 @@ import Keywords from '../keywords'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
+const Footer = ({ contact, follow }) => {
+  return (
+    <footer>
+      <div className="grid mt-18">
+        <div className="col-4" />
+        <div className="col-10">
+          <div className="pb-1 mb-3 border-white border-b text-s2">
+            Contact us
+          </div>
+          <Typograf className={cn('text-s1', styles.columnText)}>
+            {contact}
+          </Typograf>
+        </div>
+        <div className="col-10">
+          <div className="pb-1 mb-3 border-white border-b text-s2">
+            Follow us
+          </div>
+          <Typograf
+            className={cn(
+              'text-s1 flex flex-col items-start',
+              styles.columnText
+            )}
+          >
+            {follow}
+          </Typograf>
+        </div>
+      </div>
+      <div className="grid mt-12">
+        <div className="col-4" />
+        <div className="col-10">
+          <div className="pb-1 mb-3 border-white border-b text-s2">
+            Privacy policy
+          </div>
+          <div className={cn('text-s1', styles.columnText)}>
+            E-flux and IAM privacy policy
+            <br />
+            <br />
+            ©2020
+          </div>
+        </div>
+        <div className="col-10">
+          <div className="pb-1 mb-3 border-white border-b text-s2">Credits</div>
+          <div className={cn('text-s1', styles.columnText, styles.credits)}>
+            <p>
+              Design: Tanya Ermolaeva, Nat Kukina
+              <br />
+              Technical realization: Sergey Zakharov, Valentin Golev
+            </p>
+            <Typograf as="p">
+              Summa Technologiae School is organized in cooperation between
+              e-flux and Adam Mickeiwicz Institute and curated by Julieta
+              Aranda.
+            </Typograf>
+            <div className={cn(styles.logos, 'mt-4')} />
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+const Application = ({ who, how, requirements }) => {
+  return (
+    <div className="mt-18 grid">
+      <div className="col-4" />
+      <div className="col-7">
+        <div className="pb-1 mb-3 border-white border-b text-s2">
+          Who can apply
+        </div>
+        <Typograf className={cn('text-s1', styles.columnText)}>{who}</Typograf>
+      </div>
+      <div className="col-7">
+        <div className="pb-1 mb-3 border-white border-b text-s2">
+          How to apply
+        </div>
+        <Typograf className={cn('text-s1', styles.columnText)}>{how}</Typograf>
+      </div>
+      <div className="col-6">
+        <div className="pb-1 mb-3 border-white border-b text-s2">
+          Language requirements
+        </div>
+        <Typograf className={cn('text-s1', styles.columnText)}>
+          {requirements}
+        </Typograf>
+      </div>
+    </div>
+  )
+}
+
 const ClosestSeminar = ({ slug, name, date }) => {
   return (
     <div className="grid mt-18">
@@ -153,6 +242,9 @@ const Home = ({
   outcomes,
   speakers,
   secondPhase,
+  application,
+  contact,
+  follow,
 }) => {
   const closestSeminar = useMemo(() => {
     const closestSeminars = seminars.items
@@ -197,13 +289,32 @@ const Home = ({
       <Seminars {...seminars} />
       <Outcomes {...outcomes} />
       <Speakers speakers={leaders} className="mt-18" />
-      <div className="grid mt-40">
+      <div className={cn('grid', styles.secondPhase)}>
         <div className="col-4" />
         <div className={cn('col-19 text-xxl', styles.secondPhase)}>
           <div dangerouslySetInnerHTML={{ __html: secondPhase }} />
         </div>
       </div>
       <Speakers speakers={others} className="mt-36" />
+      <div className="grid mt-36">
+        <div className="col-4" />
+        <div className="col-20">
+          <Keywords keywords={keywords} />
+        </div>
+      </div>
+      <Application {...application} />
+      <div className="grid mt-18">
+        <div className="col-4" />
+        <a
+          href="https://example.com"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="block col-20 border border-white py-13 text-xxl text-center"
+        >
+          apply
+        </a>
+      </div>
+      <Footer follow={follow} contact={contact} />
     </Page>
   )
 }
