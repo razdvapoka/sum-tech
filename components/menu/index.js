@@ -33,7 +33,12 @@ const Menu = () => {
           </li>
         ))}
       </ul>
-      <button className="text-l1 w-full py-20 border border-white border-solid">
+      <button
+        className={cn(
+          'text-l1 w-full py-20 border border-white border-solid hover:bg-purple',
+          styles.applyButton
+        )}
+      >
         apply
       </button>
     </nav>

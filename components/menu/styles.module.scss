@@ -2,3 +2,10 @@
   left: 1rem;
   width: 22.8rem;
 }
+
+.applyButton {
+  transition: background-color 0.2s ease, border 0.2s ease;
+  &:hover {
+    border-color: color(purple);
+  }
+}
