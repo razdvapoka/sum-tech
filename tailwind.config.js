@@ -28,6 +28,8 @@ module.exports = {
 
     extend: {},
   },
-  variants: {},
+  variants: {
+    textColor: ['responsive', 'odd', 'hover'],
+  },
   plugins: [],
 }

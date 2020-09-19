@@ -10,3 +10,25 @@
   padding-top: 100%;
   transition: background-color 0.2s ease;
 }
+
+.leader {
+  transition: color 0.2s ease;
+}
+
+.leaderPhotoOverlay {
+  background-color: color(purple);
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.leader:hover {
+  .leaderPhotoOverlay {
+    opacity: 1;
+  }
+}
+
+.secondPhase em {
+  font-style: normal;
+  color: color(purple);
+}

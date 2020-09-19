@@ -2,6 +2,10 @@
   height: 32vw;
 }
 
+.keyword {
+  transition: color 0.2s ease;
+}
+
 @keyframes keyword-anim {
   to {
     transform: translateY(calc(100% / -3));

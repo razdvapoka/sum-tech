@@ -13,7 +13,10 @@ const Keywords = ({ keywords }) => {
     () => (
       <div>
         {keywords.map((keyword, keywordIndex) => (
-          <div className="hover:text-purple select-none" key={keywordIndex}>
+          <div
+            className={cn('hover:text-purple select-none', styles.keyword)}
+            key={keywordIndex}
+          >
             {keyword}
           </div>
         ))}
