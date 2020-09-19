@@ -1,12 +1,20 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useRef } from 'react'
 import cn from 'classnames'
+import { useIntersection } from 'react-use'
 
 import Header from '../header'
 import Intro from '../intro'
 import styles from './styles.module.scss'
 
 export function Page({ headerText, seminarCount, children }) {
+  const intersectionRef = useRef(null)
+  const intersection = useIntersection(intersectionRef, {
+    root: null,
+    rootMargin: '-10px',
+  })
+  const isMainVisible = intersection && intersection.isIntersecting
+
   return (
     <div
       className={cn('min-h-screen flex flex-col px-2 pb-30', styles.container)}
@@ -23,11 +31,17 @@ export function Page({ headerText, seminarCount, children }) {
       >
         <Header text={headerText} seminarCount={seminarCount} />
         <Intro />
-        <div className="absolute left-0 bottom-0 w-full text-center text-s2 mb-2">
+        <div
+          className={cn(
+            'absolute left-0 bottom-0 w-full text-center text-s2 mb-2',
+            { 'opacity-0': isMainVisible },
+            styles.scrollDown
+          )}
+        >
           scroll down
         </div>
       </div>
-      <main>{children}</main>
+      <main ref={intersectionRef}>{children}</main>
       <footer />
     </div>
   )
