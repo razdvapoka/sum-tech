@@ -15,8 +15,8 @@ const loadFont = (font) => new FontFaceObserver(font).load()
 const Intro = () => {
   const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [bl, setBl] = useState(null)
-  const [blTextLine1, setBlTextLine1] = useState('BLACK')
-  const [blTextLine2, setBlTextLine2] = useState('MAGIC')
+  const [blTextLine1, setBlTextLine1] = useState('SUMMA')
+  const [blTextLine2, setBlTextLine2] = useState('TECHNOLOGIAE')
   const [blText, setBlText] = useState(null)
   const [mat, setMat] = useState(null)
   const [params, setParams] = useState({
@@ -27,13 +27,29 @@ const Intro = () => {
     uFollowMouse: 0.0,
   })
 
+  function download(e) {
+    const scope = Object.values(bl._scopes)[0]
+    const canvas = scope.domElement
+    var dt = canvas.toDataURL('image/png')
+    /* Change MIME type to trick the browser to downlaod the file instead of displaying it */
+    dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream')
+
+    /* In addition to <a>'s "download" attribute, you can define HTTP-style headers */
+    dt = dt.replace(
+      /^data:application\/octet-stream/,
+      'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png'
+    )
+
+    e.target.href = dt
+  }
+
   useEffect(() => {
     if (isFontLoaded && !mat) {
       const text = new window.Blotter.Text(
         `${blTextLine1}<br/>${blTextLine2}`,
         {
           family: 'Redaction20',
-          size: 240,
+          size: 140,
           leading: 1,
           fill: '#ffffff',
           padding: 50,
@@ -194,6 +210,14 @@ const Intro = () => {
             </div>
           </div>
         )}
+        <a
+          style={{ fontSize: 50 }}
+          download="canvas.png"
+          href="#"
+          onClick={download}
+        >
+          get screenshot
+        </a>
       </div>
     </div>
   )
