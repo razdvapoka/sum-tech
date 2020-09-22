@@ -169,6 +169,14 @@ const Seminars = ({ description, items }) => {
                   <div>{format(new Date(seminar.date), 'dd.MM')}</div>
                   <Typograf>{seminar.name}</Typograf>
                   <div className="mt-10">{seminar.leader}</div>
+                  <div
+                    className={cn(
+                      'absolute text-s2 uppercase text-center',
+                      styles.learnMore
+                    )}
+                  >
+                    learn more
+                  </div>
                 </div>
               </a>
             </Link>

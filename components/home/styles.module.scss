@@ -68,3 +68,15 @@
 .applyButton {
   transition: background-color 0.3s ease-out;
 }
+
+.learnMore {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 3rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.seminarBox:hover .learnMore {
+  opacity: 1;
+}
