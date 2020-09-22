@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react'
+import { format } from 'date-fns'
 import cn from 'classnames'
 import styles from './styles.module.scss'
 import X from '../../assets/icons/✕.svg'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { useRouter } from 'next/router'
+import Typograf from '../typograph'
 
-const Seminar = ({ isOpen }) => {
+const Seminar = ({ isOpen, seminar }) => {
   const [isClosing, setIsClosing] = useState(false)
   const router = useRouter()
 
@@ -55,7 +57,23 @@ const Seminar = ({ isOpen }) => {
           >
             <X />
           </button>
-          <div style={{ height: '200vh' }}></div>
+          {seminar && (
+            <div>
+              <div className="grid">
+                <div className="col-20-s text-xxl">
+                  <Typograf className="text-purple">{seminar.name}</Typograf>
+                  <div>{seminar.leader}</div>
+                </div>
+                <div className="col-3-s" />
+              </div>
+              <div className="grid">
+                <div className="col-4-s" />
+                <div className="col-19-s text-xxl text-purple">
+                  {format(new Date(seminar.date), 'MMMM d, yyyy')}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
