@@ -1,11 +1,16 @@
 .menu {
   left: 1rem;
   width: 22.8rem;
+  &Item {
+    transition: border-color 0.3s ease-out;
+    border-color: transparent;
+  }
+  &ItemActive {
+    border-color: white;
+    pointer-events: none;
+  }
 }
 
 .applyButton {
-  transition: background-color 0.2s ease, border 0.2s ease;
-  &:hover {
-    border-color: color(purple);
-  }
+  transition: background-color 0.3s ease-out;
 }

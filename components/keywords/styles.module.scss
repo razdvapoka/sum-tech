@@ -3,7 +3,7 @@
 }
 
 .keyword {
-  transition: color 0.2s ease;
+  // transition: color 0.2s ease;
 }
 
 @keyframes keyword-anim {
@@ -13,7 +13,7 @@
 }
 
 .keywordsInner {
-  animation: keyword-anim 5s linear infinite;
+  animation: keyword-anim 10s linear infinite;
   &:hover,
   &Paused {
     animation-play-state: paused;

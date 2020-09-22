@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import React, { useMemo } from 'react'
+import { useIntersection } from 'react-use'
+import React, { useMemo, useState, useRef, useEffect } from 'react'
 import cn from 'classnames'
 import { format } from 'date-fns'
 
@@ -143,7 +144,7 @@ const Seminars = ({ description, items }) => {
   return (
     <section>
       <div className="grid mt-30">
-        <div className="col-4" />
+        <div className="col-5" />
         <div className="col-14">
           <Typograf className="text-l2">{description}</Typograf>
         </div>
@@ -233,6 +234,29 @@ const Speakers = ({ speakers, className }) => {
   )
 }
 
+const Section = ({
+  sectionIndex,
+  setActiveSectionIndex,
+  children,
+  ...rest
+}) => {
+  const intersectionRef = useRef(null)
+  const intersection = useIntersection(intersectionRef, {
+    root: null,
+    rootMargin: '-10px',
+  })
+  useEffect(() => {
+    if (intersection && intersection.isIntersecting) {
+      setActiveSectionIndex(sectionIndex)
+    }
+  }, [intersection, sectionIndex])
+  return (
+    <section ref={intersectionRef} {...rest}>
+      {children}
+    </section>
+  )
+}
+
 const Home = ({
   headerText,
   description,
@@ -246,7 +270,10 @@ const Home = ({
   application,
   contact,
   follow,
+  seminar,
 }) => {
+  const [activeSectionIndex, setActiveSectionIndex] = useState(null)
+
   const closestSeminar = useMemo(() => {
     const closestSeminars = seminars.items
       .map((s) => ({ ...s, date: new Date(s.date) }))
@@ -266,8 +293,17 @@ const Home = ({
   }, [speakers])
 
   return (
-    <Page headerText={headerText} seminarCount={seminars.items.length}>
-      <section className="relative">
+    <Page
+      headerText={headerText}
+      seminarCount={seminars.items.length}
+      seminar={seminar}
+      activeSectionIndex={activeSectionIndex}
+    >
+      <Section
+        sectionIndex={0}
+        setActiveSectionIndex={setActiveSectionIndex}
+        className="relative"
+      >
         <div className={styles.anchorTarget} id="about" />
         <div className="grid mt-36">
           <div className="col-8" />
@@ -288,49 +324,72 @@ const Home = ({
           </div>
         </div>
         <Lem {...lem} />
-      </section>
-      <section className="relative">
+      </Section>
+      <Section
+        sectionIndex={1}
+        setActiveSectionIndex={setActiveSectionIndex}
+        className="relative"
+      >
         <div className={styles.anchorTarget} id="seminars" />
         {closestSeminar && <ClosestSeminar {...closestSeminar} />}
         <Seminars {...seminars} />
         <Outcomes {...outcomes} />
-      </section>
-      <section className="relative">
+      </Section>
+      <Section
+        sectionIndex={2}
+        setActiveSectionIndex={setActiveSectionIndex}
+        className="relative"
+      >
         <div className={styles.anchorTarget} id="leaders" />
         <Speakers speakers={leaders} className="mt-18" />
-      </section>
-      <div className={cn('grid', styles.secondPhase)}>
-        <div className="col-4" />
-        <div className={cn('col-19 text-xxl', styles.secondPhase)}>
-          <div dangerouslySetInnerHTML={{ __html: secondPhase }} />
+        <div className={cn('grid mt-36', styles.secondPhase)}>
+          <div className="col-4" />
+          <div className={cn('col-19 text-xxl', styles.secondPhase)}>
+            <div dangerouslySetInnerHTML={{ __html: secondPhase }} />
+          </div>
         </div>
-      </div>
-      <section className="relative">
+      </Section>
+      <Section
+        sectionIndex={3}
+        setActiveSectionIndex={setActiveSectionIndex}
+        className="relative"
+      >
         <div className={styles.anchorTarget} id="speakers" />
         <Speakers speakers={others} className="mt-36" />
-      </section>
-      <div className="grid mt-36">
-        <div className="col-4" />
-        <div className="col-20">
-          <Keywords keywords={keywords} />
+        <div className="grid mt-36">
+          <div className="col-4" />
+          <div className="col-20">
+            <Keywords keywords={keywords} />
+          </div>
         </div>
-      </div>
-      <section className="relative">
+      </Section>
+      <Section
+        sectionIndex={4}
+        setActiveSectionIndex={setActiveSectionIndex}
+        className="relative"
+      >
         <div className={styles.anchorTarget} id="apply" />
         <Application {...application} />
         <div className="grid mt-18">
           <div className="col-4" />
-          <a
-            href="https://example.com"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="block col-20 border border-white py-13 text-xxl text-center"
-          >
-            apply
-          </a>
+          <div className="col-20">
+            <a
+              href="https://example.com"
+              target="_blank"
+              rel="noreferrer noopener"
+              className={cn(
+                'block border border-white py-13 text-xxl text-center hover:bg-purple',
+                styles.applyButton
+              )}
+            >
+              apply
+            </a>
+          </div>
         </div>
-      </section>
-      <Footer follow={follow} contact={contact} />
+      </Section>
+      <Section sectionIndex={5} setActiveSectionIndex={setActiveSectionIndex}>
+        <Footer follow={follow} contact={contact} />
+      </Section>
     </Page>
   )
 }

@@ -1,0 +1,14 @@
+.closeButton {
+  right: 2rem;
+  top: 2rem;
+  width: 3.81rem;
+  height: 3.84rem;
+}
+
+.seminar {
+  transition: transform 1s ease;
+  transform: translateX(100%);
+  &Open {
+    transform: none;
+  }
+}

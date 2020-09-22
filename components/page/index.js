@@ -6,9 +6,16 @@ import cn from 'classnames'
 import Header from '../header'
 import Intro from '../intro'
 import Menu from '../menu'
+import Seminar from '../seminar'
 import styles from './styles.module.scss'
 
-export function Page({ headerText, seminarCount, children }) {
+export function Page({
+  activeSectionIndex,
+  headerText,
+  seminarCount,
+  seminar,
+  children,
+}) {
   const intersectionRef = useRef(null)
   const intersection = useIntersection(intersectionRef, {
     root: null,
@@ -25,34 +32,37 @@ export function Page({ headerText, seminarCount, children }) {
     introIntersection != null && !introIntersection.isIntersecting
 
   return (
-    <div className={cn('min-h-screen flex flex-col px-2', styles.container)}>
-      <Head>
-        <title>Summa Technologiae</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div
-        className={cn(
-          'h-screen flex flex-col justify-between relative',
-          styles.introBox
-        )}
-        ref={introIntersectionRef}
-      >
-        <Header text={headerText} seminarCount={seminarCount} />
-        <Intro />
+    <>
+      <Seminar seminar={seminar} isOpen={!!seminar} />
+      <div className={cn('min-h-screen flex flex-col px-2', styles.container)}>
+        <Head>
+          <title>Summa Technologiae</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <div
           className={cn(
-            'absolute left-0 bottom-0 w-full text-center text-s2 mb-2',
-            { 'opacity-0': isMainVisible },
-            styles.scrollDown
+            'h-screen flex flex-col justify-between relative',
+            styles.introBox
           )}
+          ref={introIntersectionRef}
         >
-          scroll down
+          <Header text={headerText} seminarCount={seminarCount} />
+          <Intro />
+          <div
+            className={cn(
+              'absolute left-0 bottom-0 w-full text-center text-s2 mb-2',
+              { 'opacity-0': isMainVisible },
+              styles.scrollDown
+            )}
+          >
+            scroll down
+          </div>
         </div>
+        {isIntroHidden && <Menu activeSectionIndex={activeSectionIndex} />}
+        <main ref={intersectionRef}>{children}</main>
+        <footer />
+        <div className="h-screen" />
       </div>
-      {isIntroHidden && <Menu />}
-      <main ref={intersectionRef}>{children}</main>
-      <footer />
-      <div className="h-screen" />
-    </div>
+    </>
   )
 }
