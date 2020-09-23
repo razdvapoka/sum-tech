@@ -50,6 +50,12 @@ $font-styles: (
     line-height: 1,
     text-transform: uppercase,
   ),
+  xl2: (
+    font-family: $ff-red-reg,
+    font-size: 5rem,
+    line-height: 1.09,
+    text-transform: uppercase,
+  ),
   xxl: (
     font-family: $ff-red-20-bold,
     font-size: 11rem,

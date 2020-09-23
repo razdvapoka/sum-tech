@@ -60,8 +60,6 @@ export function Page({
         </div>
         {isIntroHidden && <Menu activeSectionIndex={activeSectionIndex} />}
         <main ref={intersectionRef}>{children}</main>
-        <footer />
-        <div className="h-screen" />
       </div>
     </>
   )

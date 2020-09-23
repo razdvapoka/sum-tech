@@ -11,7 +11,7 @@ import styles from './styles.module.scss'
 
 const Footer = ({ contact, follow }) => {
   return (
-    <footer className="relative">
+    <footer className={cn('relative', styles.footer)}>
       <div className={styles.anchorTarget} id="contact" />
       <div className="grid mt-18">
         <div className="col-4" />

@@ -11,4 +11,43 @@
   &Open {
     transform: none;
   }
+  &Name {
+    hyphens: auto;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+  }
+}
+
+.wysiwyg {
+  p {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(14 / 24 * 100%);
+    margin-left: calc(3 / 24 * 100% + 0.5rem);
+  }
+
+  figure {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(19 / 24 * 100%);
+    margin-left: calc(2 / 24 * 100% + 0.5rem);
+    img {
+      filter: grayscale(100%);
+    }
+  }
+
+  p + figure,
+  figure + p {
+    margin-top: 2rem;
+  }
+
+  figcaption {
+    color: color(purple);
+    @include font-style(s1);
+    margin-top: 1rem;
+  }
+}
+
+.applyButton {
+  transition: background-color 0.3s ease-out;
 }
