@@ -1,5 +1,10 @@
 import seminars from './seminars'
 
+const speakerBio = `
+<p>Anton Vidokle is an artist and founder of e-flux. Born 1965, Vidokle lives in New York and Berlin.</p>
+<p>In 2004 Vidokle co-organized e-flux video rental with Julieta Aranda, which traveled to Berlin, Frankfurt; Extra City, Antwerp; Carpenter Center, Harvard University and others. As founder of e-flux, he has produced projects such as Next Documenta Should Be Curated by an Artist (curated by Jens Hoffmann), Do it (curated by Hans-Ulrich Obrist), Utopia Station poster project, and organized An Image Bank for Everyday Revolutionary Life (based on the image archive of David Alfaro Siqueiros) and Martha Rosler Library.</p>
+`
+
 export default {
   headerText: `
 <p>In September 1974, the American science-fiction writer Philipp K. Dick, wrote a letter to the FBI,
@@ -51,71 +56,99 @@ The seminars will begin in the fall of 2020. Each seminar will meet at its own f
       name: 'Anton Vidokle',
       isLeader: true,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Anton Vidokle',
       isLeader: true,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Anton Vidokle',
       isLeader: true,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Anton Vidokle',
       isLeader: true,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Anton Vidokle',
       isLeader: true,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Anton Vidokle',
       isLeader: true,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
     {
       name: 'Speaker Speaker',
       isLeader: false,
       photo: '/vidokle.png',
+      bio: speakerBio,
+      url: 'https://example.com',
     },
   ],
   secondPhase: `the second phase of the project will be <em>a series of conferences</em> which will take place in 2021`,

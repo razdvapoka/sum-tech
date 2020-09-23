@@ -16,6 +16,12 @@
 
 .leader {
   transition: color 0.2s ease;
+  &Bio {
+    width: calc(10 / 24 * 100vw);
+    top: 1rem;
+    bottom: 1rem;
+    transition: opacity 0.3s ease-out;
+  }
 }
 
 .leaderPhotoOverlay {
@@ -87,4 +93,9 @@
 
 .footer {
   margin-bottom: 100vh;
+}
+
+.closeButton {
+  width: 1.4rem;
+  height: 1.7rem;
 }

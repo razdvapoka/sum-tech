@@ -1,0 +1,36 @@
+.leader {
+  transition: color 0.2s ease;
+  &Bio {
+    width: calc(10 / 24 * 100vw);
+    top: 1rem;
+    bottom: 1rem;
+    transition: opacity 0.3s ease-out;
+    transform: translateX(-1px);
+    &Text {
+      p:not(:first-child) {
+        text-indent: 3rem;
+      }
+    }
+    &More {
+      transition: color 0.2s ease;
+    }
+  }
+}
+
+.leaderPhotoOverlay {
+  background-color: color(purple);
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.overlay:hover {
+  .leaderPhotoOverlay {
+    opacity: 1;
+  }
+}
+
+.closeButton {
+  width: 1.4rem;
+  height: 1.7rem;
+}

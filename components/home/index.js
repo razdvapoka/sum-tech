@@ -1,11 +1,12 @@
-import Link from 'next/link'
+import { format } from 'date-fns'
 import { useIntersection } from 'react-use'
+import Link from 'next/link'
 import React, { useMemo, useState, useRef, useEffect } from 'react'
 import cn from 'classnames'
-import { format } from 'date-fns'
 
 import { Page } from '../page'
 import Keywords from '../keywords'
+import Speaker from '../speaker'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
@@ -207,36 +208,19 @@ const Outcomes = ({ text, items }) => {
 }
 
 const Speakers = ({ speakers, className }) => {
+  const [openBioIndex, setOpenBioIndex] = useState(null)
   return (
     <div className={cn('grid', className)}>
       <div className="col-4" />
-      <div className="grid flex-wrap col-20">
+      <div className="col-20 grid flex-wrap">
         {speakers.map((speaker, speakerIndex) => (
-          <div
+          <Speaker
             key={speakerIndex}
-            className={cn(
-              'col-5 relative hover:text-purple mb-4',
-              styles.leader
-            )}
-          >
-            <div
-              className={cn('relative h-0', styles.leaderPhoto)}
-              style={{
-                paddingTop: '100%',
-                backgroundImage: `url(${speaker.photo})`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-              }}
-            >
-              <div
-                className={cn(
-                  'absolute left-0 top-0 w-full h-full',
-                  styles.leaderPhotoOverlay
-                )}
-              />
-            </div>
-            <div className="text-s2 text-inherit mt-2">{speaker.name}</div>
-          </div>
+            index={speakerIndex}
+            openBioIndex={openBioIndex}
+            setOpenBioIndex={setOpenBioIndex}
+            {...speaker}
+          />
         ))}
       </div>
     </div>
