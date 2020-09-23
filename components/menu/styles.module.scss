@@ -1,6 +1,7 @@
 .menu {
   left: 1rem;
   width: 22.8rem;
+  transition: opacity 0.3s ease-out;
   &Item {
     transition: border-color 0.3s ease-out;
     border-color: transparent;

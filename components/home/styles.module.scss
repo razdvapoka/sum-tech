@@ -8,7 +8,10 @@
   position: relative;
   height: 0;
   padding-top: 100%;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease-out;
+  &:hover {
+    transition: background-color 0.3s ease-in;
+  }
 }
 
 .leader {
@@ -79,6 +82,7 @@
 
 .seminarBox:hover .learnMore {
   opacity: 1;
+  transition: opacity 0.3s ease-in;
 }
 
 .footer {

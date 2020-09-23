@@ -121,7 +121,7 @@ const Lem = ({ photo, bio }) => {
       <div className="grid mt-18">
         <div className="col-4" />
         <div className="col-8">
-          <Typograf className="text-s3">Stanislaw Lem — Biography</Typograf>
+          <Typograf className="text-s2">Stanislaw Lem — Biography</Typograf>
         </div>
       </div>
       <div className="grid mt-4">
@@ -140,7 +140,7 @@ const Lem = ({ photo, bio }) => {
   )
 }
 
-const Seminars = ({ description, items }) => {
+const Seminars = ({ description, items, setIsLoadingSeminar }) => {
   return (
     <section>
       <div className="grid mt-30">
@@ -164,6 +164,7 @@ const Seminars = ({ description, items }) => {
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                 }}
+                onClick={() => setIsLoadingSeminar(true)}
               >
                 <div className="absolute left-0 top-0 w-full h-full text-center pt-4 px-12 text-xl">
                   <div>{format(new Date(seminar.date), 'dd.MM')}</div>
@@ -280,6 +281,7 @@ const Home = ({
   follow,
   seminar,
 }) => {
+  const [isLoadingSeminar, setIsLoadingSeminar] = useState(false)
   const [activeSectionIndex, setActiveSectionIndex] = useState(null)
 
   const closestSeminar = useMemo(() => {
@@ -306,6 +308,8 @@ const Home = ({
       seminarCount={seminars.items.length}
       seminar={seminar}
       activeSectionIndex={activeSectionIndex}
+      setIsLoadingSeminar={setIsLoadingSeminar}
+      isLoadingSeminar={isLoadingSeminar}
     >
       <Section
         sectionIndex={0}
@@ -340,7 +344,7 @@ const Home = ({
       >
         <div className={styles.anchorTarget} id="seminars" />
         {closestSeminar && <ClosestSeminar {...closestSeminar} />}
-        <Seminars {...seminars} />
+        <Seminars {...seminars} setIsLoadingSeminar={setIsLoadingSeminar} />
         <Outcomes {...outcomes} />
       </Section>
       <Section

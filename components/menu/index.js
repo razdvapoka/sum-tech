@@ -11,12 +11,13 @@ const MENU_ITEMS = [
   { name: 'contact & credits', hash: 'contact' },
 ]
 
-const Menu = ({ activeSectionIndex }) => {
+const Menu = ({ activeSectionIndex, isVisible }) => {
   return (
     <nav
       className={cn(
-        'fixed h-screen flex flex-col justify-between py-2 z-30',
-        styles.menu
+        'fixed h-screen flex flex-col justify-between py-2 z-30 opacity-0',
+        styles.menu,
+        { 'opacity-100': isVisible }
       )}
     >
       <ul>

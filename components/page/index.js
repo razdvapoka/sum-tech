@@ -15,6 +15,8 @@ export function Page({
   seminarCount,
   seminar,
   children,
+  isLoadingSeminar,
+  setIsLoadingSeminar,
 }) {
   const intersectionRef = useRef(null)
   const intersection = useIntersection(intersectionRef, {
@@ -33,7 +35,11 @@ export function Page({
 
   return (
     <>
-      <Seminar seminar={seminar} isOpen={!!seminar} />
+      <Seminar
+        seminar={seminar}
+        isOpen={!!seminar || isLoadingSeminar}
+        setIsLoadingSeminar={setIsLoadingSeminar}
+      />
       <div className={cn('min-h-screen flex flex-col px-2', styles.container)}>
         <Head>
           <title>Summa Technologiae</title>
@@ -58,7 +64,10 @@ export function Page({
             scroll down
           </div>
         </div>
-        {isIntroHidden && <Menu activeSectionIndex={activeSectionIndex} />}
+        <Menu
+          activeSectionIndex={activeSectionIndex}
+          isVisible={isIntroHidden}
+        />
         <main ref={intersectionRef}>{children}</main>
       </div>
     </>

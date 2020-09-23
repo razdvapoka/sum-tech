@@ -7,7 +7,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { useRouter } from 'next/router'
 import Typograf from '../typograph'
 
-const Seminar = ({ isOpen, seminar }) => {
+const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
   const [isClosing, setIsClosing] = useState(false)
   const router = useRouter()
 
@@ -27,6 +27,7 @@ const Seminar = ({ isOpen, seminar }) => {
   }, [isOpen, ref])
 
   const close = () => {
+    setIsLoadingSeminar(false)
     setIsClosing(true)
     setTimeout(() => {
       router.push('/').then(() => {
@@ -60,11 +61,8 @@ const Seminar = ({ isOpen, seminar }) => {
           {seminar && (
             <div className="px-1">
               <div className="grid-s">
-                <div className="col-18-s text-xxl">
-                  <Typograf
-                    lang="en"
-                    className={cn('text-purple', styles.seminarName)}
-                  >
+                <div className="col-20-s text-xxl">
+                  <Typograf className={cn('text-purple', styles.seminarName)}>
                     {seminar.name}
                   </Typograf>
                   <div>{seminar.leader}</div>
@@ -72,9 +70,9 @@ const Seminar = ({ isOpen, seminar }) => {
                 <div className="col-3-s" />
               </div>
               <div className="grid-s">
-                <div className="col-4-s" />
-                <div className="col-19-s text-xxl text-purple">
-                  {format(new Date(seminar.date), 'MMMM d, yyyy')}
+                <div className="col-5-s" />
+                <div className="col-16-s text-xxl text-purple text-right">
+                  {format(new Date(seminar.date), 'mm.dd.yyyy')}
                 </div>
               </div>
               <div className="grid-s mt-18">

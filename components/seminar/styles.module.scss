@@ -6,15 +6,11 @@
 }
 
 .seminar {
-  transition: transform 1s ease;
+  transition: transform 500ms ease-in;
   transform: translateX(100%);
   &Open {
     transform: none;
-  }
-  &Name {
-    hyphens: auto;
-    -webkit-hyphens: none;
-    -ms-hyphens: none;
+    transition: transform 500ms ease-out;
   }
 }
 

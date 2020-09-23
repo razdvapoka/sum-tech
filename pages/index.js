@@ -6,6 +6,8 @@ const HomePage = (props) => {
   return <Home {...props} />
 }
 
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
 export const getServerSideProps = async ({ query }) => {
   const { seminar } = query
   const props =
@@ -15,6 +17,8 @@ export const getServerSideProps = async ({ query }) => {
           ...mockData,
         }
       : mockData
+  // imitate seminar data loading delay
+  await wait(seminar ? 1000 : 0)
   return {
     props,
   }
