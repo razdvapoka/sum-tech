@@ -1,14 +1,14 @@
 .grid {
   display: flex;
   align-items: flex-start;
-  margin-left: -5px;
-  margin-right: -5px;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
 }
 
 .grid-s {
   display: flex;
   align-items: flex-start;
-  margin-left: -5px;
+  margin-left: -0.5rem;
 }
 
 .col-1 {
@@ -130,6 +130,39 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   width: calc(24 / 24 * 100%);
+}
+
+@include mediaQuery(mobile) {
+  .sm\:col-1 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(1 / 6 * 100%);
+  }
+  .sm\:col-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(2 / 6 * 100%);
+  }
+  .sm\:col-3 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(3 / 6 * 100%);
+  }
+  .sm\:col-4 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(4 / 6 * 100%);
+  }
+  .sm\:col-5 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(5 / 6 * 100%);
+  }
+  .sm\:col-6 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: calc(6 / 6 * 100%);
+  }
 }
 
 .col-1-s {

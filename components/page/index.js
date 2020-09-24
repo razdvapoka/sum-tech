@@ -44,10 +44,20 @@ export function Page({
         <Head>
           <title>Summa Technologiae</title>
           <link rel="icon" href="/favicon.ico" />
+          <script>
+            {`
+              if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
+                  document.documentElement.className += ' touchevents';
+                  window.hasTouchEvents = true;
+              } else {
+                  document.documentElement.className += ' no-touchevents';
+              }
+            `}
+          </script>
         </Head>
         <div
           className={cn(
-            'h-screen flex flex-col justify-between relative',
+            'h-screen flex flex-col justify-between sm:justify-start relative',
             styles.introBox
           )}
           ref={introIntersectionRef}
@@ -56,7 +66,7 @@ export function Page({
           <Intro />
           <div
             className={cn(
-              'absolute left-0 bottom-0 w-full text-center text-s2 mb-2',
+              'absolute left-0 bottom-0 w-full text-center text-s2 mb-2 sm:hidden',
               { 'opacity-0': isMainVisible },
               styles.scrollDown
             )}
@@ -68,7 +78,9 @@ export function Page({
           activeSectionIndex={activeSectionIndex}
           isVisible={isIntroHidden}
         />
-        <main ref={intersectionRef}>{children}</main>
+        <main className="sm:hidden" ref={intersectionRef}>
+          {children}
+        </main>
       </div>
     </>
   )

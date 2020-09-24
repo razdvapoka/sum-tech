@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import Head from 'next/head'
+import { useWindowSize } from 'react-use'
 import FontFaceObserver from 'fontfaceobserver'
-import styles from './styles.module.scss'
+import Head from 'next/head'
+import React, { useEffect, useState, useCallback } from 'react'
 import cn from 'classnames'
+
+import { MOBILE_BP } from '../../utils/consts'
+import styles from './styles.module.scss'
 
 const removeAllChildren = (element) => {
   while (element.firstChild) {
@@ -72,10 +75,10 @@ const Configuration = ({ params, handleParamChange }) => {
 }
 
 const Intro = () => {
+  const { width } = useWindowSize()
+  const isMobile = width <= MOBILE_BP
+  const [state, setState] = useState({})
   const [isFontLoaded, setIsFontLoaded] = useState(false)
-  const [mat, setMat] = useState(null)
-  const [bl, setBl] = useState(null)
-  const [scope, setScope] = useState(null)
   const [isConfigOpen] = useState(false)
   const [params, setParams] = useState({
     uVolatility: 3,
@@ -85,37 +88,56 @@ const Intro = () => {
     uFollowMouse: 0.0,
   })
 
-  useEffect(() => {
-    if (isFontLoaded && !mat) {
-      const text = new window.Blotter.Text('SUMMA<br/>TECHNOLOGIAE', {
-        family: 'Redaction20',
-        size: 150,
-        leading: 0.9,
-        fill: '#ffffff',
-        padding: 50,
-        textAlign: 'center',
-      })
-      const material = new window.Blotter.LiquidDistortMaterial()
-      material.uniforms.uSpeed.value = params.uSpeed
-      material.uniforms.uVolatility.value = params.uVolatility
-      material.uniforms.uMaxCoeff.value = params.uMaxCoeff
-      material.uniforms.uRadius.value = params.uRadius
-      material.uniforms.uFollowMouse.value = 1.0
-      material.uniforms.uMouseX.value = -100.0
-      material.uniforms.uMouseY.value = -100.0
+  const initBlotter = () => {
+    const textString = isMobile
+      ? 'SUM<br/>MA<br/>TECH<br/>NOLO<br/>GIAE'
+      : 'SUMMA<br/>TECHNOLOGIAE'
+    const textSettings = isMobile
+      ? {
+          size: 100,
+          leading: 0.9,
+          padding: 20,
+        }
+      : {
+          size: 150,
+          leading: 0.9,
+          padding: 50,
+        }
+    const text = new window.Blotter.Text(textString, {
+      family: 'Redaction20',
+      fill: '#ffffff',
+      textAlign: 'center',
+      ...textSettings,
+    })
+    const material = new window.Blotter.LiquidDistortMaterial()
+    material.uniforms.uSpeed.value = params.uSpeed
+    material.uniforms.uVolatility.value = params.uVolatility
+    material.uniforms.uMaxCoeff.value = params.uMaxCoeff
+    material.uniforms.uRadius.value = params.uRadius
+    material.uniforms.uFollowMouse.value = 1.0
+    material.uniforms.uMouseX.value = -100.0
+    material.uniforms.uMouseY.value = -100.0
 
-      const blotter = new window.Blotter(material, {
-        texts: text,
-      })
-      const elem = document.getElementById('text')
-      const scope = blotter.forText(text)
-      removeAllChildren(elem)
-      scope.appendTo(elem)
-      setMat(material)
-      setScope(scope)
-      setBl(blotter)
+    const blotter = new window.Blotter(material, {
+      texts: text,
+    })
+    const elem = document.getElementById('text')
+    const scope = blotter.forText(text)
+    removeAllChildren(elem)
+    scope.appendTo(elem)
+    setState({
+      blotter,
+      material,
+      scope,
+      text,
+    })
+  }
+
+  useEffect(() => {
+    if (isFontLoaded) {
+      initBlotter()
     }
-  }, [isFontLoaded, mat, setMat, setBl])
+  }, [isFontLoaded])
 
   useEffect(() => {
     if (!isFontLoaded) {
@@ -127,11 +149,21 @@ const Intro = () => {
     const rect = e.target.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
-    mat.uniforms.uMouseX.value = x / rect.width
-    mat.uniforms.uMouseY.value = y / rect.height
+    state.material.uniforms.uMouseX.value = x / rect.width
+    state.material.uniforms.uMouseY.value = y / rect.height
+  }
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0]
+    const rect = e.target.getBoundingClientRect()
+    const x = touch.clientX - rect.left
+    const y = touch.clientY - rect.top
+    state.material.uniforms.uMouseX.value = x / rect.width
+    state.material.uniforms.uMouseY.value = y / rect.height
   }
 
   const toggleBlotter = () => {
+    const { scope } = state
     if (scope) {
       if (scope.playing) {
         scope.pause()
@@ -142,15 +174,17 @@ const Intro = () => {
   }
 
   const startBlotter = () => {
+    const { scope } = state
     if (scope) {
       scope.play()
     }
   }
 
   const stopBlotter = (e) => {
+    const { scope, material } = state
     if (scope) {
-      mat.uniforms.uMouseX.value = -100.0
-      mat.uniforms.uMouseY.value = -100.0
+      material.uniforms.uMouseX.value = -100.0
+      material.uniforms.uMouseY.value = -100.0
       setTimeout(() => {
         scope.pause()
       }, 200)
@@ -158,40 +192,52 @@ const Intro = () => {
   }
 
   useEffect(() => {
-    if (bl) {
+    if (state.blotter) {
       // bl.start()
       return () => {
-        bl.stop()
+        state.blotter.stop()
       }
     }
-  }, [bl])
+  }, [state])
 
   const handleParamChange = (e) => {
+    const { material } = state
     const name = e.target.name
     const value = e.target.valueAsNumber
-    mat.uniforms[name].value = value
+    material.uniforms[name].value = value
     setParams({
       ...params,
       [name]: value,
     })
   }
 
+  // const handleResize = useCallback(() => {
+  //   if (isFontLoaded) {
+  //     initBlotter()
+  //   }
+  // }, [state])
+
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize)
+  // }, [state])
+
   return (
     <div>
       <Head>
-        <script src="/blotter.min.js" />
+        <script src="/blotter.js" />
         <script src="/liquidDistortMaterial.js" />
       </Head>
-      <div>
+      <div className="mt-2">
         <div
           className={cn(styles.introBox, 'flex justify-center')}
           id="text"
           onMouseMove={handleMouseMove}
+          onTouchMove={handleTouchMove}
           onMouseEnter={startBlotter}
           onMouseLeave={stopBlotter}
           onClick={toggleBlotter}
         />
-        {bl && isConfigOpen && (
+        {state.blotter && isConfigOpen && (
           <Configuration
             params={params}
             handleParamChange={handleParamChange}

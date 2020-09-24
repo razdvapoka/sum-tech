@@ -15,7 +15,7 @@ const Menu = ({ activeSectionIndex, isVisible }) => {
   return (
     <nav
       className={cn(
-        'fixed h-screen flex flex-col justify-between py-2 z-30 opacity-0',
+        'fixed h-screen flex flex-col justify-between py-2 z-30 opacity-0 sm:hidden',
         styles.menu,
         { 'opacity-100': isVisible }
       )}

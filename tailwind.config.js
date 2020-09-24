@@ -13,6 +13,9 @@ module.exports = {
     content: ['./**/*.js'],
   },
   theme: {
+    screens: {
+      sm: { max: '600px' },
+    },
     colors: {
       white: '#ffffff',
       black: '#1b1b1b',

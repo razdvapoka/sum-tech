@@ -2,13 +2,10 @@ $ff-red-20-bold: 'Redaction20', 'Helvetica Neue', 'Helvetica', Arial, sans-serif
 $ff-red-reg: 'Redaction', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 
 $screens: (
-  tablet: 768,
-  desktop: 1024,
-  desktop1280: 1280,
-  desktop1360: 1360,
+  mobile: 600,
 );
 
-$style-system-screens: (tablet, desktop, desktop1280, desktop1360);
+$style-system-screens: (mobile);
 
 $font-styles: (
   s1: (

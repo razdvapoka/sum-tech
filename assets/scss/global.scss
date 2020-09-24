@@ -25,6 +25,9 @@ html {
   font-weight: normal;
   background-color: color(black);
   color: color(white);
+  @include mediaQuery(mobile) {
+    font-size: calc(10 / 320 * 100vw); // 10px on 320px width
+  }
 }
 
 a,
