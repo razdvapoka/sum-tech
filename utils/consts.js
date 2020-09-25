@@ -1,1 +1,2 @@
-export const MOBILE_BP = 600
+export const TABLET_BP = 601
+export const MOBILE_BP = 320

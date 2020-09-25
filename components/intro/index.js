@@ -1,11 +1,13 @@
-import { useWindowSize } from 'react-use'
+import { createBreakpoint } from 'react-use'
 import FontFaceObserver from 'fontfaceobserver'
 import Head from 'next/head'
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 
-import { MOBILE_BP } from '../../utils/consts'
+import { TABLET_BP, MOBILE_BP } from '../../utils/consts'
 import styles from './styles.module.scss'
+
+const useBreakpoint = createBreakpoint({ TABLET: TABLET_BP, MOBILE: MOBILE_BP })
 
 const removeAllChildren = (element) => {
   while (element.firstChild) {
@@ -75,8 +77,9 @@ const Configuration = ({ params, handleParamChange }) => {
 }
 
 const Intro = () => {
-  const { width } = useWindowSize()
-  const isMobile = width <= MOBILE_BP
+  const breakpoint = useBreakpoint()
+  const isMobile = breakpoint === 'MOBILE'
+
   const [state, setState] = useState({})
   const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [isConfigOpen] = useState(false)
@@ -211,15 +214,14 @@ const Intro = () => {
     })
   }
 
-  // const handleResize = useCallback(() => {
-  //   if (isFontLoaded) {
-  //     initBlotter()
-  //   }
-  // }, [state])
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize)
-  // }, [state])
+  useEffect(() => {
+    if (state) {
+      if (state.blotter) {
+        state.blotter.stop()
+      }
+      initBlotter()
+    }
+  }, [breakpoint])
 
   return (
     <div>
