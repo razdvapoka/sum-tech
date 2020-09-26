@@ -60,6 +60,11 @@ const Home = ({ page }) => {
       iam={page.fields.iam}
       applyUrl={page.fields.applyUrl}
     >
+      <div className="grid">
+        <div className="hidden sm:block sm:col-6 text-s1">
+          <Markdown>{page.fields.headerText}</Markdown>
+        </div>
+      </div>
       <Section
         sectionIndex={0}
         setActiveSectionIndex={setActiveSectionIndex}

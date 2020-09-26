@@ -245,7 +245,7 @@ const Intro = () => {
         <script src="/blotter.js" />
         <script src="/liquidDistortMaterial.js" />
       </Head>
-      <div className="mt-2">
+      <div className="mt-2 sm:mt-10">
         <div
           className={cn(styles.introBox, 'flex justify-center')}
           id="text"

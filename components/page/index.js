@@ -71,7 +71,7 @@ export function Page({
         </Head>
         <div
           className={cn(
-            'h-screen flex flex-col justify-between sm:justify-start relative',
+            'h-screen sm:h-auto flex flex-col justify-between sm:justify-start relative',
             styles.introBox
           )}
           ref={introIntersectionRef}
@@ -100,7 +100,7 @@ export function Page({
           isOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
         />
-        <main className="sm:hidden" ref={intersectionRef}>
+        <main className="" ref={intersectionRef}>
           {children}
         </main>
       </div>

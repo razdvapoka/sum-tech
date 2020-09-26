@@ -11,3 +11,14 @@
 .applyButton {
   transition: color 0.2s ease;
 }
+
+.headerBox {
+  left: 1rem;
+  right: 1rem;
+  transition: transform 0.2s ease;
+  &Hidden {
+    @include mediaQuery(sm) {
+      transform: translateY(-100%);
+    }
+  }
+}
