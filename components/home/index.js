@@ -3,14 +3,16 @@ import { useIntersection } from 'react-use'
 import Link from 'next/link'
 import React, { useMemo, useState, useRef, useEffect } from 'react'
 import cn from 'classnames'
+import { useRouter } from 'next/router'
 
 import { Page } from '../page'
 import Keywords from '../keywords'
+import Markdown from '../markdown'
 import Speaker from '../speaker'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
-const Footer = ({ contact, follow }) => {
+const Footer = ({ contact, follow, isPrivacyOpen, setIsPrivacyOpen }) => {
   return (
     <footer className={cn('relative', styles.footer)}>
       <div className={styles.anchorTarget} id="contact" />
@@ -20,22 +22,23 @@ const Footer = ({ contact, follow }) => {
           <div className="pb-1 mb-3 border-white border-b text-s2">
             Contact us
           </div>
-          <Typograf className={cn('text-s1', styles.columnText)}>
+          <Markdown className={cn('text-s1', styles.columnText)}>
             {contact}
-          </Typograf>
+          </Markdown>
         </div>
         <div className="col-10">
           <div className="pb-1 mb-3 border-white border-b text-s2">
             Follow us
           </div>
-          <Typograf
+          <Markdown
             className={cn(
               'text-s1 flex flex-col items-start',
-              styles.columnText
+              styles.columnText,
+              styles.follow
             )}
           >
             {follow}
-          </Typograf>
+          </Markdown>
         </div>
       </div>
       <div className="grid mt-12">
@@ -45,7 +48,12 @@ const Footer = ({ contact, follow }) => {
             Privacy policy
           </div>
           <div className={cn('text-s1', styles.columnText)}>
-            E-flux and IAM privacy policy
+            <button
+              className={cn('hover:text-purple', styles.privacyButton)}
+              onClick={() => setIsPrivacyOpen(true)}
+            >
+              E-flux and IAM privacy policy
+            </button>
             <br />
             <br />
             ©2020
@@ -80,21 +88,21 @@ const Application = ({ who, how, requirements }) => {
         <div className="pb-1 mb-3 border-white border-b text-s2">
           Who can apply
         </div>
-        <Typograf className={cn('text-s1', styles.columnText)}>{who}</Typograf>
+        <Markdown className={cn('text-s1', styles.columnText)}>{who}</Markdown>
       </div>
       <div className="col-7">
         <div className="pb-1 mb-3 border-white border-b text-s2">
           How to apply
         </div>
-        <Typograf className={cn('text-s1', styles.columnText)}>{how}</Typograf>
+        <Markdown className={cn('text-s1', styles.columnText)}>{how}</Markdown>
       </div>
       <div className="col-6">
         <div className="pb-1 mb-3 border-white border-b text-s2">
           Language requirements
         </div>
-        <Typograf className={cn('text-s1', styles.columnText)}>
+        <Markdown className={cn('text-s1', styles.columnText)}>
           {requirements}
-        </Typograf>
+        </Markdown>
       </div>
     </div>
   )
@@ -109,7 +117,7 @@ const ClosestSeminar = ({ slug, name, date }) => {
           <div>next seminar</div>
           <div className="text-purple">{`‘${name}’`}</div>
           <div>starts on</div>
-          <div>{format(date, 'MMMM dd, yyyy')}</div>
+          <div>{format(new Date(date), 'MMMM dd, yyyy')}</div>
         </a>
       </Link>
     </div>
@@ -134,7 +142,7 @@ const Lem = ({ photo, bio }) => {
       <div className="grid mt-4">
         <div className="col-5" />
         <div className="col-15">
-          <Typograf className={cn('text-l2', styles.lemBio)}>{bio}</Typograf>
+          <Markdown className={cn('text-l2', styles.lemBio)}>{bio}</Markdown>
         </div>
       </div>
     </section>
@@ -147,30 +155,32 @@ const Seminars = ({ description, items, setIsLoadingSeminar }) => {
       <div className="grid mt-30">
         <div className="col-5" />
         <div className="col-14">
-          <Typograf className="text-l2">{description}</Typograf>
+          <Markdown className="text-l2">{description}</Markdown>
         </div>
       </div>
       <div className="grid mt-36 justify-end flex-wrap">
         {items.map((seminar, seminarIndex) => (
           <div key={seminarIndex} className="col-10 mb-4">
             <div className="text-s2 mb-1">{`seminar ${seminarIndex + 1}`}</div>
-            <Link href={`?seminar=${seminar.slug}`} scroll={false}>
+            <Link href={`?seminar=${seminar.fields.slug}`} scroll={false}>
               <a
                 className={cn(
                   'block border border-white hover:bg-purple',
                   styles.seminarBox
                 )}
                 style={{
-                  backgroundImage: `url(${seminar.diagram})`,
+                  backgroundImage: `url(${seminar.fields.diagram.fields.file.url})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                 }}
                 onClick={() => setIsLoadingSeminar(true)}
               >
                 <div className="absolute left-0 top-0 w-full h-full text-center pt-4 px-12 text-xl">
-                  <div>{format(new Date(seminar.date), 'dd.MM')}</div>
-                  <Typograf>{seminar.name}</Typograf>
-                  <div className="mt-10">{seminar.leader}</div>
+                  <div>{format(new Date(seminar.fields.date), 'dd.MM')}</div>
+                  <Typograf>{seminar.fields.name}</Typograf>
+                  <div className="mt-10">
+                    {seminar.fields.leader.fields.name}
+                  </div>
                   <div
                     className={cn(
                       'absolute text-s2 uppercase text-center',
@@ -194,7 +204,7 @@ const Outcomes = ({ text, items }) => {
     <div className="grid mt-18">
       <div className="col-4" />
       <div className="col-19 text-xxl">
-        <div>{text}</div>
+        <Markdown>{text}</Markdown>
         <ul className="text-right">
           {items.map((item, itemIndex) => (
             <li className="odd:text-purple" key={itemIndex}>
@@ -219,7 +229,7 @@ const Speakers = ({ speakers, className }) => {
             index={speakerIndex}
             openBioIndex={openBioIndex}
             setOpenBioIndex={setOpenBioIndex}
-            {...speaker}
+            {...speaker.fields}
           />
         ))}
       </div>
@@ -250,50 +260,49 @@ const Section = ({
   )
 }
 
-const Home = ({
-  headerText,
-  description,
-  keywords,
-  objective,
-  lem,
-  seminars,
-  outcomes,
-  speakers,
-  secondPhase,
-  application,
-  contact,
-  follow,
-  seminar,
-}) => {
+const Home = ({ page }) => {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false)
+  const router = useRouter()
+  const seminarSlug = router.query.seminar
+  const seminar =
+    seminarSlug &&
+    page.fields.seminars.find((s) => s.fields.slug === seminarSlug)
   const [isLoadingSeminar, setIsLoadingSeminar] = useState(false)
   const [activeSectionIndex, setActiveSectionIndex] = useState(null)
 
-  const closestSeminar = useMemo(() => {
-    const closestSeminars = seminars.items
-      .map((s) => ({ ...s, date: new Date(s.date) }))
-      .sort((s1, s2) => s1.date > s2.date)
-      .filter((s) => s.date >= new Date())
-    return closestSeminars.length > 0 ? closestSeminars[0] : null
-  }, [seminars])
+  const sortedSeminars = useMemo(
+    () =>
+      page.fields.seminars.sort((s1, s2) =>
+        new Date(s1.fields.date) > new Date(s2.fields.date) ? 1 : -1
+      ),
+    [page.fields.seminars]
+  )
 
-  const [leaders, others] = useMemo(() => {
-    return speakers.reduce(
-      (agg, speaker) =>
-        speaker.isLeader
-          ? [[...agg[0], speaker], agg[1]]
-          : [agg[0], [...agg[1], speaker]],
-      [[], []]
-    )
-  }, [speakers])
+  const closestSeminars = sortedSeminars.filter(
+    (s) => new Date(s.fields.date) >= new Date()
+  )
+
+  const closestSeminar = closestSeminars.length > 0 ? closestSeminars[0] : null
+
+  const leaders = page.fields.seminars.map((s) => s.fields.leader)
+  const speakers = page.fields.seminars.reduce(
+    (agg, s) => [...agg, ...s.fields.guestSpeakers],
+    []
+  )
 
   return (
     <Page
-      headerText={headerText}
-      seminarCount={seminars.items.length}
+      headerText={page.fields.headerText}
+      seminarCount={page.fields.seminars.length}
       seminar={seminar}
       activeSectionIndex={activeSectionIndex}
       setIsLoadingSeminar={setIsLoadingSeminar}
       isLoadingSeminar={isLoadingSeminar}
+      isPrivacyOpen={isPrivacyOpen}
+      setIsPrivacyOpen={setIsPrivacyOpen}
+      privacy={page.fields.privacy}
+      iam={page.fields.iam}
+      applyUrl={page.fields.applyUrl}
     >
       <Section
         sectionIndex={0}
@@ -304,22 +313,25 @@ const Home = ({
         <div className="grid mt-36">
           <div className="col-8" />
           <div className="col-14">
-            <Typograf className="text-l2">{description}</Typograf>
+            <Markdown className="text-l2">{page.fields.description}</Markdown>
           </div>
         </div>
         <div className="grid mt-36">
           <div className="col-4" />
           <div className="col-20">
-            <Keywords keywords={keywords} />
+            <Keywords keywords={page.fields.keywords} />
           </div>
         </div>
         <div className="grid mt-36">
           <div className="col-8" />
           <div className="col-14">
-            <Typograf className="text-l2">{objective}</Typograf>
+            <Typograf className="text-l2">{page.fields.objective}</Typograf>
           </div>
         </div>
-        <Lem {...lem} />
+        <Lem
+          photo={page.fields.lemPhoto.fields.file.url}
+          bio={page.fields.lemBio}
+        />
       </Section>
       <Section
         sectionIndex={1}
@@ -327,9 +339,16 @@ const Home = ({
         className="relative"
       >
         <div className={styles.anchorTarget} id="seminars" />
-        {closestSeminar && <ClosestSeminar {...closestSeminar} />}
-        <Seminars {...seminars} setIsLoadingSeminar={setIsLoadingSeminar} />
-        <Outcomes {...outcomes} />
+        {closestSeminar && <ClosestSeminar {...closestSeminar.fields} />}
+        <Seminars
+          items={page.fields.seminars}
+          description={page.fields.seminarsDescription}
+          setIsLoadingSeminar={setIsLoadingSeminar}
+        />
+        <Outcomes
+          text={page.fields.seminarsOutcomesText}
+          items={page.fields.seminarsOutcomesList}
+        />
       </Section>
       <Section
         sectionIndex={2}
@@ -341,7 +360,7 @@ const Home = ({
         <div className={cn('grid mt-36', styles.secondPhase)}>
           <div className="col-4" />
           <div className={cn('col-19 text-xxl', styles.secondPhase)}>
-            <div dangerouslySetInnerHTML={{ __html: secondPhase }} />
+            <Markdown>{page.fields.secondPhase}</Markdown>
           </div>
         </div>
       </Section>
@@ -351,11 +370,11 @@ const Home = ({
         className="relative"
       >
         <div className={styles.anchorTarget} id="speakers" />
-        <Speakers speakers={others} className="mt-36" />
+        <Speakers speakers={speakers} className="mt-36" />
         <div className="grid mt-36">
           <div className="col-4" />
           <div className="col-20">
-            <Keywords keywords={keywords} />
+            <Keywords keywords={page.fields.keywords} />
           </div>
         </div>
       </Section>
@@ -365,12 +384,16 @@ const Home = ({
         className="relative"
       >
         <div className={styles.anchorTarget} id="apply" />
-        <Application {...application} />
+        <Application
+          who={page.fields.applicationWho}
+          how={page.fields.applicationHow}
+          requirements={page.fields.applicationRequirements}
+        />
         <div className="grid mt-18">
           <div className="col-4" />
           <div className="col-20">
             <a
-              href="https://example.com"
+              href={page.fields.applyUrl}
               target="_blank"
               rel="noreferrer noopener"
               className={cn(
@@ -384,7 +407,12 @@ const Home = ({
         </div>
       </Section>
       <Section sectionIndex={5} setActiveSectionIndex={setActiveSectionIndex}>
-        <Footer follow={follow} contact={contact} />
+        <Footer
+          follow={page.fields.social}
+          contact={page.fields.contact}
+          isPrivacyOpen={isPrivacyOpen}
+          setIsPrivacyOpen={setIsPrivacyOpen}
+        />
       </Section>
     </Page>
   )

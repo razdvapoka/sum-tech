@@ -2,10 +2,10 @@ $ff-red-20-bold: 'Redaction20', 'Helvetica Neue', 'Helvetica', Arial, sans-serif
 $ff-red-reg: 'Redaction', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 
 $screens: (
-  mobile: 600,
+  sm: 600,
 );
 
-$style-system-screens: (mobile);
+$style-system-screens: (sm);
 
 $font-styles: (
   s1: (
@@ -45,6 +45,12 @@ $font-styles: (
     font-family: $ff-red-reg,
     font-size: 5rem,
     line-height: 1.09,
+    text-transform: uppercase,
+  ),
+  xl3: (
+    font-family: $ff-red-reg,
+    font-size: 6rem,
+    line-height: 1,
     text-transform: uppercase,
   ),
   xxl: (

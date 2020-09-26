@@ -75,7 +75,7 @@ const Speaker = ({
           className={cn('relative h-0', styles.leaderPhoto)}
           style={{
             paddingTop: '100%',
-            backgroundImage: `url(${photo})`,
+            backgroundImage: `url(${photo.fields.file.url})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           }}

@@ -99,3 +99,14 @@
   width: 1.4rem;
   height: 1.7rem;
 }
+
+.privacyButton {
+  transition: color 0.2s ease;
+  text-decoration: underline;
+}
+
+.follow {
+  a {
+    text-decoration: none !important;
+  }
+}

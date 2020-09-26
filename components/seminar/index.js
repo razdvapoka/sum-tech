@@ -1,11 +1,41 @@
-import React, { useRef, useEffect, useState } from 'react'
-import { format } from 'date-fns'
-import cn from 'classnames'
-import styles from './styles.module.scss'
-import X from '../../assets/icons/✕.svg'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { format } from 'date-fns'
 import { useRouter } from 'next/router'
+import React, { useRef, useEffect, useState } from 'react'
+import cn from 'classnames'
+
+import Markdown from '../markdown'
 import Typograf from '../typograph'
+import X from '../../assets/icons/✕.svg'
+import styles from './styles.module.scss'
+
+const renderers = {
+  image: ({ src, alt }) => {
+    return (
+      <figure>
+        <img src={src} alt={alt} />
+        <figcaption>{alt}</figcaption>
+      </figure>
+    )
+  },
+  paragraph: ({ children }) => {
+    const hasFigure = children && children[0].props.src
+    const Component = hasFigure ? 'div' : 'p'
+    return (
+      <Component className={cn({ [styles.withFigure]: hasFigure })}>
+        {children}
+      </Component>
+    )
+  },
+}
+
+const SeminarContent = ({ className, children }) => {
+  return (
+    <Markdown className={className} renderers={renderers}>
+      {children}
+    </Markdown>
+  )
+}
 
 const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
   const [isClosing, setIsClosing] = useState(false)
@@ -33,7 +63,7 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
       router.push('/').then(() => {
         setIsClosing(false)
       })
-    }, 1000)
+    }, 400)
   }
 
   return (
@@ -59,42 +89,55 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
             <X />
           </button>
           {seminar && (
-            <div className="px-1">
+            <div key={seminar.sys.id} className="px-1">
               <div className="grid-s">
                 <div className="col-20-s text-xxl">
                   <Typograf className={cn('text-purple', styles.seminarName)}>
-                    {seminar.name}
+                    {seminar.fields.name}
                   </Typograf>
-                  <div>{seminar.leader}</div>
+                  <div>{seminar.fields.leader.fields.name}</div>
                 </div>
                 <div className="col-3-s" />
               </div>
               <div className="grid-s">
                 <div className="col-5-s" />
                 <div className="col-16-s text-xxl text-purple text-right">
-                  {format(new Date(seminar.date), 'mm.dd.yyyy')}
+                  {format(new Date(seminar.fields.date), 'MM.dd.yyyy')}
                 </div>
               </div>
               <div className="grid-s mt-18">
                 <div className="col-19-s text-xl2">
                   <div className="text-purple">guest speaker: </div>
-                  {seminar.guests.map((guest, guestIndex) => (
+                  {seminar.fields.guestSpeakers.map((guest, guestIndex) => (
                     <div key={guestIndex}>
-                      {`${guest.name} (${guest.country})`}
+                      {`${guest.fields.name} (${guest.fields.country})`}
                     </div>
                   ))}
                 </div>
               </div>
-              <div className={cn('grid-s mt-18 text-l2', styles.wysiwyg)}>
-                <Typograf>{seminar.content}</Typograf>
+              <div className="mt-18 text-l2">
+                <SeminarContent className={styles.wysiwyg}>
+                  {seminar.fields.content}
+                </SeminarContent>
               </div>
-              <div className="grid-s justify-end mt-18">
-                {seminar.sessions.map((session, sessionIndex) => (
+              <div className="mt-18 ml-6 text-xl2 text-purple">
+                about speakers
+              </div>
+              <div className="grid-s mt-4">
+                <div className="col-3-s" />
+                <div className="col-14-s text-l2">
+                  <Markdown>{seminar.fields.aboutSpeakers}</Markdown>
+                </div>
+              </div>
+              <div className="grid-s mt-18">
+                {seminar.fields.sessions.map((session, sessionIndex) => (
                   <div key={sessionIndex} className="col-7-s">
                     <div className="text-s2 border-b border-black pb-1">
-                      {`session ${sessionIndex + 1}`}
+                      {session.fields.title || `session ${sessionIndex + 1}`}
                     </div>
-                    <Typograf className="mt-3 text-s1 pr-6">{session}</Typograf>
+                    <Markdown className="mt-3 text-s1 pr-6">
+                      {session.fields.text}
+                    </Markdown>
                   </div>
                 ))}
               </div>
@@ -102,13 +145,13 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
               <div className="grid-s mt-4">
                 <div className="col-3-s" />
                 <div className="col-14-s text-l2">
-                  <Typograf>{seminar.methodology}</Typograf>
+                  <Markdown>{seminar.fields.methodology}</Markdown>
                 </div>
               </div>
-              <div className="grid-s mt-18 mb-4">
+              <div className="grid-s mt-18 mb-2">
                 <div className="col-23-s">
                   <a
-                    href={seminar.applyUrl}
+                    href={seminar.fields.applyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(

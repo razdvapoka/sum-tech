@@ -1,0 +1,20 @@
+.closeButton {
+  right: 1rem;
+  top: 1rem;
+  width: 3.81rem;
+  height: 3.84rem;
+}
+
+.privacy {
+  transition: transform 500ms ease-in;
+  transform: translateX(100%);
+  &Open {
+    transform: none;
+    transition: transform 500ms ease-out;
+  }
+  &Content {
+    * + * {
+      margin-top: 1.776rem;
+    }
+  }
+}

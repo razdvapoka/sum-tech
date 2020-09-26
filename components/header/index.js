@@ -1,11 +1,18 @@
+import Markdown from '../markdown'
+
 import React from 'react'
 import Link from 'next/link'
 import cn from 'classnames'
 
-import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
-const Header = ({ text, seminarCount }) => {
+const Header = ({
+  applyUrl,
+  text,
+  seminarCount,
+  isMenuOpen,
+  setIsMenuOpen,
+}) => {
   return (
     <header className="grid pt-2">
       <div className="col-4 hover:text-purple sm:col-4">
@@ -23,14 +30,17 @@ const Header = ({ text, seminarCount }) => {
         <div className="border-b border-white text-s2 pb-1">{`${seminarCount} seminars`}</div>
       </div>
       <div className="col-6 sm:hidden">
-        <Typograf className={cn('text-s1', styles.headerText)}>{text}</Typograf>
+        <Markdown className={cn('text-s1', styles.headerText)}>{text}</Markdown>
       </div>
       <div className="col-6 hover:text-purple sm:hidden">
         <a
-          href="https://example.com"
+          href={applyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="block border-b border-inherit text-s2 pb-1"
+          className={cn(
+            'block border-b border-inherit text-s2 pb-1',
+            styles.applyButton
+          )}
         >
           Apply Now
         </a>
@@ -41,6 +51,7 @@ const Header = ({ text, seminarCount }) => {
             'border-b border-white pb-1 text-s2 w-full text-left',
             styles.menuButton
           )}
+          onClick={() => setIsMenuOpen(true)}
         >
           Menu
         </button>

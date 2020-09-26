@@ -1,15 +1,17 @@
 import { useIntersection } from 'react-use'
 import Head from 'next/head'
-import React, { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import cn from 'classnames'
 
 import Header from '../header'
 import Intro from '../intro'
 import Menu from '../menu'
+import Privacy from '../privacy'
 import Seminar from '../seminar'
 import styles from './styles.module.scss'
 
 export function Page({
+  applyUrl,
   activeSectionIndex,
   headerText,
   seminarCount,
@@ -17,7 +19,13 @@ export function Page({
   children,
   isLoadingSeminar,
   setIsLoadingSeminar,
+  isPrivacyOpen,
+  setIsPrivacyOpen,
+  privacy,
+  iam,
 }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   const intersectionRef = useRef(null)
   const intersection = useIntersection(intersectionRef, {
     root: null,
@@ -35,6 +43,12 @@ export function Page({
 
   return (
     <>
+      <Privacy
+        isPrivacyOpen={isPrivacyOpen}
+        setIsPrivacyOpen={setIsPrivacyOpen}
+        privacy={privacy}
+        iam={iam}
+      />
       <Seminar
         seminar={seminar}
         isOpen={!!seminar || isLoadingSeminar}
@@ -62,7 +76,13 @@ export function Page({
           )}
           ref={introIntersectionRef}
         >
-          <Header text={headerText} seminarCount={seminarCount} />
+          <Header
+            text={headerText}
+            seminarCount={seminarCount}
+            isOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+            applyUrl={applyUrl}
+          />
           <Intro />
           <div
             className={cn(
@@ -77,6 +97,8 @@ export function Page({
         <Menu
           activeSectionIndex={activeSectionIndex}
           isVisible={isIntroHidden}
+          isOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
         />
         <main className="sm:hidden" ref={intersectionRef}>
           {children}

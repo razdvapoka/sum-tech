@@ -3,15 +3,30 @@
   width: 22.8rem;
   transition: opacity 0.3s ease-out;
   &Item {
-    transition: border-color 0.3s ease-out;
+    transition: color 0.2s ease-out, border-color 0.3s ease-out;
     border-color: transparent;
   }
   &ItemActive {
     border-color: white;
     pointer-events: none;
   }
+
+  @include mediaQuery(sm) {
+    width: 100vw;
+    left: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+    &Open {
+      transform: none;
+    }
+  }
 }
 
 .applyButton {
   transition: background-color 0.3s ease-out;
+  @include mediaQuery(sm) {
+    left: 50%;
+    transform: translate(-50%, -1rem);
+    width: calc(100% - 2rem);
+  }
 }

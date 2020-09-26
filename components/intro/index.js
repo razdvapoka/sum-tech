@@ -93,7 +93,7 @@ const Intro = () => {
 
   const initBlotter = () => {
     const textString = isMobile
-      ? 'SUM<br/>MA<br/>TECH<br/>NOLO<br/>GIAE'
+      ? 'SUM<br/>MA<br/>TECH<br/>NOLO<br/>GIAE' // 'SAT<br/>ANIC<br/>BLACK<br/>MA<br/>GICK'
       : 'SUMMA<br/>TECHNOLOGIAE'
     const textSettings = isMobile
       ? {
@@ -215,13 +215,29 @@ const Intro = () => {
   }
 
   useEffect(() => {
-    if (state) {
+    if (isFontLoaded && state) {
       if (state.blotter) {
         state.blotter.stop()
       }
       initBlotter()
     }
   }, [breakpoint])
+
+  // const handleOrientation = ({ beta, gamma }) => {
+  //   let x = (Math.max(Math.min(gamma * 5, 180), -180) + 90) / 180
+  //   let y = (Math.max(Math.min(beta * 5, 180), -180) + 90) / 180
+  //   x = (x + 0.5) / 2
+  //   y = (y + 0.5) / 2
+  //   state.material.uniforms.uMouseX.value = x
+  //   state.material.uniforms.uMouseY.value = y
+  // }
+  //
+
+  // const listenToOrientation = () => {
+  //   window.DeviceMotionEvent.requestPermission().then(() => {
+  //     window.addEventListener('deviceorientation', handleOrientation, true)
+  //   })
+  // }
 
   return (
     <div>
