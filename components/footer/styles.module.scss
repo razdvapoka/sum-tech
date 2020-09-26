@@ -1,0 +1,46 @@
+.footer {
+  margin-bottom: 100vh;
+}
+
+.anchorTarget {
+  position: absolute;
+  top: -1rem;
+  visibility: hidden;
+}
+
+.columnText {
+  p + p {
+    margin-top: 1.76rem;
+  }
+
+  a {
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: color(purple);
+  }
+}
+
+.follow {
+  a {
+    text-decoration: none !important;
+  }
+}
+
+.privacyButton {
+  transition: color 0.2s ease;
+  text-decoration: underline;
+}
+
+.credits {
+  padding-right: 12rem;
+}
+
+.logos {
+  width: 29.8rem;
+  height: 4.3rem;
+  background-image: url(/logos.svg);
+  background-size: cover;
+  background-position: center;
+}

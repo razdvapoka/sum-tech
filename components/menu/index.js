@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import cn from 'classnames'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { FixedBottom } from 'react-fixed-bottom'
+import X from '../../assets/icons/✕.svg'
 
 const MENU_ITEMS = [
   { name: 'about', hash: 'about' },
@@ -56,8 +57,14 @@ const Menu = ({
       )}
     >
       <ul>
-        <li className="hidden sm:block pb-1 mb-3 text-s2 border-b">
-          summa technologiae
+        <li className="hidden sm:flex items-center justify-between pb-1 mb-3 text-s2 border-b">
+          <span>summa technologiae</span>
+          <button
+            className={styles.closeButton}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <X />
+          </button>
         </li>
         {MENU_ITEMS.map((item, itemIndex) => {
           const isActive = itemIndex === activeSectionIndex

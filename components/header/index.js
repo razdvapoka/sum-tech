@@ -19,7 +19,7 @@ const Header = ({
         <Link href="/">
           <a className="block border-b border-inherit text-s2 pb-1">
             <span className="sm:hidden">Summa Technologiae</span>
-            <span className="hidden sm:inline">S T</span>
+            <span className="hidden sm:inline">ST</span>
           </a>
         </Link>
       </div>
