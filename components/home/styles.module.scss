@@ -1,26 +1,3 @@
-.leader {
-  transition: color 0.2s ease;
-  &Bio {
-    width: calc(10 / 24 * 100vw);
-    top: 1rem;
-    bottom: 1rem;
-    transition: opacity 0.3s ease-out;
-  }
-}
-
-.leaderPhotoOverlay {
-  background-color: color(purple);
-  mix-blend-mode: multiply;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.leader:hover {
-  .leaderPhotoOverlay {
-    opacity: 1;
-  }
-}
-
 .secondPhase em {
   font-style: normal;
   color: color(purple);
@@ -34,9 +11,4 @@
 
 .applyButton {
   transition: background-color 0.3s ease-out;
-}
-
-.closeButton {
-  width: 1.4rem;
-  height: 1.7rem;
 }
