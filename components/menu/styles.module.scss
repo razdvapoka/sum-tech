@@ -5,6 +5,9 @@
   &Item {
     transition: color 0.2s ease-out, border-color 0.3s ease-out;
     border-color: transparent;
+    @include mediaQuery(sm) {
+      border-color: white;
+    }
   }
   &ItemActive {
     border-color: white;
