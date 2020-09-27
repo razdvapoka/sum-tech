@@ -16,8 +16,10 @@ import Seminars from '../seminars'
 import Speakers from '../speakers'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
+import useHideOnScroll from '../../hooks/useHideOnScroll'
 
 const Home = ({ page }) => {
+  const isHeaderHidden = useHideOnScroll()
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false)
   const router = useRouter()
   const seminarSlug = router.query.seminar
@@ -60,6 +62,7 @@ const Home = ({ page }) => {
       privacy={page.fields.privacy}
       iam={page.fields.iam}
       applyUrl={page.fields.applyUrl}
+      isHeaderHidden={isHeaderHidden}
     >
       <div className="grid">
         <div className="hidden sm:block sm:col-6 text-s1">
@@ -69,10 +72,10 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={0}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative sm:mt-8"
+        className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="about" />
-        <Heading>About</Heading>
+        <Heading isHeaderHidden={isHeaderHidden}>About</Heading>
         <div className="grid mt-36 sm:mt-4">
           <div className="col-8 sm:col-1" />
           <div className="col-14 sm:col-5">
@@ -103,10 +106,10 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={1}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative sm:mt-8"
+        className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="seminars" />
-        <Heading>Seminars</Heading>
+        <Heading isHeaderHidden={isHeaderHidden}>Seminars</Heading>
         {closestSeminar && <ClosestSeminar {...closestSeminar.fields} />}
         <Seminars
           items={page.fields.seminars}
@@ -121,10 +124,10 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={2}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative sm:mt-8"
+        className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="leaders" />
-        <Heading>seminar leaders</Heading>
+        <Heading isHeaderHidden={isHeaderHidden}>seminar leaders</Heading>
         <Speakers speakers={leaders} className="mt-18 sm:mt-4" />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />
@@ -141,10 +144,10 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={3}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative sm:mt-8"
+        className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="speakers" />
-        <Heading>invited speakers</Heading>
+        <Heading isHeaderHidden={isHeaderHidden}>invited speakers</Heading>
         <Speakers speakers={speakers} className="mt-36 sm:mt-4" />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />

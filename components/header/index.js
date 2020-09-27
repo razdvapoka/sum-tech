@@ -4,7 +4,6 @@ import cn from 'classnames'
 
 import Markdown from '../markdown'
 import styles from './styles.module.scss'
-import useHideOnScroll from '../../hooks/useHideOnScroll'
 
 const Header = ({
   applyUrl,
@@ -12,8 +11,8 @@ const Header = ({
   seminarCount,
   isMenuOpen,
   setIsMenuOpen,
+  isHidden,
 }) => {
-  const isHidden = useHideOnScroll()
   return (
     <div
       className={cn('sm:fixed sm:top-0 sm:z-40 sm:bg-black', styles.headerBox, {
