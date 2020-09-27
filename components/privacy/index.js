@@ -30,12 +30,15 @@ const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
     >
       <div className="grid h-full">
         <div
-          className="col-1 bg-transparent h-full"
+          className={cn('col-1 bg-transparent h-full', styles.privacyFiller)}
           onClick={() => setIsPrivacyOpen(false)}
         />
         <div
           ref={ref}
-          className="col-23 h-full bg-white text-black overflow-auto relative pt-2"
+          className={cn(
+            'col-23 h-full bg-white text-black overflow-auto relative pt-2',
+            styles.privacyBox
+          )}
         >
           <button
             className={cn('block fixed z-50', styles.closeButton)}
@@ -43,9 +46,9 @@ const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
           >
             <X />
           </button>
-          <div key="privacy" className="px-1 pb-2">
-            <div className="grid-s">
-              <div className="col-11-s">
+          <div key="privacy" className="px-1 pb-2 sm:pb-12">
+            <div className="grid sm:flex-wrap sm:pr-1">
+              <div className="col-11-s sm:col-11-s">
                 <div className="text-s2 pb-1 border-black border-b mb-4">
                   e-flux privacy policy
                 </div>
@@ -53,7 +56,7 @@ const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
                   {privacy}
                 </Markdown>
               </div>
-              <div className="col-11-s">
+              <div className="col-11-s sm:col-11-s sm:mt-12">
                 <div className="text-s2 pb-1 border-black border-b mb-4">
                   iam privacy policy
                 </div>

@@ -68,15 +68,25 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
 
   return (
     <div
-      className={cn('fixed left-0 top-0 h-screen w-screen', styles.seminar, {
-        [styles.seminarOpen]: isOpen && !isClosing,
-      })}
+      className={cn(
+        'fixed left-0 top-0 h-screen w-screen px-1',
+        styles.seminar,
+        {
+          [styles.seminarOpen]: isOpen && !isClosing,
+        }
+      )}
     >
       <div className="grid h-full">
-        <div className="col-1 bg-transparent h-full" onClick={close} />
+        <div
+          className={cn('col-1 bg-transparent h-full', styles.seminarFiller)}
+          onClick={close}
+        />
         <div
           ref={ref}
-          className="col-23 h-full bg-white text-black overflow-auto relative pt-2"
+          className={cn(
+            'col-23 h-full bg-white text-black overflow-auto relative pt-2',
+            styles.seminarContent
+          )}
         >
           <button
             className={cn('block fixed z-50', styles.closeButton)}
@@ -86,23 +96,23 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
           </button>
           {seminar && (
             <div key={seminar.sys.id} className="px-1">
-              <div className="grid-s">
-                <div className="col-20-s text-xxl">
+              <div className="grid">
+                <div className="col-20-s sm:col-11-s text-xxl sm:text-s4">
                   <Typograf className={cn('text-purple', styles.seminarName)}>
                     {seminar.fields.name}
                   </Typograf>
                   <div>{seminar.fields.leader.fields.name}</div>
                 </div>
-                <div className="col-3-s" />
+                <div className="col-3-s sm:hidden" />
               </div>
-              <div className="grid-s">
-                <div className="col-5-s" />
-                <div className="col-16-s text-xxl text-purple text-right">
-                  {format(new Date(seminar.fields.date), 'MM.dd.yyyy')}
+              <div className="grid">
+                <div className="col-5-s sm:hidden" />
+                <div className="col-16-s sm:col-10-s text-xxl sm:text-s4 text-purple text-right">
+                  {format(new Date(seminar.fields.date), 'dd.MM.yyyy')}
                 </div>
               </div>
-              <div className="grid-s mt-18">
-                <div className="col-19-s text-xl2">
+              <div className="grid mt-18 sm:mt-0">
+                <div className="col-19-s sm:col-11-s text-xl2 sm:text-s1">
                   <div className="text-purple">guest speaker: </div>
                   {seminar.fields.guestSpeakers.map((guest, guestIndex) => (
                     <div key={guestIndex}>
@@ -111,47 +121,52 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
                   ))}
                 </div>
               </div>
-              <div className="mt-18 text-l2">
+              <div className="mt-18 sm:mt-3 text-l2 sm:text-s1">
                 <SeminarContent className={styles.wysiwyg}>
                   {seminar.fields.content}
                 </SeminarContent>
               </div>
-              <div className="mt-18 ml-6 text-xl2 text-purple">
+              <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
                 about speakers
               </div>
-              <div className="grid-s mt-4">
-                <div className="col-3-s" />
-                <div className="col-14-s text-l2">
+              <div className="grid mt-4 sm:mt-2">
+                <div className="col-3-s sm:hidden" />
+                <div className="col-14-s sm:col-11-s text-l2 sm:text-s1">
                   <Markdown>{seminar.fields.aboutSpeakers}</Markdown>
                 </div>
               </div>
-              <div className="grid-s mt-18">
+              <div className="grid mt-18 sm:mt-12 sm:flex-wrap">
                 {seminar.fields.sessions.map((session, sessionIndex) => (
-                  <div key={sessionIndex} className="col-7-s">
+                  <div
+                    key={sessionIndex}
+                    className="col-7-s sm:col-11-s sm:mb-4"
+                  >
                     <div className="text-s2 border-b border-black pb-1">
                       {session.fields.title || `session ${sessionIndex + 1}`}
                     </div>
-                    <Markdown className="mt-3 text-s1 pr-6">
+                    <Markdown className="mt-3 sm:mt-2 text-s1 pr-6 sm:pr-0">
                       {session.fields.text}
                     </Markdown>
                   </div>
                 ))}
               </div>
-              <div className="mt-18 ml-6 text-xl2 text-purple">methodology</div>
-              <div className="grid-s mt-4">
-                <div className="col-3-s" />
-                <div className="col-14-s text-l2">
+              <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
+                methodology
+              </div>
+              <div className="grid mt-4 sm:mt-2">
+                <div className="col-3-s sm:hidden" />
+                <div className="col-14-s sm:col-11-s text-l2 sm:text-s1">
                   <Markdown>{seminar.fields.methodology}</Markdown>
                 </div>
               </div>
-              <div className="grid-s mt-18 mb-2">
-                <div className="col-23-s">
+              <div className="grid mt-18 sm:mt-12 mb-2">
+                <div className="col-23-s sm:col-11-s">
                   <a
                     href={seminar.fields.applyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      'block w-full border border-solid border-black py-13 text-xxl text-center hover:bg-purple',
+                      'block w-full border border-solid border-black py-13 sm:py-6 text-xxl sm:text-xl3 text-center hover:bg-purple',
                       styles.applyButton
                     )}
                   >

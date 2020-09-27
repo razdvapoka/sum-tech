@@ -107,7 +107,7 @@ const Speaker = ({
       />
       <div
         className={cn(
-          'col-5-l sm:col-6 relative mb-4 cursor-pointer',
+          'relative mb-4 cursor-pointer',
           styles.leader,
           { [styles.overlay]: !isSpeakerBioOpen },
           isBioOpen ? 'pointer-events-none' : ''

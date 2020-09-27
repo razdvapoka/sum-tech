@@ -3,6 +3,10 @@
   top: 1rem;
   width: 3.81rem;
   height: 3.84rem;
+  @include mediaQuery(sm) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
 }
 
 .privacy {
@@ -16,6 +20,18 @@
   &Content {
     * + * {
       margin-top: 1.776rem;
+    }
+  }
+  @include mediaQuery(sm) {
+    &Filler {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      width: calc(1 / 12 * 100%);
+    }
+    &Box {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      width: calc(11 / 12 * 100%);
     }
   }
 }

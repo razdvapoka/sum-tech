@@ -1,5 +1,12 @@
 .leader {
   transition: color 0.2s ease;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: calc(5 / 20 * 100%);
+  @include mediaQuery(sm) {
+    width: 100%;
+  }
+
   &Bio {
     width: calc(10 / 24 * 100vw);
     top: 1rem;
