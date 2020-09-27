@@ -88,8 +88,8 @@ const Home = ({ page }) => {
           </div>
         </div>
         <div className="grid mt-36 sm:mt-12">
-          <div className="col-8 sm:col-1" />
-          <div className="col-14 sm:col-5">
+          <div className="col-8 sm:hidden" />
+          <div className="col-14 sm:col-6">
             <Typograf className="text-l2 sm:text-s1">
               {page.fields.objective}
             </Typograf>
