@@ -8,6 +8,7 @@
 .seminar {
   transition: transform 500ms ease-in;
   transform: translateX(100%);
+  z-index: 100;
   &Open {
     transform: none;
     transition: transform 500ms ease-out;

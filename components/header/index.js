@@ -16,7 +16,7 @@ const Header = ({
   const isHidden = useHideOnScroll()
   return (
     <div
-      className={cn('sm:fixed sm:top-0 sm:z-50', styles.headerBox, {
+      className={cn('sm:fixed sm:top-0 sm:z-40 sm:bg-black', styles.headerBox, {
         [styles.headerBoxHidden]: isHidden,
       })}
     >

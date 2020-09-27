@@ -9,9 +9,9 @@ const Footer = ({ contact, follow, isPrivacyOpen, setIsPrivacyOpen }) => {
   return (
     <footer className={cn('relative', styles.footer)}>
       <div className={styles.anchorTarget} id="contact" />
-      <div className="grid mt-18">
-        <div className="col-4" />
-        <div className="col-10">
+      <div className="grid mt-18 sm:mt-12 sm:flex-wrap sm:flex-col-reverse">
+        <div className="col-4 sm:hidden" />
+        <div className="col-10 sm:col-6 sm:hidden">
           <div className="pb-1 mb-3 border-white border-b text-s2">
             Contact us
           </div>
@@ -19,7 +19,7 @@ const Footer = ({ contact, follow, isPrivacyOpen, setIsPrivacyOpen }) => {
             {contact}
           </Markdown>
         </div>
-        <div className="col-10">
+        <div className="col-10 sm:col-6">
           <div className="pb-1 mb-3 border-white border-b text-s2">
             Follow us
           </div>
@@ -34,9 +34,9 @@ const Footer = ({ contact, follow, isPrivacyOpen, setIsPrivacyOpen }) => {
           </Markdown>
         </div>
       </div>
-      <div className="grid mt-12">
-        <div className="col-4" />
-        <div className="col-10">
+      <div className="grid mt-12 sm:mt-6 sm:flex-wrap sm:flex-col-reverse">
+        <div className="col-4 sm:hidden" />
+        <div className="col-10 sm:col-6 sm:mt-6">
           <div className="pb-1 mb-3 border-white border-b text-s2">
             Privacy policy
           </div>
@@ -52,7 +52,15 @@ const Footer = ({ contact, follow, isPrivacyOpen, setIsPrivacyOpen }) => {
             ©2020
           </div>
         </div>
-        <div className="col-10">
+        <div className="hidden sm:block sm:col-6 sm:mt-6">
+          <div className="pb-1 mb-3 border-white border-b text-s2">
+            Contact us
+          </div>
+          <Markdown className={cn('text-s1', styles.columnText)}>
+            {contact}
+          </Markdown>
+        </div>
+        <div className="col-10 sm:col-6">
           <div className="pb-1 mb-3 border-white border-b text-s2">Credits</div>
           <div className={cn('text-s1', styles.columnText, styles.credits)}>
             <p>

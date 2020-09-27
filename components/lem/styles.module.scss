@@ -1,5 +1,8 @@
 .lemBio {
   p + p {
     text-indent: 4rem;
+    @include mediaQuery(sm) {
+      text-indent: 2rem;
+    }
   }
 }

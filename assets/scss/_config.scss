@@ -35,6 +35,11 @@ $font-styles: (
     font-size: 3.2rem,
     line-height: 1.09,
   ),
+  l3: (
+    font-family: $ff-red-20-bold,
+    font-size: 3.2rem,
+    line-height: 0.9,
+  ),
   xl: (
     font-family: $ff-red-reg,
     font-size: 5rem,
@@ -51,6 +56,12 @@ $font-styles: (
     font-family: $ff-red-reg,
     font-size: 6rem,
     line-height: 1,
+    text-transform: uppercase,
+  ),
+  xl4: (
+    font-family: $ff-red-20-bold,
+    font-size: 5rem,
+    line-height: 0.9,
     text-transform: uppercase,
   ),
   xxl: (

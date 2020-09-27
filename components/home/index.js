@@ -6,6 +6,7 @@ import { Page } from '../page'
 import Application from '../application'
 import ClosestSeminar from '../closest-seminar'
 import Footer from '../footer'
+import Heading from '../heading'
 import Keywords from '../keywords'
 import Lem from '../lem'
 import Markdown from '../markdown'
@@ -68,25 +69,30 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={0}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative"
+        className="relative sm:mt-8"
       >
         <div className={styles.anchorTarget} id="about" />
-        <div className="grid mt-36">
-          <div className="col-8" />
-          <div className="col-14">
-            <Markdown className="text-l2">{page.fields.description}</Markdown>
+        <Heading>About</Heading>
+        <div className="grid mt-36 sm:mt-4">
+          <div className="col-8 sm:col-1" />
+          <div className="col-14 sm:col-5">
+            <Markdown className="text-l2 sm:text-s1">
+              {page.fields.description}
+            </Markdown>
           </div>
         </div>
-        <div className="grid mt-36">
-          <div className="col-4" />
-          <div className="col-20">
+        <div className="grid mt-36 sm:mt-12">
+          <div className="col-4 sm:hidden" />
+          <div className="col-20 sm:col-6">
             <Keywords keywords={page.fields.keywords} />
           </div>
         </div>
-        <div className="grid mt-36">
-          <div className="col-8" />
-          <div className="col-14">
-            <Typograf className="text-l2">{page.fields.objective}</Typograf>
+        <div className="grid mt-36 sm:mt-12">
+          <div className="col-8 sm:col-1" />
+          <div className="col-14 sm:col-5">
+            <Typograf className="text-l2 sm:text-s1">
+              {page.fields.objective}
+            </Typograf>
           </div>
         </div>
         <Lem
@@ -97,9 +103,10 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={1}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative"
+        className="relative sm:mt-8"
       >
         <div className={styles.anchorTarget} id="seminars" />
+        <Heading>Seminars</Heading>
         {closestSeminar && <ClosestSeminar {...closestSeminar.fields} />}
         <Seminars
           items={page.fields.seminars}
@@ -114,13 +121,19 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={2}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative"
+        className="relative sm:mt-8"
       >
         <div className={styles.anchorTarget} id="leaders" />
-        <Speakers speakers={leaders} className="mt-18" />
-        <div className={cn('grid mt-36', styles.secondPhase)}>
-          <div className="col-4" />
-          <div className={cn('col-19 text-xxl', styles.secondPhase)}>
+        <Heading>seminar leaders</Heading>
+        <Speakers speakers={leaders} className="mt-18 sm:mt-4" />
+        <div className="grid mt-36 sm:mt-12">
+          <div className="col-4 sm:hidden" />
+          <div
+            className={cn(
+              'col-19 sm:col-6 text-xxl sm:text-l3',
+              styles.secondPhase
+            )}
+          >
             <Markdown>{page.fields.secondPhase}</Markdown>
           </div>
         </div>
@@ -128,13 +141,14 @@ const Home = ({ page }) => {
       <Section
         sectionIndex={3}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative"
+        className="relative sm:mt-8"
       >
         <div className={styles.anchorTarget} id="speakers" />
-        <Speakers speakers={speakers} className="mt-36" />
-        <div className="grid mt-36">
-          <div className="col-4" />
-          <div className="col-20">
+        <Heading>invited speakers</Heading>
+        <Speakers speakers={speakers} className="mt-36 sm:mt-4" />
+        <div className="grid mt-36 sm:mt-12">
+          <div className="col-4 sm:hidden" />
+          <div className="col-20 sm:col-6">
             <Keywords keywords={page.fields.keywords} />
           </div>
         </div>
@@ -150,15 +164,15 @@ const Home = ({ page }) => {
           how={page.fields.applicationHow}
           requirements={page.fields.applicationRequirements}
         />
-        <div className="grid mt-18">
-          <div className="col-4" />
-          <div className="col-20">
+        <div className="grid mt-18 sm:mt-6">
+          <div className="col-4 sm:hidden" />
+          <div className="col-20 sm:col-6">
             <a
               href={page.fields.applyUrl}
               target="_blank"
               rel="noreferrer noopener"
               className={cn(
-                'block border border-white py-13 text-xxl text-center hover:bg-purple',
+                'block border border-white py-13 sm:py-10 text-xxl sm:text-xl4 text-center hover:bg-purple',
                 styles.applyButton
               )}
             >

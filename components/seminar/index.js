@@ -68,16 +68,12 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
 
   return (
     <div
-      className={cn(
-        'fixed left-0 top-0 h-screen w-screen z-40',
-        styles.seminar,
-        {
-          [styles.seminarOpen]: isOpen && !isClosing,
-        }
-      )}
+      className={cn('fixed left-0 top-0 h-screen w-screen', styles.seminar, {
+        [styles.seminarOpen]: isOpen && !isClosing,
+      })}
     >
       <div className="grid h-full">
-        <div className="col-1 bg-transparent z-50 h-full" onClick={close} />
+        <div className="col-1 bg-transparent h-full" onClick={close} />
         <div
           ref={ref}
           className="col-23 h-full bg-white text-black overflow-auto relative pt-2"

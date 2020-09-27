@@ -1,5 +1,8 @@
 .footer {
   margin-bottom: 100vh;
+  @include mediaQuery(sm) {
+    margin-bottom: 20vh;
+  }
 }
 
 .anchorTarget {
@@ -35,6 +38,9 @@
 
 .credits {
   padding-right: 12rem;
+  @include mediaQuery(sm) {
+    padding-right: 0;
+  }
 }
 
 .logos {

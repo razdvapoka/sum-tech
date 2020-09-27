@@ -24,17 +24,13 @@ const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
 
   return (
     <div
-      className={cn(
-        'fixed left-0 top-0 h-screen w-screen z-40',
-        styles.privacy,
-        {
-          [styles.privacyOpen]: isPrivacyOpen,
-        }
-      )}
+      className={cn('fixed left-0 top-0 h-screen w-screen', styles.privacy, {
+        [styles.privacyOpen]: isPrivacyOpen,
+      })}
     >
       <div className="grid h-full">
         <div
-          className="col-1 bg-transparent z-50 h-full"
+          className="col-1 bg-transparent h-full"
           onClick={() => setIsPrivacyOpen(false)}
         />
         <div

@@ -4,6 +4,7 @@
     width: calc(10 / 24 * 100vw);
     top: 1rem;
     bottom: 1rem;
+    right: 0;
     transition: opacity 0.3s ease-out;
     transform: translateX(-1px);
     &Text {
@@ -13,6 +14,18 @@
     }
     &More {
       transition: color 0.2s ease;
+    }
+    @include mediaQuery(sm) {
+      top: -1px;
+      bottom: -1px;
+      width: 100%;
+      transform: none;
+    }
+  }
+  &:hover {
+    color: color(purple);
+    @include mediaQuery(sm) {
+      color: color(white);
     }
   }
 }
@@ -27,10 +40,17 @@
 .overlay:hover {
   .leaderPhotoOverlay {
     opacity: 1;
+    @include mediaQuery(sm) {
+      opacity: 0;
+    }
   }
 }
 
 .closeButton {
   width: 1.4rem;
   height: 1.7rem;
+  @include mediaQuery(sm) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 }

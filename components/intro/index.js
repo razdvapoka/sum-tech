@@ -1,13 +1,11 @@
-import { createBreakpoint } from 'react-use'
 import FontFaceObserver from 'fontfaceobserver'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 
-import { TABLET_BP, MOBILE_BP } from '../../utils/consts'
+import { MOBILE_BP } from '../../utils/consts'
 import styles from './styles.module.scss'
-
-const useBreakpoint = createBreakpoint({ TABLET: TABLET_BP, MOBILE: MOBILE_BP })
+import useBreakpoint from '../../hooks/useBreakpoint'
 
 const removeAllChildren = (element) => {
   while (element.firstChild) {

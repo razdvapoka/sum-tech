@@ -44,8 +44,8 @@ const Menu = ({
         fixed h-screen
         flex flex-col justify-between
         py-2
-        z-50
         opacity-0 sm:opacity-100
+        z-50
         sm:px-2
         sm:bg-black
         sm:pb-20

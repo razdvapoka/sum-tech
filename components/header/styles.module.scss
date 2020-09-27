@@ -18,7 +18,7 @@
   transition: transform 0.2s ease;
   &Hidden {
     @include mediaQuery(sm) {
-      transform: translateY(-100%);
+      transform: translateY(calc(-100% - 1px));
     }
   }
 }
