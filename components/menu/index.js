@@ -75,7 +75,7 @@ const Menu = ({
                 'hover:text-purple pb-1 mb-1 sm:mb-3 text-s2 border-b',
                 styles.menuItem,
                 {
-                  [styles.menuItemActive]: isActive,
+                  'text-purple pointer-events-none': isActive,
                 }
               )}
             >
