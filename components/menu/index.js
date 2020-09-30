@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import styles from './styles.module.scss'
 import cn from 'classnames'
+import Link from 'next/link'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { FixedBottom } from 'react-fixed-bottom'
 import X from '../../assets/icons/✕.svg'
@@ -58,7 +59,9 @@ const Menu = ({
     >
       <ul>
         <li className="hidden sm:flex items-center justify-between pb-1 mb-3 text-s2 border-b">
-          <span>summa technologiae</span>
+          <Link href="/">
+            <a onClick={() => setIsMenuOpen(false)}>summa technologiae</a>
+          </Link>
           <button
             className={styles.closeButton}
             onClick={() => setIsMenuOpen(false)}

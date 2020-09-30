@@ -18,6 +18,10 @@
     transition: transform 500ms ease-out;
   }
   @include mediaQuery(sm) {
+    transition: transform 250ms ease-in;
+    &Open {
+      transition: transform 350ms ease-out;
+    }
     &Filler {
       padding-left: 0.5rem;
       padding-right: 0.5rem;

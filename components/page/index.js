@@ -107,7 +107,7 @@ export function Page({
           {children}
         </main>
         <FixedBottom>
-          <div className="w-screen px-2 fixed left-0 z-50">
+          <div className="w-screen px-2 fixed left-0 z-30">
             <div className="hidden sm:flex justify-center items-center w-full text-s1 uppercase bg-black py-3 border-t border-white">
               <a href={applyUrl} target="_blank" rel="noopener noreferrer">
                 apply now

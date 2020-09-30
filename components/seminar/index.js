@@ -159,7 +159,7 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
                   <Markdown>{seminar.fields.methodology}</Markdown>
                 </div>
               </div>
-              <div className="grid mt-18 sm:mt-12 mb-2">
+              <div className="grid mt-18 sm:mt-12 mb-10">
                 <div className="col-23-s sm:col-11-s">
                   <a
                     href={seminar.fields.applyUrl}
