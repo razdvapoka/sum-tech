@@ -97,7 +97,7 @@ const Intro = () => {
       ? {
           size: 100,
           leading: 0.9,
-          padding: 20,
+          padding: 0,
         }
       : {
           size: 150,

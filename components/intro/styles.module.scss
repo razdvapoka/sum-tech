@@ -5,4 +5,8 @@
 }
 
 .introBox {
+  @include mediaQuery(sm) {
+    width: 70vw;
+    margin: 0 auto;
+  }
 }

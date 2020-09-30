@@ -27213,8 +27213,8 @@ GrowingPacker.prototype = {
         canvas.style.width = w / 10 + 'rem';
         canvas.style.height = h / 10 + 'rem';
       } else {
-        canvas.style.width = '100vw';
-        canvas.style.height = `calc(100vw * ${h / w})`;
+        canvas.style.width = '100%';
+        canvas.style.height = `calc(100% * ${h / w})`;
         canvas.style.touchAction = 'none';
       }
       canvas.getContext('2d').setTransform(ratio, 0, 0, ratio, 0, 0);
