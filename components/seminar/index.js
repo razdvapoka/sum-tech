@@ -1,4 +1,5 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { useSwipeable } from 'react-swipeable'
 import { format } from 'date-fns'
 import { useRouter } from 'next/router'
 import React, { useRef, useEffect, useState } from 'react'
@@ -66,6 +67,8 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
     }, 400)
   }
 
+  const handlers = useSwipeable({ onSwipedRight: close })
+
   return (
     <div
       className={cn(
@@ -87,6 +90,7 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
             'col-23 h-full bg-white text-black overflow-auto relative pt-2',
             styles.seminarContent
           )}
+          {...handlers}
         >
           <button
             className={cn('block fixed z-50', styles.closeButton)}

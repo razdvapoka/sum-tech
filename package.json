@@ -38,6 +38,7 @@
     "react-dom": "16.13.1",
     "react-fixed-bottom": "^1.0.6",
     "react-markdown": "^4.3.1",
+    "react-swipeable": "^5.5.1",
     "react-use": "^15.3.4",
     "typograf": "^6.11.1"
   },
