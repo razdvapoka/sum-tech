@@ -1,5 +1,8 @@
 .keywords {
   height: 32vw;
+  @include mediaQuery(sm) {
+    height: 56vw;
+  }
 }
 
 .keyword {
@@ -14,6 +17,9 @@
 
 .keywordsInner {
   animation: keyword-anim 10s linear infinite;
+  @include mediaQuery(sm) {
+    animation: keyword-anim 20s linear infinite;
+  }
   &:hover,
   &Paused {
     animation-play-state: paused;
