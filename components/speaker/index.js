@@ -8,7 +8,7 @@ import X from '../../assets/icons/✕.svg'
 import styles from './styles.module.scss'
 import useBreakpoint from '../../hooks/useBreakpoint'
 
-const Bio = ({ isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
+const Bio = ({ index, isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
   const breakpoint = useBreakpoint()
   const isMobile = breakpoint === 'MOBILE'
 
@@ -41,6 +41,7 @@ const Bio = ({ isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
         'sm:px-2 sm:pt-3 sm:pb-8 sm:flex sm:flex-col sm:justify-between sm:border-none',
         'sm:height-screen overflow-auto',
         styles.leaderBio,
+        index % 4 >= 2 ? styles.leaderBioLeft : styles.leaderBioRight,
         { 'opacity-100 pointer-events-auto': isSpeakerBioOpen }
       )}
     >
@@ -104,6 +105,7 @@ const Speaker = ({
         name={name}
         bio={bio}
         url={url}
+        index={index}
       />
       <div
         className={cn(

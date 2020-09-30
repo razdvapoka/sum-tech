@@ -7,11 +7,18 @@
     width: 100%;
   }
 
+  &BioRight {
+    right: 0.9rem;
+  }
+
+  &BioLeft {
+    left: 25rem;
+  }
+
   &Bio {
-    width: calc(10 / 24 * 100vw);
+    width: calc(10 / 24 * 100vw - 1.4rem);
     top: 1rem;
     bottom: 1rem;
-    right: 0;
     transition: opacity 0.3s ease-out;
     transform: translateX(-1px);
     &Text {
