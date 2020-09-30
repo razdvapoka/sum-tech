@@ -1,7 +1,9 @@
 .heading {
-  transition: top 0.2s ease;
-  top: 0rem;
-  &Shifted {
-    top: 3.2rem;
-  }
+  padding: 1.3rem 0 1rem;
+}
+
+.headingHidden {
+  height: 0;
+  overflow: hidden;
+  border: none;
 }

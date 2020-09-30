@@ -12,6 +12,7 @@ import Seminar from '../seminar'
 import styles from './styles.module.scss'
 
 export function Page({
+  headerSectionIndex,
   applyUrl,
   activeSectionIndex,
   headerText,
@@ -84,6 +85,7 @@ export function Page({
             setIsMenuOpen={setIsMenuOpen}
             isMenuOpen={isMenuOpen}
             applyUrl={applyUrl}
+            headerSectionIndex={headerSectionIndex}
           />
           <Intro />
           <div

@@ -8,12 +8,22 @@ import styles from './styles.module.scss'
 import Burger from '../../assets/icons/burger.svg'
 import X from '../../assets/icons/✕.svg'
 
+const SECTIONS = [
+  'about',
+  'seminars',
+  'seminar leaders',
+  'invited speakers',
+  'application',
+  'contact & credits',
+]
+
 const Header = ({
   applyUrl,
   text,
   seminarCount,
   isMenuOpen,
   setIsMenuOpen,
+  headerSectionIndex,
 }) => {
   return (
     <div className={cn('sm:fixed sm:top-0 sm:bg-black', styles.headerBox)}>
@@ -36,7 +46,9 @@ const Header = ({
                 styles.menuButton
               )}
             >
-              Summa Technologiae
+              {headerSectionIndex === null
+                ? 'Summa Technologiae'
+                : SECTIONS[headerSectionIndex]}
             </a>
           </Link>
           <button

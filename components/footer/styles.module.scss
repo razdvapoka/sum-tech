@@ -1,7 +1,7 @@
 .footer {
-  margin-bottom: 100vh;
+  margin-bottom: 20rem;
   @include mediaQuery(sm) {
-    margin-bottom: 20vh;
+    margin-bottom: 13rem;
   }
 }
 

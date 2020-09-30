@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import cn from 'classnames'
 
 import { Page } from '../page'
@@ -26,6 +26,7 @@ const Home = ({ page }) => {
     page.fields.seminars.find((s) => s.fields.slug === seminarSlug)
   const [isLoadingSeminar, setIsLoadingSeminar] = useState(false)
   const [activeSectionIndex, setActiveSectionIndex] = useState(null)
+  const [headerSectionIndex, setHeaderSectionIndex] = useState(null)
 
   const sortedSeminars = useMemo(
     () =>
@@ -47,9 +48,32 @@ const Home = ({ page }) => {
     []
   )
 
+  const handleScroll = () => {
+    const headings = document.querySelectorAll('.heading')
+    const positions = Array.from(headings)
+      .map((h, hi) => {
+        return {
+          index: hi,
+          top: h.getBoundingClientRect().top,
+        }
+      })
+      .filter((h) => h.top < 40)
+    setHeaderSectionIndex(
+      positions.length > 0 ? positions[positions.length - 1].index : null
+    )
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <Page
       headerText={page.fields.headerText}
+      headerSectionIndex={headerSectionIndex}
       seminarCount={page.fields.seminars.length}
       seminar={seminar}
       activeSectionIndex={activeSectionIndex}
@@ -159,6 +183,7 @@ const Home = ({ page }) => {
         className="relative"
       >
         <div className={styles.anchorTarget} id="apply" />
+        <Heading hidden>Application</Heading>
         <Application
           who={page.fields.applicationWho}
           how={page.fields.applicationHow}
@@ -182,6 +207,7 @@ const Home = ({ page }) => {
         </div>
       </Section>
       <Section sectionIndex={5} setActiveSectionIndex={setActiveSectionIndex}>
+        <Heading hidden>Contacts</Heading>
         <Footer
           follow={page.fields.social}
           contact={page.fields.contact}
