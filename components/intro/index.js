@@ -3,7 +3,6 @@ import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 
-import { MOBILE_BP } from '../../utils/consts'
 import styles from './styles.module.scss'
 import useBreakpoint from '../../hooks/useBreakpoint'
 
@@ -95,9 +94,9 @@ const Intro = () => {
       : 'SUMMA<br/>TECHNOLOGIAE'
     const textSettings = isMobile
       ? {
-          size: 100,
+          size: 80,
           leading: 0.9,
-          padding: 0,
+          padding: 70,
         }
       : {
           size: 150,
@@ -240,7 +239,7 @@ const Intro = () => {
   return (
     <div>
       <Head>
-        <script src="/blotter.js" />
+        <script src="/blotter.min.js" />
         <script src="/liquidDistortMaterial.js" />
       </Head>
       <div className="mt-2 sm:mt-10">
@@ -251,7 +250,6 @@ const Intro = () => {
           onTouchMove={handleTouchMove}
           onMouseEnter={startBlotter}
           onMouseLeave={stopBlotter}
-          onClick={toggleBlotter}
         />
         {state.blotter && isConfigOpen && (
           <Configuration

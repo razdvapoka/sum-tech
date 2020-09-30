@@ -4,8 +4,16 @@
   }
 }
 
-.menuButton {
-  border-bottom-style: solid;
+.burger {
+  width: 1.6rem;
+  height: 1.2rem;
+  transform: translateY(-0.2rem);
+}
+
+.x {
+  width: 1.3rem;
+  height: 1.3rem;
+  transform: translateY(-0.2rem);
 }
 
 .applyButton {
@@ -15,10 +23,24 @@
 .headerBox {
   left: 1rem;
   right: 1rem;
-  transition: transform 0.2s ease;
-  &Hidden {
-    @include mediaQuery(sm) {
-      transform: translateY(calc(-100% - 1px));
+  @include mediaQuery(sm) {
+    z-index: 60;
+  }
+}
+
+.mobileHeaderCol {
+  @include mediaQuery(sm) {
+    padding-left: 0;
+    padding-right: 0;
+    &:hover {
+      color: color(white);
     }
+  }
+}
+
+.menuButton {
+  @include mediaQuery(sm) {
+    padding-top: 1.3rem;
+    padding-bottom: 1rem;
   }
 }

@@ -1,10 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import styles from './styles.module.scss'
 import cn from 'classnames'
-import Link from 'next/link'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { FixedBottom } from 'react-fixed-bottom'
-import X from '../../assets/icons/✕.svg'
 
 const MENU_ITEMS = [
   { name: 'about', hash: 'about' },
@@ -47,6 +45,8 @@ const Menu = ({
         py-2
         opacity-0 sm:opacity-100
         z-50
+        sm:top-0
+        sm:pt-8
         sm:px-2
         sm:bg-black
         sm:pb-20
@@ -58,24 +58,13 @@ const Menu = ({
       )}
     >
       <ul>
-        <li className="hidden sm:flex items-center justify-between pb-1 mb-3 text-s2 border-b">
-          <Link href="/">
-            <a onClick={() => setIsMenuOpen(false)}>summa technologiae</a>
-          </Link>
-          <button
-            className={styles.closeButton}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <X />
-          </button>
-        </li>
         {MENU_ITEMS.map((item, itemIndex) => {
           const isActive = itemIndex === activeSectionIndex
           return (
             <li
               key={item.hash}
               className={cn(
-                'hover:text-purple pb-1 mb-1 sm:mb-3 text-s2 border-b',
+                'hover:text-purple mb-1 sm:mb-0 text-s2 border-b',
                 styles.menuItem,
                 {
                   'text-purple pointer-events-none': isActive,

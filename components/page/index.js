@@ -24,7 +24,6 @@ export function Page({
   setIsPrivacyOpen,
   privacy,
   iam,
-  isHeaderHidden,
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -83,8 +82,8 @@ export function Page({
             seminarCount={seminarCount}
             isOpen={isMenuOpen}
             setIsMenuOpen={setIsMenuOpen}
+            isMenuOpen={isMenuOpen}
             applyUrl={applyUrl}
-            isHidden={isHeaderHidden}
           />
           <Intro />
           <div

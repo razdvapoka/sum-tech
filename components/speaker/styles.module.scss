@@ -9,10 +9,17 @@
 
   &BioRight {
     right: 0.9rem;
+    @include mediaQuery(sm) {
+      left: 0;
+      right: auto;
+    }
   }
 
   &BioLeft {
     left: 25rem;
+    @include mediaQuery(sm) {
+      left: 0;
+    }
   }
 
   &Bio {
@@ -21,6 +28,7 @@
     bottom: 1rem;
     transition: opacity 0.3s ease-out;
     transform: translateX(-1px);
+    z-index: 70;
     &Text {
       p:not(:first-child) {
         text-indent: 3rem;

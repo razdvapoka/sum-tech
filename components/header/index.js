@@ -5,28 +5,53 @@ import cn from 'classnames'
 import Markdown from '../markdown'
 import styles from './styles.module.scss'
 
+import Burger from '../../assets/icons/burger.svg'
+import X from '../../assets/icons/✕.svg'
+
 const Header = ({
   applyUrl,
   text,
   seminarCount,
   isMenuOpen,
   setIsMenuOpen,
-  isHidden,
 }) => {
   return (
-    <div
-      className={cn('sm:fixed sm:top-0 sm:z-40 sm:bg-black', styles.headerBox, {
-        [styles.headerBoxHidden]: isHidden,
-      })}
-    >
-      <header className="grid pt-2">
-        <div className="col-4 hover:text-purple sm:col-4">
+    <div className={cn('sm:fixed sm:top-0 sm:bg-black', styles.headerBox)}>
+      <header className="grid pt-2 sm:pt-0 sm:px-1">
+        <div
+          className={cn(
+            `
+            col-4 sm:col-6
+            hover:text-purple
+            sm:flex sm:justify-between
+            sm:border-b sm:border-white
+          `,
+            styles.mobileHeaderCol
+          )}
+        >
           <Link href="/">
-            <a className="block border-b border-inherit text-s2 pb-1">
-              <span className="sm:hidden">Summa Technologiae</span>
-              <span className="hidden sm:inline">ST</span>
+            <a
+              className={cn(
+                'block border-b border-inherit sm:border-none text-s2 pb-1 sm:pb-0',
+                styles.menuButton
+              )}
+            >
+              Summa Technologiae
             </a>
           </Link>
+          <button
+            className={cn(
+              'hidden sm:flex sm:justify-end sm:flex-1',
+              styles.menuButton
+            )}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className={styles.x} />
+            ) : (
+              <Burger className={styles.burger} />
+            )}
+          </button>
         </div>
         <div className="col-4 sm:hidden">
           <div className="border-b border-white text-s2 pb-1">School</div>
@@ -51,17 +76,6 @@ const Header = ({
           >
             Apply Now
           </a>
-        </div>
-        <div className="hidden sm:block sm:col-2">
-          <button
-            className={cn(
-              'border-b border-white pb-1 text-s2 w-full text-left',
-              styles.menuButton
-            )}
-            onClick={() => setIsMenuOpen(true)}
-          >
-            Menu
-          </button>
         </div>
       </header>
     </div>

@@ -16,10 +16,8 @@ import Seminars from '../seminars'
 import Speakers from '../speakers'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
-import useHideOnScroll from '../../hooks/useHideOnScroll'
 
 const Home = ({ page }) => {
-  const isHeaderHidden = useHideOnScroll()
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false)
   const router = useRouter()
   const seminarSlug = router.query.seminar
@@ -62,7 +60,6 @@ const Home = ({ page }) => {
       privacy={page.fields.privacy}
       iam={page.fields.iam}
       applyUrl={page.fields.applyUrl}
-      isHeaderHidden={isHeaderHidden}
     >
       <div className="grid">
         <div className="hidden sm:block sm:col-6 text-s1">
@@ -75,7 +72,7 @@ const Home = ({ page }) => {
         className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="about" />
-        <Heading isHeaderHidden={isHeaderHidden}>About</Heading>
+        <Heading>About</Heading>
         <div className="grid mt-36 sm:mt-4">
           <div className="col-8 sm:col-1" />
           <div className="col-14 sm:col-5">
@@ -109,7 +106,7 @@ const Home = ({ page }) => {
         className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="seminars" />
-        <Heading isHeaderHidden={isHeaderHidden}>Seminars</Heading>
+        <Heading>Seminars</Heading>
         {closestSeminar && <ClosestSeminar {...closestSeminar.fields} />}
         <Seminars
           items={page.fields.seminars}
@@ -127,7 +124,7 @@ const Home = ({ page }) => {
         className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="leaders" />
-        <Heading isHeaderHidden={isHeaderHidden}>seminar leaders</Heading>
+        <Heading>seminar leaders</Heading>
         <Speakers speakers={leaders} className="mt-18 sm:mt-4" />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />
@@ -147,7 +144,7 @@ const Home = ({ page }) => {
         className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="speakers" />
-        <Heading isHeaderHidden={isHeaderHidden}>invited speakers</Heading>
+        <Heading>invited speakers</Heading>
         <Speakers speakers={speakers} className="mt-36 sm:mt-4" />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />
