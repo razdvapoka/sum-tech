@@ -46,9 +46,12 @@ const Header = ({
                 styles.menuButton
               )}
             >
-              {headerSectionIndex === null
-                ? 'Summa Technologiae'
-                : SECTIONS[headerSectionIndex]}
+              <span className="hidden sm:block">
+                {headerSectionIndex === null
+                  ? 'Summa Technologiae'
+                  : SECTIONS[headerSectionIndex]}
+              </span>
+              <span className="sm:hidden">Summa Technologiae</span>
             </a>
           </Link>
           <button
