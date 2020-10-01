@@ -23,22 +23,25 @@ const Keywords = ({ keywords }) => {
     [keywords]
   )
   return (
-    <div
-      ref={intersectionRef}
-      className={cn(
-        'border border-white text-l1 text-center overflow-hidden',
-        styles.keywords
-      )}
-    >
+    <div>
+      <div className="text-s1 uppercase mb-1 sm:mb-2">keywords</div>
       <div
-        className={cn(styles.keywordsInner, {
-          [styles.keywordsInnerPaused]:
-            !intersection || !intersection.isIntersecting,
-        })}
+        ref={intersectionRef}
+        className={cn(
+          'border border-white text-l1 text-center overflow-hidden',
+          styles.keywords
+        )}
       >
-        {keywordsComponent}
-        {keywordsComponent}
-        {keywordsComponent}
+        <div
+          className={cn(styles.keywordsInner, {
+            [styles.keywordsInnerPaused]:
+              !intersection || !intersection.isIntersecting,
+          })}
+        >
+          {keywordsComponent}
+          {keywordsComponent}
+          {keywordsComponent}
+        </div>
       </div>
     </div>
   )

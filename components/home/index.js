@@ -149,7 +149,11 @@ const Home = ({ page }) => {
       >
         <div className={styles.anchorTarget} id="leaders" />
         <Heading>seminar leaders</Heading>
-        <Speakers speakers={leaders} className="mt-18 sm:mt-4" />
+        <Speakers
+          speakers={leaders}
+          className="mt-18 sm:mt-4"
+          heading="seminar leaders"
+        />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />
           <div
@@ -169,7 +173,11 @@ const Home = ({ page }) => {
       >
         <div className={styles.anchorTarget} id="speakers" />
         <Heading>invited speakers</Heading>
-        <Speakers speakers={speakers} className="mt-36 sm:mt-4" />
+        <Speakers
+          speakers={speakers}
+          className="mt-36 sm:mt-4"
+          heading="invited speakers"
+        />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />
           <div className="col-20 sm:col-6">
