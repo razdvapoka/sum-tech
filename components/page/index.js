@@ -4,6 +4,7 @@ import Head from 'next/head'
 import React, { useState, useRef } from 'react'
 import cn from 'classnames'
 
+import Cookies from '../cookies'
 import Header from '../header'
 import Intro from '../intro'
 import Menu from '../menu'
@@ -107,8 +108,12 @@ export function Page({
         <main className="" ref={intersectionRef}>
           {children}
         </main>
+        <Cookies />
         <FixedBottom>
-          <div className="w-screen px-2 fixed left-0 z-30">
+          <div
+            key="applyNow"
+            className="hidden sm:block w-screen px-2 fixed left-0 z-30"
+          >
             <div className="hidden sm:flex justify-center items-center w-full text-s1 uppercase bg-black py-3 border-t border-white">
               <a href={applyUrl} target="_blank" rel="noopener noreferrer">
                 apply now
