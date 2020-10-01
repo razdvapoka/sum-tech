@@ -10,6 +10,25 @@ import Typograf from '../typograph'
 import X from '../../assets/icons/✕.svg'
 import styles from './styles.module.scss'
 
+const Speaker = ({ speaker }) => {
+  return (
+    <div className="grid mt-4 sm:mt-2 mb-12 sm:mb-4 sm:flex-wrap">
+      <div className="col-3-s sm:col-1-s" />
+      <div className="col-3-s sm:col-5-s">
+        <img src={speaker.fields.photo.fields.file.url} width="100%" />
+      </div>
+      <div
+        className={cn(
+          'col-11-s sm:col-11-s text-l2 sm:text-s1 sm:mt-2',
+          styles.about
+        )}
+      >
+        <Markdown>{speaker.fields.about}</Markdown>
+      </div>
+    </div>
+  )
+}
+
 const renderers = {
   image: ({ src, alt }) => {
     return (
@@ -131,14 +150,15 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
                 </SeminarContent>
               </div>
               <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                about speakers
+                about the seminar leader
               </div>
-              <div className="grid mt-4 sm:mt-2">
-                <div className="col-3-s sm:hidden" />
-                <div className="col-14-s sm:col-11-s text-l2 sm:text-s1">
-                  <Markdown>{seminar.fields.aboutSpeakers}</Markdown>
-                </div>
+              <Speaker speaker={seminar.fields.leader} />
+              <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
+                about invited speakers
               </div>
+              {seminar.fields.guestSpeakers.map((speaker, speakerIndex) => (
+                <Speaker key={speakerIndex} speaker={speaker} />
+              ))}
               <div className="grid mt-18 sm:mt-12 sm:flex-wrap">
                 {seminar.fields.sessions.map((session, sessionIndex) => (
                   <div
@@ -155,7 +175,7 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
                 ))}
               </div>
               <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                methodology
+                syllabus
               </div>
               <div className="grid mt-4 sm:mt-2">
                 <div className="col-3-s sm:hidden" />
@@ -163,7 +183,7 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
                   <Markdown>{seminar.fields.methodology}</Markdown>
                 </div>
               </div>
-              <div className="grid mt-18 sm:mt-12 sm:mb-10">
+              <div className="grid mt-18 sm:mt-12 mb-2 sm:mb-10">
                 <div className="col-23-s sm:col-11-s">
                   <a
                     href={seminar.fields.applyUrl}

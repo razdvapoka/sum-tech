@@ -108,7 +108,6 @@ export function Page({
         <main className="" ref={intersectionRef}>
           {children}
         </main>
-        <Cookies />
         <FixedBottom>
           <div
             key="applyNow"
@@ -121,6 +120,7 @@ export function Page({
             </div>
           </div>
         </FixedBottom>
+        <Cookies />
       </div>
     </>
   )
