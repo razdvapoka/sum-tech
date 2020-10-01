@@ -12,14 +12,15 @@ const Cookies = ({ isVisible }) => {
   const close = () => {
     setCookieWarningShown(true)
   }
-  return cookieWarningShown ? null : (
+  return (
     <FixedBottom>
       <div
         key="cookieWarning"
         className={cn(
           'fixed left-0 w-screen px-2 cursor-pointer opacity-0',
           styles.cookieWarning,
-          { 'opacity-100': isVisible }
+          { 'opacity-100': isVisible },
+          { hidden: cookieWarningShown }
         )}
         onClick={close}
       >
