@@ -5,7 +5,7 @@ import cn from 'classnames'
 import styles from './styles.module.scss'
 import X from '../../assets/icons/✕.svg'
 
-const Cookies = () => {
+const Cookies = ({ isVisible }) => {
   const [cookieWarningShown, setCookieWarningShown] = useLocalStorage(
     'cookieWarningShown'
   )
@@ -17,8 +17,9 @@ const Cookies = () => {
       <div
         key="cookieWarning"
         className={cn(
-          'fixed left-0 w-screen px-2 cursor-pointer',
-          styles.cookieWarning
+          'fixed left-0 w-screen px-2 cursor-pointer opacity-0',
+          styles.cookieWarning,
+          { 'opacity-100': isVisible }
         )}
         onClick={close}
       >

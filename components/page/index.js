@@ -120,7 +120,7 @@ export function Page({
             </div>
           </div>
         </FixedBottom>
-        <Cookies />
+        <Cookies isVisible={isIntroHidden} />
       </div>
     </>
   )

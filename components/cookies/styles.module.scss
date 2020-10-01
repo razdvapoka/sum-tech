@@ -1,5 +1,6 @@
 .cookieWarning {
   z-index: 1000;
+  transition: opacity 0.3s ease-out;
   &Text {
     margin-right: 3.1rem;
   }
