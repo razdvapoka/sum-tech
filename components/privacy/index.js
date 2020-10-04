@@ -1,12 +1,13 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import React, { useRef, useEffect } from 'react'
 import cn from 'classnames'
+import { useRouter } from 'next/router'
 
 import Markdown from '../markdown'
 import X from '../../assets/icons/✕.svg'
 import styles from './styles.module.scss'
 
-const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
+const Privacy = ({ isPrivacyOpen, privacy, iam }) => {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
@@ -22,6 +23,8 @@ const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
     }
   }, [isPrivacyOpen, ref])
 
+  const router = useRouter()
+
   return (
     <div
       className={cn('fixed left-0 top-0 h-screen w-screen', styles.privacy, {
@@ -31,7 +34,7 @@ const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
       <div className="grid h-full">
         <div
           className={cn('col-1 bg-transparent h-full', styles.privacyFiller)}
-          onClick={() => setIsPrivacyOpen(false)}
+          onClick={() => router.push('/')}
         />
         <div
           ref={ref}
@@ -42,7 +45,7 @@ const Privacy = ({ isPrivacyOpen, privacy, iam, setIsPrivacyOpen }) => {
         >
           <button
             className={cn('block fixed z-50', styles.closeButton)}
-            onClick={() => setIsPrivacyOpen(false)}
+            onClick={() => router.push('/')}
           >
             <X />
           </button>

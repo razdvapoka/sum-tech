@@ -23,7 +23,6 @@ export function Page({
   isLoadingSeminar,
   setIsLoadingSeminar,
   isPrivacyOpen,
-  setIsPrivacyOpen,
   privacy,
   iam,
 }) {
@@ -46,12 +45,7 @@ export function Page({
 
   return (
     <>
-      <Privacy
-        isPrivacyOpen={isPrivacyOpen}
-        setIsPrivacyOpen={setIsPrivacyOpen}
-        privacy={privacy}
-        iam={iam}
-      />
+      <Privacy isPrivacyOpen={isPrivacyOpen} privacy={privacy} iam={iam} />
       <Seminar
         seminar={seminar}
         isOpen={!!seminar || isLoadingSeminar}

@@ -1,11 +1,12 @@
 import React from 'react'
 import cn from 'classnames'
+import Link from 'next/link'
 
 import Markdown from '../markdown'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
-const Footer = ({ contact, follow, isPrivacyOpen, setIsPrivacyOpen }) => {
+const Footer = ({ contact, follow, isPrivacyOpen }) => {
   return (
     <footer className={cn('relative', styles.footer)}>
       <div className={styles.anchorTarget} id="contact" />
@@ -41,12 +42,11 @@ const Footer = ({ contact, follow, isPrivacyOpen, setIsPrivacyOpen }) => {
             Privacy policy
           </div>
           <div className={cn('text-s1', styles.columnText)}>
-            <button
-              className={cn('hover:text-purple', styles.privacyButton)}
-              onClick={() => setIsPrivacyOpen(true)}
-            >
-              E-flux and IAM privacy policy
-            </button>
+            <Link href="?privacy=true" scroll={false}>
+              <a className={cn('hover:text-purple', styles.privacyButton)}>
+                E-flux and IAM privacy policy
+              </a>
+            </Link>
             <br />
             <br />
             ©2020

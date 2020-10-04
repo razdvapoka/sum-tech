@@ -18,7 +18,6 @@ import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
 const Home = ({ page }) => {
-  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false)
   const router = useRouter()
   const seminarSlug = router.query.seminar
   const seminar =
@@ -27,6 +26,8 @@ const Home = ({ page }) => {
   const [isLoadingSeminar, setIsLoadingSeminar] = useState(false)
   const [activeSectionIndex, setActiveSectionIndex] = useState(null)
   const [headerSectionIndex, setHeaderSectionIndex] = useState(null)
+
+  const isPrivacyOpen = !!router.query.privacy
 
   const sortedSeminars = useMemo(
     () =>
@@ -80,7 +81,6 @@ const Home = ({ page }) => {
       setIsLoadingSeminar={setIsLoadingSeminar}
       isLoadingSeminar={isLoadingSeminar}
       isPrivacyOpen={isPrivacyOpen}
-      setIsPrivacyOpen={setIsPrivacyOpen}
       privacy={page.fields.privacy}
       iam={page.fields.iam}
       applyUrl={page.fields.applyUrl}
@@ -220,7 +220,6 @@ const Home = ({ page }) => {
           follow={page.fields.social}
           contact={page.fields.contact}
           isPrivacyOpen={isPrivacyOpen}
-          setIsPrivacyOpen={setIsPrivacyOpen}
         />
       </Section>
     </Page>
