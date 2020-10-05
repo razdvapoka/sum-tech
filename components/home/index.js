@@ -32,7 +32,10 @@ const Home = ({ page }) => {
   const sortedSeminars = useMemo(
     () =>
       page.fields.seminars.sort((s1, s2) =>
-        new Date(s1.fields.date) > new Date(s2.fields.date) ? 1 : -1
+        new Date(s1.fields.date) > new Date(s2.fields.date) ||
+        s1.fields.isComingSoon
+          ? 1
+          : -1
       ),
     [page.fields.seminars]
   )
