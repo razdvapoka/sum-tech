@@ -65,7 +65,6 @@ const Seminar = ({ isOpen, seminar }) => {
   useEffect(() => {
     if (ref) {
       const el = ref.current
-      console.log(ref, isOpen)
       if (el) {
         if (isOpen) {
           disableBodyScroll(el)
