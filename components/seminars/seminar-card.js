@@ -24,29 +24,42 @@ const SeminarCard = ({ seminar, setIsLoadingSeminar, seminarIndex }) => {
           }}
           onClick={() => setIsLoadingSeminar(true)}
         >
-          <div className="absolute left-0 top-0 w-full h-full text-center pt-4 sm:pt-2 px-12 sm:px-6 text-xl sm:text-m">
+          <div
+            className={`
+              absolute left-0 top-0 w-full h-full
+              py-4 sm:py-2 px-12 sm:px-2
+              text-l4 sm:text-m uppercase
+              text-center
+              flex flex-col justify-between
+            `}
+          >
             <div>
-              {seminar.fields.isComingSoon
-                ? '00.00'
-                : format(new Date(seminar.fields.date), 'dd.MM')}
-            </div>
-            <Typograf>
-              {seminar.fields.isComingSoon
-                ? 'coming soon'
-                : seminar.fields.name}
-            </Typograf>
-            {!seminar.fields.isComingSoon && (
-              <div className="mt-10 sm:mt-5">
-                {seminar.fields.leader.fields.name}
+              <div>
+                {seminar.fields.isComingSoon
+                  ? '00.00'
+                  : format(new Date(seminar.fields.date), 'dd.MM')}
               </div>
-            )}
-            <div
-              className={cn(
-                'absolute text-s2 uppercase text-center sm:hidden',
-                styles.learnMore
+              <Typograf>
+                {seminar.fields.isComingSoon
+                  ? 'coming soon'
+                  : seminar.fields.name}
+              </Typograf>
+            </div>
+            <div>
+              {!seminar.fields.isComingSoon && (
+                <>
+                  <div className="mt-10 sm:mt-5">
+                    {seminar.fields.leader.fields.name}
+                  </div>
+                  <div>
+                    {seminar.fields.guestSpeakers.map(
+                      (speaker, speakerIndex) => (
+                        <div key={speakerIndex}>{speaker.fields.name}</div>
+                      )
+                    )}
+                  </div>
+                </>
               )}
-            >
-              learn more
             </div>
           </div>
         </a>

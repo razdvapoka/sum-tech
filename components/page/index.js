@@ -54,7 +54,7 @@ export function Page({
       <div className={cn('min-h-screen flex flex-col px-2', styles.container)}>
         <Head>
           <title>Summa Technologiae</title>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon-2.png" />
           <script>
             {`
               if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
