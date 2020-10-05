@@ -134,16 +134,18 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
                   {format(new Date(seminar.fields.date), 'dd.MM.yyyy')}
                 </div>
               </div>
-              <div className="grid mt-18 sm:mt-0">
-                <div className="col-19-s sm:col-11-s text-xl2 sm:text-s1">
-                  <div className="text-purple">guest speaker: </div>
-                  {seminar.fields.guestSpeakers.map((guest, guestIndex) => (
-                    <div key={guestIndex}>
-                      {`${guest.fields.name} (${guest.fields.country})`}
-                    </div>
-                  ))}
+              {seminar.fields.guestSpeakers && (
+                <div className="grid mt-18 sm:mt-0">
+                  <div className="col-19-s sm:col-11-s text-xl2 sm:text-s1">
+                    <div className="text-purple">guest speakers: </div>
+                    {seminar.fields.guestSpeakers.map((guest, guestIndex) => (
+                      <div key={guestIndex}>
+                        {`${guest.fields.name} (${guest.fields.country})`}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="mt-18 sm:mt-3 text-l2 sm:text-s1">
                 <SeminarContent className={styles.wysiwyg}>
                   {seminar.fields.content}
@@ -153,12 +155,16 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
                 about the seminar leader
               </div>
               <Speaker speaker={seminar.fields.leader} />
-              <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                about invited speakers
-              </div>
-              {seminar.fields.guestSpeakers.map((speaker, speakerIndex) => (
-                <Speaker key={speakerIndex} speaker={speaker} />
-              ))}
+              {seminar.fields.guestSpeakers && (
+                <>
+                  <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
+                    about invited speakers
+                  </div>
+                  {seminar.fields.guestSpeakers.map((speaker, speakerIndex) => (
+                    <Speaker key={speakerIndex} speaker={speaker} />
+                  ))}
+                </>
+              )}
               <div className="grid mt-18 sm:mt-12 sm:flex-wrap">
                 {seminar.fields.sessions.map((session, sessionIndex) => (
                   <div

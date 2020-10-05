@@ -51,13 +51,15 @@ const SeminarCard = ({ seminar, setIsLoadingSeminar, seminarIndex }) => {
                   <div className="mt-10 sm:mt-5">
                     {seminar.fields.leader.fields.name}
                   </div>
-                  <div>
-                    {seminar.fields.guestSpeakers.map(
-                      (speaker, speakerIndex) => (
-                        <div key={speakerIndex}>{speaker.fields.name}</div>
-                      )
-                    )}
-                  </div>
+                  {seminar.fields.guestSpeakers && (
+                    <div>
+                      {seminar.fields.guestSpeakers.map(
+                        (speaker, speakerIndex) => (
+                          <div key={speakerIndex}>{speaker.fields.name}</div>
+                        )
+                      )}
+                    </div>
+                  )}
                 </>
               )}
             </div>

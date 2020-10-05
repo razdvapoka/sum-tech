@@ -56,7 +56,7 @@ const Home = ({ page }) => {
 
   const leaders = page.fields.seminars.map((s) => s.fields.leader)
   const speakers = page.fields.seminars.reduce(
-    (agg, s) => [...agg, ...s.fields.guestSpeakers],
+    (agg, s) => [...agg, ...(s.fields.guestSpeakers || [])],
     []
   )
 
