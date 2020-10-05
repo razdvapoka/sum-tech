@@ -20,8 +20,6 @@ export function Page({
   seminarCount,
   seminar,
   children,
-  isLoadingSeminar,
-  setIsLoadingSeminar,
   isPrivacyOpen,
   privacy,
   iam,
@@ -46,11 +44,7 @@ export function Page({
   return (
     <>
       <Privacy isPrivacyOpen={isPrivacyOpen} privacy={privacy} iam={iam} />
-      <Seminar
-        seminar={seminar}
-        isOpen={!!seminar || isLoadingSeminar}
-        setIsLoadingSeminar={setIsLoadingSeminar}
-      />
+      <Seminar seminar={seminar} isOpen={!!seminar} />
       <div className={cn('min-h-screen flex flex-col px-2', styles.container)}>
         <Head>
           <title>Summa Technologiae</title>

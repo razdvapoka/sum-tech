@@ -24,7 +24,6 @@ const Home = ({ page }) => {
   const seminar =
     seminarSlug &&
     page.fields.seminars.find((s) => s.fields.slug === seminarSlug)
-  const [isLoadingSeminar, setIsLoadingSeminar] = useState(false)
   const [activeSectionIndex, setActiveSectionIndex] = useState(null)
   const [headerSectionIndex, setHeaderSectionIndex] = useState(null)
 
@@ -89,8 +88,6 @@ const Home = ({ page }) => {
       seminarCount={page.fields.seminars.length}
       seminar={seminar}
       activeSectionIndex={activeSectionIndex}
-      setIsLoadingSeminar={setIsLoadingSeminar}
-      isLoadingSeminar={isLoadingSeminar}
       isPrivacyOpen={isPrivacyOpen}
       privacy={page.fields.privacy}
       iam={page.fields.iam}
@@ -146,7 +143,6 @@ const Home = ({ page }) => {
         <Seminars
           items={page.fields.seminars}
           description={page.fields.seminarsDescription}
-          setIsLoadingSeminar={setIsLoadingSeminar}
         />
         <Outcomes
           text={page.fields.seminarsOutcomesText}

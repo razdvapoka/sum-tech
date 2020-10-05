@@ -3,7 +3,7 @@ import React from 'react'
 import Markdown from '../markdown'
 import SeminarCard from './seminar-card'
 
-const Seminars = ({ description, items, setIsLoadingSeminar }) => {
+const Seminars = ({ description, items }) => {
   return (
     <section>
       <div className="grid mt-30 sm:mt-12">
@@ -18,7 +18,6 @@ const Seminars = ({ description, items, setIsLoadingSeminar }) => {
             key={seminarIndex}
             seminar={seminar}
             seminarIndex={seminarIndex}
-            setIsLoadingSeminar={setIsLoadingSeminar}
           />
         ))}
       </div>

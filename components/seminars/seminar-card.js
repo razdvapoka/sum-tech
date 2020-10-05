@@ -6,7 +6,7 @@ import cn from 'classnames'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
-const SeminarCard = ({ seminar, setIsLoadingSeminar, seminarIndex }) => {
+const SeminarCard = ({ seminar, seminarIndex }) => {
   return (
     <div className="col-10 sm:col-6 mb-4">
       <div className="text-s2 mb-1">{`seminar ${seminarIndex + 1}`}</div>
@@ -22,7 +22,6 @@ const SeminarCard = ({ seminar, setIsLoadingSeminar, seminarIndex }) => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           }}
-          onClick={() => setIsLoadingSeminar(true)}
         >
           <div
             className={`

@@ -57,27 +57,29 @@ const SeminarContent = ({ className, children }) => {
   )
 }
 
-const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
+const Seminar = ({ isOpen, seminar }) => {
   const [isClosing, setIsClosing] = useState(false)
   const router = useRouter()
 
   const ref = useRef(null)
   useEffect(() => {
-    const el = ref.current
-    if (el) {
-      if (isOpen) {
-        disableBodyScroll(el)
-      } else {
+    if (ref) {
+      const el = ref.current
+      console.log(ref, isOpen)
+      if (el) {
+        if (isOpen) {
+          disableBodyScroll(el)
+        } else {
+          enableBodyScroll(el)
+        }
+      }
+      return () => {
         enableBodyScroll(el)
       }
-    }
-    return () => {
-      enableBodyScroll(el)
     }
   }, [isOpen, ref])
 
   const close = () => {
-    setIsLoadingSeminar(false)
     setIsClosing(true)
     setTimeout(() => {
       router.push('/').then(() => {
@@ -98,15 +100,14 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
         }
       )}
     >
-      <div className="grid h-full">
+      <div className="grid h-full overflow-auto" ref={ref}>
         <div
           className={cn('col-1 bg-transparent h-full', styles.seminarFiller)}
           onClick={close}
         />
         <div
-          ref={ref}
           className={cn(
-            'col-23 h-full bg-white text-black overflow-auto relative pt-2',
+            'col-23 bg-white text-black relative pt-2',
             styles.seminarContent
           )}
           {...handlers}
@@ -120,7 +121,7 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
           {seminar && (
             <div key={seminar.sys.id} className="px-1">
               <div className="grid">
-                <div className="col-20-s sm:col-10-s text-xxl sm:text-s4">
+                <div className="col-23-s sm:col-10-s text-xxl sm:text-s4">
                   <Typograf className={cn('text-purple', styles.seminarName)}>
                     {seminar.fields.name}
                   </Typograf>
