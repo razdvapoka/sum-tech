@@ -27,7 +27,7 @@ const SeminarCard = ({ seminar, setIsLoadingSeminar, seminarIndex }) => {
           <div
             className={`
               absolute left-0 top-0 w-full h-full
-              py-4 sm:py-2 px-12 sm:px-2
+              py-4 sm:py-2 px-4 sm:px-2
               text-l4 sm:text-m uppercase
               text-center
               flex flex-col justify-between
