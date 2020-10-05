@@ -120,7 +120,7 @@ const Seminar = ({ isOpen, seminar, setIsLoadingSeminar }) => {
           {seminar && (
             <div key={seminar.sys.id} className="px-1">
               <div className="grid">
-                <div className="col-20-s sm:col-11-s text-xxl sm:text-s4">
+                <div className="col-20-s sm:col-10-s text-xxl sm:text-s4">
                   <Typograf className={cn('text-purple', styles.seminarName)}>
                     {seminar.fields.name}
                   </Typograf>
