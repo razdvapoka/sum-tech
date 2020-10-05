@@ -20,7 +20,7 @@ const Speakers = ({ speakers, heading, className }) => {
         <div className="col-4 sm:hidden" />
         <div className="col-20 sm:col-6 ">
           <div className="grid flex-wrap">
-            {speakers.map((speaker, speakerIndex) => (
+            {speakers.filter(Boolean).map((speaker, speakerIndex) => (
               <Speaker
                 key={speakerIndex}
                 index={speakerIndex}
