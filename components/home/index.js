@@ -16,6 +16,7 @@ import Seminars from '../seminars'
 import Speakers from '../speakers'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
+import { addYears } from 'date-fns'
 
 const Home = ({ page }) => {
   const router = useRouter()
@@ -31,12 +32,19 @@ const Home = ({ page }) => {
 
   const sortedSeminars = useMemo(
     () =>
-      page.fields.seminars.sort((s1, s2) =>
-        new Date(s1.fields.date) > new Date(s2.fields.date) ||
-        s1.fields.isComingSoon
-          ? 1
-          : -1
-      ),
+      page.fields.seminars
+        .map((s) => ({
+          ...s,
+          fields: {
+            ...s.fields,
+            date: s.fields.isComingSoon
+              ? addYears(new Date(s.fields.date), 1)
+              : new Date(s.fields.date),
+          },
+        }))
+        .sort((s1, s2) =>
+          new Date(s1.fields.date) > new Date(s2.fields.date) ? 1 : -1
+        ),
     [page.fields.seminars]
   )
 
