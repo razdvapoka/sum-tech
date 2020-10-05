@@ -44,9 +44,13 @@
 }
 
 .logos {
-  width: 29.8rem;
-  height: 4.3rem;
-  background-image: url(/logos.svg);
+  width: 39.7rem;
+  height: 5.5rem;
+  background-image: url(/logos-n.svg);
   background-size: cover;
   background-position: center;
+  @include mediaQuery(sm) {
+    width: 100%;
+    height: 3.243rem;
+  }
 }

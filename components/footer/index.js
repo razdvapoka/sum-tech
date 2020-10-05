@@ -73,7 +73,7 @@ const Footer = ({ contact, follow, isPrivacyOpen }) => {
               e-flux and Adam Mickeiwicz Institute and curated by Julieta
               Aranda.
             </Typograf>
-            <div className={cn(styles.logos, 'mt-4')} />
+            <div className={cn(styles.logos, 'mt-6 sm:mt-4')} />
           </div>
         </div>
       </div>
