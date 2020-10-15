@@ -10,7 +10,7 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
   },
   purge: {
-    content: ['./**/*.js'],
+    content: ['./components/**/*.js', './pages/**/*.js'],
   },
   theme: {
     screens: {
