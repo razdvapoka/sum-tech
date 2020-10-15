@@ -69,10 +69,10 @@ const Header = ({
           </button>
         </div>
         <div className="col-4 sm:hidden">
-          <div className="border-b border-white text-s2 pb-1">School</div>
+          <div className="border-b border-white text-s2 pb-1">Seminars</div>
         </div>
         <div className="col-4 sm:hidden">
-          <div className="border-b border-white text-s2 pb-1">{`${seminarCount} seminars`}</div>
+          <div className="border-b border-white text-s2 pb-1">Exhibition</div>
         </div>
         <div className="col-6 sm:hidden">
           <Markdown className={cn('text-s1', styles.headerText)}>
