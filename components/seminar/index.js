@@ -101,7 +101,7 @@ const Seminar = ({ isOpen, seminar }) => {
     >
       <div className="grid h-full overflow-auto" ref={ref}>
         <div
-          className={cn('col-1 bg-transparent h-full', styles.seminarFiller)}
+          className={cn('col-1 h-full', styles.seminarFiller)}
           onClick={close}
         />
         <div

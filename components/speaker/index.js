@@ -6,12 +6,8 @@ import cn from 'classnames'
 import Typograf from '../typograph'
 import X from '../../assets/icons/✕.svg'
 import styles from './styles.module.scss'
-import useBreakpoint from '../../hooks/useBreakpoint'
 
 const Bio = ({ index, isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
-  const breakpoint = useBreakpoint()
-  const isMobile = breakpoint === 'MOBILE'
-
   const ref = useRef(null)
   useClickAway(ref, (e) => {
     if (isSpeakerBioOpen) {
@@ -21,7 +17,7 @@ const Bio = ({ index, isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
 
   useEffect(() => {
     const el = ref.current
-    if (el && isMobile) {
+    if (el) {
       if (isSpeakerBioOpen) {
         disableBodyScroll(el)
       } else {
@@ -31,55 +27,62 @@ const Bio = ({ index, isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
     return () => {
       enableBodyScroll(el)
     }
-  }, [isSpeakerBioOpen, ref, isMobile])
+  }, [isSpeakerBioOpen, ref])
 
   return (
     <div
-      ref={ref}
       className={cn(
-        'pointer-events-none fixed bg-black text-white z-40 border border-white opacity-0 p-2',
-        'sm:px-2 sm:pt-3 sm:pb-8 sm:flex sm:flex-col sm:justify-between sm:border-none',
-        'sm:height-screen overflow-auto',
-        styles.leaderBio,
-        index % 4 >= 2 ? styles.leaderBioLeft : styles.leaderBioRight,
+        'fixed left-0 top-0 w-screen h-screen pointer-events-none opacity-0',
+        styles.leaderBioBox,
         { 'opacity-100 pointer-events-auto': isSpeakerBioOpen }
       )}
     >
-      <div className="flex justify-between sm:absolute sm:left-0 sm:top-0 sm:w-full sm:px-2 sm:pt-3">
-        <div className="text-s2 sm:hidden">{`${name} — Biography`}</div>
-        <div className="text-s2 hidden sm:block">
-          <div>{name}</div>
-          <div>Biography</div>
-        </div>
-        <button
-          className={styles.closeButton}
-          onClick={() => {
-            setOpenBioIndex(null)
-          }}
-        >
-          <X />
-        </button>
-      </div>
-      <Typograf
+      <div
+        ref={ref}
         className={cn(
-          'text-m sm:text-s1 mt-6 sm:mt-10 px-10 sm:px-0',
-          styles.leaderBioText
+          'fixed bg-black text-white z-40 border border-white p-2',
+          'sm:px-2 sm:pt-3 sm:pb-8 sm:flex sm:flex-col sm:justify-between sm:border-none',
+          'sm:height-screen overflow-auto',
+          styles.leaderBio,
+          index % 4 >= 2 ? styles.leaderBioLeft : styles.leaderBioRight
         )}
       >
-        {bio}
-      </Typograf>
-      <div className="px-10 sm:px-0 mt-8 sm:mt-12 mb-4 sm:mb-0">
-        <a
+        <div className="flex justify-between sm:absolute sm:left-0 sm:top-0 sm:w-full sm:px-2 sm:pt-3">
+          <div className="text-s2 sm:hidden">{`${name} — Biography`}</div>
+          <div className="text-s2 hidden sm:block">
+            <div>{name}</div>
+            <div>Biography</div>
+          </div>
+          <button
+            className={styles.closeButton}
+            onClick={() => {
+              setOpenBioIndex(null)
+            }}
+          >
+            <X />
+          </button>
+        </div>
+        <Typograf
           className={cn(
-            'text-s2 hover:text-purple border-b border-inherit',
-            styles.leaderBioMore
+            'text-m sm:text-s1 mt-6 sm:mt-10 px-10 sm:px-0',
+            styles.leaderBioText
           )}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
         >
-          more about the speaker
-        </a>
+          {bio}
+        </Typograf>
+        <div className="px-10 sm:px-0 mt-8 sm:mt-12 mb-4 sm:mb-0">
+          <a
+            className={cn(
+              'text-s2 hover:text-purple border-b border-inherit',
+              styles.leaderBioMore
+            )}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            more about the speaker
+          </a>
+        </div>
       </div>
     </div>
   )
