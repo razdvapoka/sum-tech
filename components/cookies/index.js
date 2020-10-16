@@ -29,8 +29,8 @@ const Cookies = ({ isVisible }) => {
           <div className="col-20 sm:col-6">
             <div className="bg-black text-s1 uppercase flex justify-between items-center sm:items-start mb-2 py-2 px-4 sm:px-2 border border-white">
               <span className={styles.cookieWarningText}>
-                By using this website, you automatically agree that we use
-                cookies.
+                By using this website you automatically agree to our use of
+                cookies
               </span>
               <X className={styles.x} />
             </div>

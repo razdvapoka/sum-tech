@@ -69,9 +69,8 @@ const Footer = ({ contact, follow, isPrivacyOpen }) => {
               Technical realization: Sergey Zakharov, Valentin Golev
             </p>
             <Typograf as="p">
-              Summa Technologiae School is organized in cooperation between
-              e-flux and Adam Mickeiwicz Institute and curated by Julieta
-              Aranda.
+              Summa Technologiae seminars are organized by Julieta Aranda, as a
+              cooperation between e-flux and Adam Mickiewicz Institute
             </Typograf>
             <div className={cn(styles.logos, 'mt-6 sm:mt-4')} />
           </div>
