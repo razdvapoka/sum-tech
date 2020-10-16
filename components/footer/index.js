@@ -64,9 +64,39 @@ const Footer = ({ contact, follow, isPrivacyOpen }) => {
           <div className="pb-1 mb-3 border-white border-b text-s2">Credits</div>
           <div className={cn('text-s1', styles.columnText, styles.credits)}>
             <p>
-              Design: Tanya Ermolaeva, Nat Kukina
+              Design:{' '}
+              <a
+                href="https://ermolaeva.co"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Tanya Ermolaeva
+              </a>
+              ,{' '}
+              <a
+                href="https://natkukina.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Nat Kukina
+              </a>
               <br />
-              Technical realization: Sergey Zakharov, Valentin Golev
+              Technical realization:{' '}
+              <a
+                href="https://sergeyzakharov.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sergey Zakharov
+              </a>
+              ,{' '}
+              <a
+                href="https://thenewcentre.org/people/valentin-golev/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Valentin Golev
+              </a>
             </p>
             <Typograf as="p">
               Summa Technologiae seminars are organized by Julieta Aranda, as a
