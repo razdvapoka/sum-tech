@@ -154,7 +154,7 @@ const Seminar = ({ isOpen, seminar }) => {
                 </SeminarContent>
               </div>
               <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                about the seminar leaders
+                about the faculty
               </div>
               {seminar.fields.leaders.map((speaker, speakerIndex) => (
                 <Speaker key={speakerIndex} speaker={speaker} />
@@ -162,7 +162,7 @@ const Seminar = ({ isOpen, seminar }) => {
               {seminar.fields.guestSpeakers && (
                 <>
                   <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                    about invited speakers
+                    about guest speakers
                   </div>
                   {seminar.fields.guestSpeakers.map((speaker, speakerIndex) => (
                     <Speaker key={speakerIndex} speaker={speaker} />

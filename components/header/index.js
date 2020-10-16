@@ -11,8 +11,8 @@ import X from '../../assets/icons/✕.svg'
 const SECTIONS = [
   'about',
   'seminars',
-  'seminar leaders',
-  'invited speakers',
+  'faculty',
+  'guest speakers',
   'application',
   'contact & credits',
 ]

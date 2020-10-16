@@ -157,12 +157,12 @@ const Home = ({ page }) => {
         setActiveSectionIndex={setActiveSectionIndex}
         className="relative sm:mt-12"
       >
-        <div className={styles.anchorTarget} id="leaders" />
-        <Heading>seminar leaders</Heading>
+        <div className={styles.anchorTarget} id="faculty" />
+        <Heading>Faculty</Heading>
         <Speakers
           speakers={leaders}
           className="mt-18 sm:mt-4"
-          heading="seminar leaders"
+          heading="faculty"
         />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />
@@ -182,11 +182,11 @@ const Home = ({ page }) => {
         className="relative sm:mt-12"
       >
         <div className={styles.anchorTarget} id="speakers" />
-        <Heading>invited speakers</Heading>
+        <Heading>guest speakers</Heading>
         <Speakers
           speakers={speakers}
           className="mt-36 sm:mt-4"
-          heading="invited speakers"
+          heading="guest speakers"
         />
         <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />

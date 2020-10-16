@@ -7,8 +7,8 @@ import { FixedBottom } from 'react-fixed-bottom'
 const MENU_ITEMS = [
   { name: 'about', hash: 'about' },
   { name: 'seminars', hash: 'seminars' },
-  { name: 'seminar leaders', hash: 'leaders' },
-  { name: 'invited speakers', hash: 'speakers' },
+  { name: 'faculty', hash: 'faculty' },
+  { name: 'guest speakers', hash: 'speakers' },
   { name: 'how to apply', hash: 'apply' },
   { name: 'contact & credits', hash: 'contact' },
 ]
