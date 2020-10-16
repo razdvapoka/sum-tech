@@ -124,7 +124,9 @@ const Seminar = ({ isOpen, seminar }) => {
                   <Typograf className={cn('text-purple', styles.seminarName)}>
                     {seminar.fields.name}
                   </Typograf>
-                  <div>{seminar.fields.leader.fields.name}</div>
+                  {seminar.fields.leaders.map((leader) => (
+                    <div key={leader.sys.id}>{leader.fields.name}</div>
+                  ))}
                 </div>
                 <div className="col-3-s sm:hidden" />
               </div>
@@ -152,9 +154,11 @@ const Seminar = ({ isOpen, seminar }) => {
                 </SeminarContent>
               </div>
               <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                about the seminar leader
+                about the seminar leaders
               </div>
-              <Speaker speaker={seminar.fields.leader} />
+              {seminar.fields.leaders.map((speaker, speakerIndex) => (
+                <Speaker key={speakerIndex} speaker={speaker} />
+              ))}
               {seminar.fields.guestSpeakers && (
                 <>
                   <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">

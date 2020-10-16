@@ -53,7 +53,10 @@ const Home = ({ page }) => {
 
   const closestSeminar = closestSeminars.length > 0 ? closestSeminars[0] : null
 
-  const leaders = page.fields.seminars.map((s) => s.fields.leader)
+  const leaders = page.fields.seminars.reduce(
+    (l, s) => [...l, ...s.fields.leaders],
+    []
+  )
   const speakers = page.fields.seminars.reduce(
     (agg, s) => [...agg, ...(s.fields.guestSpeakers || [])],
     []
