@@ -38,11 +38,11 @@ const SeminarCard = ({ seminar, seminarIndex }) => {
                   ? '00.00'
                   : format(new Date(seminar.fields.date), 'dd.MM')}
               </div>
-              <Typograf>
+              <h3>
                 {seminar.fields.isComingSoon
                   ? 'coming soon'
                   : seminar.fields.name}
-              </Typograf>
+              </h3>
             </div>
             <div>
               {!seminar.fields.isComingSoon && (

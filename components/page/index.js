@@ -96,18 +96,6 @@ export function Page({
         <main className="" ref={intersectionRef}>
           {children}
         </main>
-        <FixedBottom>
-          <div
-            key="applyNow"
-            className="hidden sm:block w-screen px-2 fixed left-0 z-30"
-          >
-            <div className="hidden sm:flex justify-center items-center w-full text-s1 uppercase bg-black py-3 border-t border-white">
-              <a href={applyUrl} target="_blank" rel="noopener noreferrer">
-                apply now
-              </a>
-            </div>
-          </div>
-        </FixedBottom>
         <Cookies isVisible={isIntroHidden} />
       </div>
     </>
