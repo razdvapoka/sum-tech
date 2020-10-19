@@ -46,22 +46,11 @@ const SeminarCard = ({ seminar, seminarIndex }) => {
             </div>
             <div>
               {!seminar.fields.isComingSoon && (
-                <>
-                  <div className="mt-10 sm:mt-5">
-                    {seminar.fields.leaders.map((speaker, speakerIndex) => (
-                      <div key={speakerIndex}>{speaker.fields.name}</div>
-                    ))}
-                  </div>
-                  {seminar.fields.guestSpeakers && (
-                    <div>
-                      {seminar.fields.guestSpeakers.map(
-                        (speaker, speakerIndex) => (
-                          <div key={speakerIndex}>{speaker.fields.name}</div>
-                        )
-                      )}
-                    </div>
-                  )}
-                </>
+                <div className="mt-10 sm:mt-5">
+                  {seminar.fields.leaders.map((speaker, speakerIndex) => (
+                    <div key={speakerIndex}>{speaker.fields.name}</div>
+                  ))}
+                </div>
               )}
             </div>
           </div>
