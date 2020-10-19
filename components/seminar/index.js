@@ -23,11 +23,6 @@ const Speaker = ({ speaker }) => {
           styles.about
         )}
       >
-        <div className="uppercase">
-          {speaker.fields.name}
-          <br />
-          <br />
-        </div>
         <Markdown>{speaker.fields.about}</Markdown>
       </div>
     </div>
