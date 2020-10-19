@@ -147,7 +147,10 @@ const Seminar = ({ isOpen, seminar }) => {
                     <div className="text-purple">guest speakers: </div>
                     {seminar.fields.guestSpeakers.map((guest, guestIndex) => (
                       <div key={guestIndex}>
-                        {`${guest.fields.name} (${guest.fields.country})`}
+                        {guest.fields.name}
+                        {guest.fields.country
+                          ? `(${guest.fields.country})`
+                          : ''}
                       </div>
                     ))}
                   </div>
