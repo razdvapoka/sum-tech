@@ -23,6 +23,11 @@ const Speaker = ({ speaker }) => {
           styles.about
         )}
       >
+        <div className="uppercase">
+          {speaker.fields.name}
+          <br />
+          <br />
+        </div>
         <Markdown>{speaker.fields.about}</Markdown>
       </div>
     </div>
@@ -162,7 +167,7 @@ const Seminar = ({ isOpen, seminar }) => {
               {seminar.fields.guestSpeakers && (
                 <>
                   <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                    about guest speakers
+                    guest speakers
                   </div>
                   {seminar.fields.guestSpeakers.map((speaker, speakerIndex) => (
                     <Speaker key={speakerIndex} speaker={speaker} />

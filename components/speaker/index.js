@@ -64,25 +64,27 @@ const Bio = ({ index, isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
         </div>
         <Typograf
           className={cn(
-            'text-m sm:text-s1 mt-6 sm:mt-10 px-10 sm:px-0',
+            'text-m sm:text-s1 mt-6 sm:mt-10 px-10 sm:px-0 mb-6 sm:mb-12',
             styles.leaderBioText
           )}
         >
           {bio}
         </Typograf>
-        <div className="px-10 sm:px-0 mt-8 sm:mt-12 mb-4 sm:mb-0">
-          <a
-            className={cn(
-              'text-s2 hover:text-purple border-b border-inherit',
-              styles.leaderBioMore
-            )}
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            more about the speaker
-          </a>
-        </div>
+        {url && (
+          <div className="px-10 sm:px-0 mb-4 sm:mb-0">
+            <a
+              className={cn(
+                'text-s2 hover:text-purple border-b border-inherit',
+                styles.leaderBioMore
+              )}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              more about the speaker
+            </a>
+          </div>
+        )}
       </div>
     </div>
   )
