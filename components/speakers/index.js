@@ -4,6 +4,11 @@ import styles from './styles.module.scss'
 
 import Speaker from '../speaker'
 
+const getLastName = (name) => {
+  const split = name.split(/\s/g).filter((s) => s.length > 0)
+  return split[split.length - 1]
+}
+
 const Speakers = ({ speakers, heading, className }) => {
   const [openBioIndex, setOpenBioIndex] = useState(null)
   return (
@@ -22,7 +27,11 @@ const Speakers = ({ speakers, heading, className }) => {
           <div className="grid flex-wrap">
             {speakers
               .filter(Boolean)
-              .sort((s1, s2) => (s1.fields.name > s2.fields.name ? 1 : -1))
+              .sort((s1, s2) => {
+                return getLastName(s1.fields.name) > getLastName(s2.fields.name)
+                  ? 1
+                  : -1
+              })
               .map((speaker, speakerIndex) => (
                 <Speaker
                   key={speakerIndex}

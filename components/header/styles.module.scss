@@ -16,7 +16,7 @@
   transform: translateY(-0.2rem);
 }
 
-.applyButton {
+.colorTransition {
   transition: color 0.2s ease;
 }
 
@@ -39,7 +39,9 @@
 }
 
 .menuButton {
+  z-index: 100;
   @include mediaQuery(sm) {
+    z-index: auto;
     padding-top: 1.3rem;
     padding-bottom: 1rem;
   }

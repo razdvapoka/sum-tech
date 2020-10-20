@@ -42,8 +42,9 @@ const Header = ({
           <Link href="/">
             <a
               className={cn(
-                'block border-b border-inherit sm:border-none text-s2 pb-1 sm:pb-0',
-                styles.menuButton
+                'block border-b border-inherit sm:border-none text-s2 pb-1 sm:pb-0 relative hover:purple',
+                styles.menuButton,
+                styles.colorTransition
               )}
             >
               <span className="hidden sm:block">
@@ -69,7 +70,14 @@ const Header = ({
           </button>
         </div>
         <div className="col-4 sm:hidden">
-          <div className="border-b border-white text-s2 pb-1">Seminars</div>
+          <div
+            className={cn(
+              'border-b border-inherit text-s2 pb-1 hover:text-purple',
+              styles.colorTransition
+            )}
+          >
+            <a href="#seminars">Seminars</a>
+          </div>
         </div>
         <div className="col-4 sm:hidden">
           <div className="border-b border-white text-s2 pb-1">Exhibition</div>
@@ -86,7 +94,7 @@ const Header = ({
             rel="noopener noreferrer"
             className={cn(
               'block border-b border-inherit text-s2 pb-1',
-              styles.applyButton
+              styles.colorTransition
             )}
           >
             Apply Now
