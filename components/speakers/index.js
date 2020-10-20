@@ -20,15 +20,18 @@ const Speakers = ({ speakers, heading, className }) => {
         <div className="col-4 sm:hidden" />
         <div className="col-20 sm:col-6 ">
           <div className="grid flex-wrap">
-            {speakers.filter(Boolean).map((speaker, speakerIndex) => (
-              <Speaker
-                key={speakerIndex}
-                index={speakerIndex}
-                openBioIndex={openBioIndex}
-                setOpenBioIndex={setOpenBioIndex}
-                {...speaker.fields}
-              />
-            ))}
+            {speakers
+              .filter(Boolean)
+              .sort((s1, s2) => (s1.fields.name > s2.fields.name ? 1 : -1))
+              .map((speaker, speakerIndex) => (
+                <Speaker
+                  key={speakerIndex}
+                  index={speakerIndex}
+                  openBioIndex={openBioIndex}
+                  setOpenBioIndex={setOpenBioIndex}
+                  {...speaker.fields}
+                />
+              ))}
           </div>
         </div>
       </div>
