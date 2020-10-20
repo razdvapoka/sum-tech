@@ -100,10 +100,15 @@ const Seminar = ({ isOpen, seminar }) => {
       )}
     >
       <div className="grid h-full overflow-auto" ref={ref}>
-        <div
-          className={cn('col-1 h-full', styles.seminarFiller)}
-          onClick={close}
-        />
+        <div className={cn('col-1 h-full', styles.seminarFiller)}>
+          <div
+            className={cn(
+              'fixed left-0 top-0 h-screen',
+              styles.seminarFillerBg
+            )}
+            onClick={close}
+          />
+        </div>
         <div
           className={cn(
             'col-23 bg-white text-black relative pt-2',
