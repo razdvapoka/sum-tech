@@ -187,15 +187,19 @@ const Seminar = ({ isOpen, seminar }) => {
                   </div>
                 ))}
               </div>
-              <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
-                syllabus
-              </div>
-              <div className="grid mt-4 sm:mt-2">
-                <div className="col-3-s sm:hidden" />
-                <div className="col-14-s sm:col-11-s text-l2 sm:text-s1">
-                  <Markdown>{seminar.fields.methodology}</Markdown>
-                </div>
-              </div>
+              {seminar.fields.methodology && (
+                <>
+                  <div className="mt-18 sm:mt-12 ml-6 sm:ml-0 text-xl2 sm:text-s1 text-purple">
+                    syllabus
+                  </div>
+                  <div className="grid mt-4 sm:mt-2">
+                    <div className="col-3-s sm:hidden" />
+                    <div className="col-14-s sm:col-11-s text-l2 sm:text-s1">
+                      <Markdown>{seminar.fields.methodology}</Markdown>
+                    </div>
+                  </div>
+                </>
+              )}
               <div className="grid mt-18 sm:mt-12 mb-2 sm:mb-10">
                 <div className="col-23-s sm:col-11-s">
                   <a
