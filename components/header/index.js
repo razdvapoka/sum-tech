@@ -2,11 +2,10 @@ import Link from 'next/link'
 import React from 'react'
 import cn from 'classnames'
 
-import Markdown from '../markdown'
-import styles from './styles.module.scss'
-
 import Burger from '../../assets/icons/burger.svg'
+import Markdown from '../markdown'
 import X from '../../assets/icons/✕.svg'
+import styles from './styles.module.scss'
 
 const SECTIONS = [
   'about',
@@ -24,10 +23,18 @@ const Header = ({
   isMenuOpen,
   setIsMenuOpen,
   headerSectionIndex,
+  isVisible,
 }) => {
   return (
     <div className={cn('sm:fixed sm:top-0 sm:bg-black', styles.headerBox)}>
-      <header className="grid pt-2 sm:pt-0 sm:px-1">
+      <header
+        className={cn(
+          'grid pt-2 sm:pt-0 sm:px-1 sm:text-white',
+          styles.header,
+          'text-white',
+          { [styles.headerVisible]: isVisible }
+        )}
+      >
         <div
           className={cn(
             `
@@ -42,9 +49,9 @@ const Header = ({
           <Link href="/">
             <a
               className={cn(
-                'block border-b border-inherit sm:border-none text-s2 pb-1 sm:pb-0 relative hover:purple',
+                'block text-s2 pb-1 sm:pb-0 relative hover:purple',
                 styles.menuButton,
-                styles.colorTransition
+                styles.menuUnderline
               )}
             >
               <span className="hidden sm:block">
@@ -52,7 +59,13 @@ const Header = ({
                   ? 'Summa Technologiae'
                   : SECTIONS[headerSectionIndex]}
               </span>
-              <span className="sm:hidden">Summa Technologiae</span>
+              <span
+                className={cn('sm:hidden opacity-0', styles.opacityTransition, {
+                  'opacity-100': isVisible,
+                })}
+              >
+                Summa Technologiae
+              </span>
             </a>
           </Link>
           <button
@@ -72,18 +85,44 @@ const Header = ({
         <div className="col-4 sm:hidden">
           <div
             className={cn(
-              'border-b border-inherit text-s2 pb-1 hover:text-purple',
-              styles.colorTransition
+              'text-s2 pb-1 hover:text-purple',
+              styles.menuUnderline
             )}
           >
-            <a href="#seminars">Seminars</a>
+            <a
+              className={cn('block opacity-0', styles.opacityTransition, {
+                'opacity-100': isVisible,
+              })}
+              href="#seminars"
+            >
+              Seminars
+            </a>
           </div>
         </div>
         <div className="col-4 sm:hidden">
-          <div className="border-b border-white text-s2 pb-1">Exhibition</div>
+          <div
+            className={cn(
+              'text-s2 pb-1 pointer-events-none',
+              styles.menuUnderline
+            )}
+          >
+            <span
+              className={cn('opacity-0', styles.opacityTransition, {
+                'opacity-100': isVisible,
+              })}
+            >
+              Exhibition
+            </span>
+          </div>
         </div>
         <div className="col-6 sm:hidden">
-          <Markdown className={cn('text-s1', styles.headerText)}>
+          <Markdown
+            className={cn(
+              'text-s1',
+              styles.headerText,
+              isVisible ? 'opacity-100' : 'opacity-0'
+            )}
+          >
             {text}
           </Markdown>
         </div>
@@ -92,12 +131,15 @@ const Header = ({
             href={applyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(
-              'block border-b border-inherit text-s2 pb-1',
-              styles.colorTransition
-            )}
+            className={cn('block text-s2 pb-1', styles.menuUnderline)}
           >
-            Apply Now
+            <span
+              className={cn('opacity-0', styles.opacityTransition, {
+                'opacity-100': isVisible,
+              })}
+            >
+              Apply Now
+            </span>
           </a>
         </div>
       </header>

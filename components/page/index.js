@@ -1,9 +1,9 @@
-import { FixedBottom } from 'react-fixed-bottom'
 import { useIntersection } from 'react-use'
 import Head from 'next/head'
-import React, { useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import cn from 'classnames'
 
+import { loadFont, wait } from '../../utils'
 import Cookies from '../cookies'
 import Header from '../header'
 import Intro from '../intro'
@@ -41,6 +41,15 @@ export function Page({
   const isIntroHidden =
     introIntersection != null && !introIntersection.isIntersecting
 
+  const [isVisible, setIsVisible] = useState(false)
+  useEffect(() => {
+    if (!isVisible) {
+      Promise.all([loadFont('Redaction'), wait(1000)]).then(() =>
+        setIsVisible(true)
+      )
+    }
+  }, [isVisible, setIsVisible])
+
   return (
     <>
       <Privacy isPrivacyOpen={isPrivacyOpen} privacy={privacy} iam={iam} />
@@ -75,12 +84,13 @@ export function Page({
             isMenuOpen={isMenuOpen}
             applyUrl={applyUrl}
             headerSectionIndex={headerSectionIndex}
+            isVisible={isVisible}
           />
-          <Intro />
+          <Intro isVisible={isVisible} />
           <div
             className={cn(
               'absolute left-0 bottom-0 w-full text-center text-s2 mb-2 sm:hidden',
-              { 'opacity-0': isMainVisible },
+              { 'opacity-0': isMainVisible || !isVisible },
               styles.scrollDown
             )}
           >

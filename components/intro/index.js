@@ -1,8 +1,8 @@
-import FontFaceObserver from 'fontfaceobserver'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 
+import { loadFont } from '../../utils'
 import styles from './styles.module.scss'
 import useBreakpoint from '../../hooks/useBreakpoint'
 
@@ -11,8 +11,6 @@ const removeAllChildren = (element) => {
     element.removeChild(element.firstChild)
   }
 }
-
-const loadFont = (font) => new FontFaceObserver(font).load()
 
 const Configuration = ({ params, handleParamChange }) => {
   return (
@@ -73,7 +71,7 @@ const Configuration = ({ params, handleParamChange }) => {
   )
 }
 
-const Intro = () => {
+const Intro = ({ isVisible }) => {
   const breakpoint = useBreakpoint()
   const isMobile = breakpoint === 'MOBILE'
 
@@ -162,16 +160,16 @@ const Intro = () => {
     state.material.uniforms.uMouseY.value = y / rect.height
   }
 
-  const toggleBlotter = () => {
-    const { scope } = state
-    if (scope) {
-      if (scope.playing) {
-        scope.pause()
-      } else {
-        scope.play()
-      }
-    }
-  }
+  // const toggleBlotter = () => {
+  //   const { scope } = state
+  //   if (scope) {
+  //     if (scope.playing) {
+  //       scope.pause()
+  //     } else {
+  //       scope.play()
+  //     }
+  //   }
+  // }
 
   const startBlotter = () => {
     const { scope } = state
@@ -237,7 +235,13 @@ const Intro = () => {
   // }
 
   return (
-    <div>
+    <div
+      className={cn(
+        styles.intro,
+        isVisible ? 'opacity-100' : 'opacity-0',
+        'sm:opacity-100'
+      )}
+    >
       <Head>
         <script src="/blotter.min.js" />
         <script src="/liquidDistortMaterial.js" />
