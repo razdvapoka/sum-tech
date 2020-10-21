@@ -40,12 +40,11 @@ const Menu = ({
       ref={ref}
       className={cn(
         `
-        fixed h-screen
+        fixed
         flex flex-col justify-between
         py-2
         opacity-0 sm:opacity-100
         z-50
-        sm:top-0
         sm:pt-8
         sm:px-2
         sm:bg-black

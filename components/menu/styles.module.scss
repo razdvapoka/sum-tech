@@ -3,6 +3,7 @@
   width: 22.8rem;
   transition: opacity 0.3s ease-out;
   top: 3rem;
+  height: calc(100vh - 3rem);
   &Item {
     transition: color 0.2s ease-out;
     border-color: transparent;
@@ -14,6 +15,8 @@
 
   @include mediaQuery(sm) {
     width: 100vw;
+    height: 100vh;
+    top: auto;
     left: 0;
     transform: translateX(100%);
     transition: transform 0.3s ease-out;
