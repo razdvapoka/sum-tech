@@ -10,7 +10,7 @@ const Markdown = ({ children, className, ...rest }) => (
     source={children}
     linkTarget="_blank"
     parserOptions={{ commonmark: true, footnotes: true }}
-    plugins={[remarkTypograph, { locale: ['en-US'] }]}
+    plugins={[[remarkTypograph, { locale: ['en-US'] }]]}
     {...rest}
   />
 )
