@@ -3,7 +3,7 @@ import { useClickAway } from 'react-use'
 import React, { useRef, useEffect } from 'react'
 import cn from 'classnames'
 
-import Typograf from '../typograph'
+import Markdown from '../markdown'
 import X from '../../assets/icons/✕.svg'
 import styles from './styles.module.scss'
 
@@ -62,14 +62,14 @@ const Bio = ({ index, isSpeakerBioOpen, setOpenBioIndex, name, bio, url }) => {
             <X />
           </button>
         </div>
-        <Typograf
+        <Markdown
           className={cn(
             'text-m sm:text-s1 mt-6 sm:mt-10 px-10 sm:px-0 mb-6 sm:mb-12',
             styles.leaderBioText
           )}
         >
           {bio}
-        </Typograf>
+        </Markdown>
         {url && (
           <div className="px-10 sm:px-0 mb-4 sm:mb-0">
             <a
