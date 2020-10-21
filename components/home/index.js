@@ -188,12 +188,6 @@ const Home = ({ page }) => {
           className="mt-36 sm:mt-4"
           heading="guest speakers"
         />
-        <div className="grid mt-36 sm:mt-12">
-          <div className="col-4 sm:hidden" />
-          <div className="col-20 sm:col-6">
-            <Keywords keywords={page.fields.keywords} />
-          </div>
-        </div>
       </Section>
       <Section
         sectionIndex={4}
