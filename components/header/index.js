@@ -35,6 +35,7 @@ const Header = ({
           { [styles.headerVisible]: isVisible }
         )}
       >
+        <div className="col-4 sm:hidden" />
         <div
           className={cn(
             `
@@ -42,6 +43,8 @@ const Header = ({
             hover:text-purple
             sm:flex sm:justify-between
             sm:border-b sm:border-white
+            fixed sm:static
+            z-50 sm:z-auto
           `,
             styles.mobileHeaderCol
           )}
@@ -85,7 +88,7 @@ const Header = ({
         <div className="col-4 sm:hidden">
           <div
             className={cn(
-              'text-s2 pb-1 hover:text-purple',
+              'text-s2 pb-1 hover:text-purple relative',
               styles.menuUnderline
             )}
           >
@@ -102,7 +105,7 @@ const Header = ({
         <div className="col-4 sm:hidden">
           <div
             className={cn(
-              'text-s2 pb-1 pointer-events-none',
+              'text-s2 pb-1 pointer-events-none relative',
               styles.menuUnderline
             )}
           >
@@ -131,7 +134,7 @@ const Header = ({
             href={applyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn('block text-s2 pb-1', styles.menuUnderline)}
+            className={cn('block text-s2 pb-1 relative', styles.menuUnderline)}
           >
             <span
               className={cn('opacity-0', styles.opacityTransition, {
