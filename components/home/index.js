@@ -17,6 +17,7 @@ import Speakers from '../speakers'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
 import { addYears } from 'date-fns'
+import Graph68 from '../../assets/icons/graph-68.svg'
 
 const Home = ({ page }) => {
   const router = useRouter()
@@ -189,10 +190,17 @@ const Home = ({ page }) => {
           heading="guest speakers"
         />
       </Section>
+      <div className={cn('grid mt-40 sm:mt-6', styles.program)}>
+        <div className="col-4 sm:hidden" />
+        <div className="col-20 sm:col-6">
+          <div className="text-s2 mb-1">Summa Technologiae Program</div>
+          <Graph68 />
+        </div>
+      </div>
       <Section
         sectionIndex={4}
         setActiveSectionIndex={setActiveSectionIndex}
-        className="relative"
+        className="relative mt-32 sm:mt-0"
       >
         <div className={styles.anchorTarget} id="apply" />
         <Heading hidden>Application</Heading>
