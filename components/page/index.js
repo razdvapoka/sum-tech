@@ -102,6 +102,7 @@ export function Page({
           isVisible={isIntroHidden}
           isOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
+          applyUrl={applyUrl}
         />
         <main className="" ref={intersectionRef}>
           {children}

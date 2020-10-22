@@ -18,7 +18,7 @@ const Menu = ({
   isVisible,
   isOpen,
   setIsMenuOpen,
-  applyUrl = 'https://example.com',
+  applyUrl,
 }) => {
   const ref = useRef(null)
   useEffect(() => {
