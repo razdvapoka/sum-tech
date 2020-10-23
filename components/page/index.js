@@ -58,6 +58,19 @@ export function Page({
         <Head>
           <title>Summa Technologiae</title>
           <link rel="icon" href="/favicon-259.png" />
+          <meta property="og:title" content="Summa Technologiae" />
+          <meta
+            property="og:url"
+            content="https://summatechnologiae.e-flux.com"
+          />
+          <meta
+            property="og:image"
+            content="https://summatechnologiae.e-flux.com/st.share.jpg"
+          />
+          <meta
+            property="og:description"
+            content="Summa Technologiae puts together three formats: the school, the conference, and the exhibition, in order to address three of the fields upon which the work of Stanisław Lem has been deeply influential: Literature, Philosophy, and Contemporary Art."
+          />
           <script>
             {`
               if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)) {

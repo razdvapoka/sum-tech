@@ -12,9 +12,3 @@
 .applyButton {
   transition: background-color 0.3s ease-out;
 }
-
-.program {
-  @include mediaQuery(sm) {
-    display: none;
-  }
-}

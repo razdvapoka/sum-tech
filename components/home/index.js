@@ -17,7 +17,8 @@ import Speakers from '../speakers'
 import Typograf from '../typograph'
 import styles from './styles.module.scss'
 import { addYears } from 'date-fns'
-import Graph68 from '../../assets/icons/graph-68.svg'
+import Graph68 from '../graph-68'
+import Graph68M from '../graph-68-m'
 
 const Home = ({ page }) => {
   const router = useRouter()
@@ -195,6 +196,7 @@ const Home = ({ page }) => {
         <div className="col-20 sm:col-6">
           <div className="text-s2 mb-1">Summa Technologiae Program</div>
           <Graph68 />
+          <Graph68M />
         </div>
       </div>
       <Section
