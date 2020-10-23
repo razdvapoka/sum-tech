@@ -65,7 +65,7 @@ export function Page({
           />
           <meta
             property="og:image"
-            content="https://summatechnologiae.e-flux.com/st.share.jpg"
+            content="https://summatechnologiae.e-flux.com/st-share.jpg"
           />
           <meta
             property="og:description"
