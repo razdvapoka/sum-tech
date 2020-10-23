@@ -81,6 +81,21 @@ export function Page({
               }
             `}
           </script>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-73557491-11"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+
+               gtag('config', 'UA-73557491-11');
+             `,
+            }}
+          />
         </Head>
         <div
           className={cn(
