@@ -127,9 +127,9 @@ const Home = ({ page }) => {
         <div className="grid mt-36 sm:mt-12">
           <div className="col-8 sm:hidden" />
           <div className="col-14 sm:col-6">
-            <Typograf className="text-l2 sm:text-s1">
+            <Markdown className={cn('text-l2 sm:text-s1', styles.description)}>
               {page.fields.objective}
-            </Typograf>
+            </Markdown>
           </div>
         </div>
         <Lem
