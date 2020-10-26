@@ -93,13 +93,20 @@
   & > * + * {
     margin-top: 2rem;
   }
+  & > p + p {
+    margin-top: 0;
+    text-indent: 4rem;
+    @include mediaQuery(sm) {
+      text-indent: 2rem;
+    }
+  }
 }
 
 .applyButton {
   transition: background-color 0.3s ease-out;
 }
 
-.about {
+.aboutSpeaker {
   p + p {
     text-indent: 4rem;
     @include mediaQuery(sm) {

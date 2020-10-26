@@ -20,7 +20,7 @@ const Speaker = ({ speaker }) => {
       <div
         className={cn(
           'col-11-s sm:col-11-s text-l2 sm:text-s1 sm:mt-2',
-          styles.about
+          styles.aboutSpeaker
         )}
       >
         <Markdown>{speaker.fields.about}</Markdown>
