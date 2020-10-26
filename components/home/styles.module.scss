@@ -12,3 +12,12 @@
 .applyButton {
   transition: background-color 0.3s ease-out;
 }
+
+.description {
+  p + p {
+    text-indent: 4rem;
+    @include mediaQuery(sm) {
+      text-indent: 2rem;
+    }
+  }
+}

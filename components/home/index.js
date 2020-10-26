@@ -113,7 +113,7 @@ const Home = ({ page }) => {
         <div className="grid mt-36 sm:mt-4">
           <div className="col-8 sm:col-1" />
           <div className="col-14 sm:col-5">
-            <Markdown className="text-l2 sm:text-s1">
+            <Markdown className={cn('text-l2 sm:text-s1', styles.description)}>
               {page.fields.description}
             </Markdown>
           </div>
