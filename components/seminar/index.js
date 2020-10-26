@@ -91,6 +91,7 @@ const Seminar = ({ isOpen, seminar }) => {
 
   return (
     <div
+      lang="en"
       className={cn(
         'fixed left-0 top-0 h-screen w-screen px-1',
         styles.seminar,
