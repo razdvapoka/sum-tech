@@ -88,13 +88,13 @@ const Intro = ({ isVisible }) => {
 
   const initBlotter = () => {
     const textString = isMobile
-      ? 'SUM<br/>MA<br/>TECH<br/>NOLO<br/>GIAE' // 'SAT<br/>ANIC<br/>BLACK<br/>MA<br/>GICK'
-      : 'SUMMA<br/>TECHNOLOGIAE'
+      ? 'SAT<br/>ANIC<br/>BLACK<br/>MAG<br/>ICK' // 'SAT<br/>ANIC<br/>BLACK<br/>MA<br/>GICK'
+      : 'BLACK<br/>MAGIC'
     const textSettings = isMobile
       ? {
-          size: 80,
+          size: 140,
           leading: 0.9,
-          padding: 70,
+          padding: 20,
         }
       : {
           size: 150,
@@ -218,51 +218,68 @@ const Intro = ({ isVisible }) => {
     }
   }, [breakpoint])
 
-  // const handleOrientation = ({ beta, gamma }) => {
-  //   let x = (Math.max(Math.min(gamma * 5, 180), -180) + 90) / 180
-  //   let y = (Math.max(Math.min(beta * 5, 180), -180) + 90) / 180
-  //   x = (x + 0.5) / 2
-  //   y = (y + 0.5) / 2
-  //   state.material.uniforms.uMouseX.value = x
-  //   state.material.uniforms.uMouseY.value = y
-  // }
-  //
+  const handleOrientation = ({ beta, gamma }) => {
+    let x = (Math.max(Math.min(gamma * 5, 180), -180) + 90) / 180
+    let y = (Math.max(Math.min(beta * 5, 180), -180) + 90) / 180
+    x = (x + 0.5) / 2
+    y = (y + 0.5) / 2
+    state.material.uniforms.uMouseX.value = x
+    state.material.uniforms.uMouseY.value = y
+  }
 
-  // const listenToOrientation = () => {
-  //   window.DeviceMotionEvent.requestPermission().then(() => {
-  //     window.addEventListener('deviceorientation', handleOrientation, true)
-  //   })
-  // }
+  const listenToOrientation = () => {
+    if (
+      window.DeviceMotionEvent &&
+      window.DeviceMotionEvent.requestPermission
+    ) {
+      window.DeviceMotionEvent.requestPermission().then(() => {
+        window.addEventListener('deviceorientation', handleOrientation, true)
+      })
+    }
+  }
 
   return (
-    <div
-      className={cn(
-        styles.intro,
-        isVisible ? 'opacity-100' : 'opacity-0',
-        'sm:opacity-100'
-      )}
-    >
-      <Head>
-        <script src="/blotter.min.js" />
-        <script src="/liquidDistortMaterial.js" />
-      </Head>
-      <div className="mt-2 sm:mt-10">
-        <div
-          className={cn(styles.introBox, 'flex justify-center')}
-          id="text"
-          onMouseMove={handleMouseMove}
-          onTouchMove={handleTouchMove}
-          onMouseEnter={startBlotter}
-          onMouseLeave={stopBlotter}
-        />
-        {state.blotter && isConfigOpen && (
-          <Configuration
-            params={params}
-            handleParamChange={handleParamChange}
-          />
+    <>
+      <div
+        className={cn(
+          styles.intro,
+          isVisible ? 'opacity-100' : 'opacity-0',
+          'sm:opacity-100'
         )}
+      >
+        <Head>
+          <script src="/blotter.min.js" />
+          <script src="/liquidDistortMaterial.js" />
+        </Head>
+        <div className="mt-2 sm:mt-10">
+          <div
+            className={cn(styles.introBox, 'flex justify-center')}
+            id="text"
+            onMouseMove={handleMouseMove}
+            onTouchMove={handleTouchMove}
+            onMouseEnter={startBlotter}
+            onMouseLeave={stopBlotter}
+          />
+          {state.blotter && isConfigOpen && (
+            <Configuration
+              params={params}
+              handleParamChange={handleParamChange}
+            />
+          )}
+        </div>
       </div>
-    </div>
+      <button
+        className="mt-10 hidden sm:block"
+        style={{
+          border: '0.2rem solid white',
+          width: '50%',
+          margin: '5rem auto 0',
+        }}
+        onClick={listenToOrientation}
+      >
+        track orientation
+      </button>
+    </>
   )
 }
 
