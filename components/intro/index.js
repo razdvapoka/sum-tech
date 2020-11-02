@@ -15,8 +15,8 @@ const loadFont = (font) => new FontFaceObserver(font).load()
 const Intro = () => {
   const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [bl, setBl] = useState(null)
-  const [blTextLine1, setBlTextLine1] = useState('SUMMA')
-  const [blTextLine2, setBlTextLine2] = useState('TECHNOLOGIAE')
+  const [blTextLine1, setBlTextLine1] = useState('BLACK')
+  const [blTextLine2, setBlTextLine2] = useState('MAGIC')
   const [blText, setBlText] = useState(null)
   const [mat, setMat] = useState(null)
   const [params, setParams] = useState({
@@ -210,8 +210,14 @@ const Intro = () => {
             </div>
           </div>
         )}
+        <div className="ml-10">
+          click the canvas to stop/resume the animation
+        </div>
         <a
-          style={{ fontSize: 50 }}
+          className="block uppercase m-10 p-5 border-4 border-white text-center"
+          style={{
+            fontSize: 50,
+          }}
           download="canvas.png"
           href="#"
           onClick={download}
