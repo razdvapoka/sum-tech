@@ -94,7 +94,7 @@ const Intro = ({ isVisible }) => {
       ? {
           size: 80,
           leading: 0.9,
-          padding: 70,
+          padding: 20,
         }
       : {
           size: 150,
@@ -246,7 +246,7 @@ const Intro = ({ isVisible }) => {
         <script src="/blotter.min.js" />
         <script src="/liquidDistortMaterial.js" />
       </Head>
-      <div className="mt-2 sm:mt-10">
+      <div className="mt-2 sm:mt-20 sm:mb-6">
         <div
           className={cn(styles.introBox, 'flex justify-center')}
           id="text"
