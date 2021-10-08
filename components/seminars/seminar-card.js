@@ -3,13 +3,12 @@ import Link from 'next/link'
 import React from 'react'
 import cn from 'classnames'
 
-import Typograf from '../typograph'
 import styles from './styles.module.scss'
 
-const SeminarCard = ({ seminar, seminarIndex }) => {
+const SeminarCard = ({ seminar }) => {
   return (
     <div className="col-10 sm:col-6 mb-4">
-      <div className="text-s2 mb-1">{`seminar ${seminarIndex + 1}`}</div>
+      <div className="text-s2 mb-1">{`seminar ${seminar.fields.number}`}</div>
       <Link href={`?seminar=${seminar.fields.slug}`} scroll={false}>
         <a
           className={cn(
@@ -34,9 +33,10 @@ const SeminarCard = ({ seminar, seminarIndex }) => {
           >
             <div>
               <div>
-                {seminar.fields.isComingSoon
-                  ? '00.00'
-                  : format(new Date(seminar.fields.date), 'dd.MM')}
+                {seminar.fields.dateString ||
+                  (seminar.fields.isComingSoon
+                    ? '00.00'
+                    : format(new Date(seminar.fields.date), 'dd.MM'))}
               </div>
               <h3>
                 {seminar.fields.isComingSoon

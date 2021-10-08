@@ -139,7 +139,8 @@ const Seminar = ({ isOpen, seminar }) => {
               <div className="grid">
                 <div className="col-5-s sm:hidden" />
                 <div className="col-16-s sm:col-10-s text-xxl sm:text-s4 text-purple text-right">
-                  {format(new Date(seminar.fields.date), 'dd.MM.yyyy')}
+                  {seminar.fields.dateString ||
+                    format(new Date(seminar.fields.date), 'dd.MM.yyyy')}
                 </div>
               </div>
               {seminar.fields.guestSpeakers && (
