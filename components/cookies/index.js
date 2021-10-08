@@ -1,11 +1,13 @@
-import React from 'react'
+import { useState } from 'react'
 import { FixedBottom } from 'react-fixed-bottom'
-import { useLocalStorage } from 'react-use'
+import { useLocalStorage, useMount } from 'react-use'
 import cn from 'classnames'
 import styles from './styles.module.scss'
 import X from '../../assets/icons/✕.svg'
 
 const Cookies = ({ isVisible }) => {
+  const [isMounted, setIsMounted] = useState(false)
+  useMount(() => setIsMounted(true))
   const [cookieWarningShown, setCookieWarningShown] = useLocalStorage(
     'cookieWarningShown'
   )
@@ -20,7 +22,7 @@ const Cookies = ({ isVisible }) => {
           'fixed left-0 w-screen px-2 cursor-pointer opacity-0',
           styles.cookieWarning,
           { 'opacity-100': isVisible },
-          { hidden: cookieWarningShown }
+          { hidden: !isMounted || cookieWarningShown }
         )}
         onClick={close}
       >
