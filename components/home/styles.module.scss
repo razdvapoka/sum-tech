@@ -21,3 +21,16 @@
     }
   }
 }
+
+.playButton {
+  width: 11rem;
+  height: 11rem;
+  background-image: url(../../assets/icons/play.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  @include mediaQuery(sm) {
+    width: 5rem;
+    height: 5rem;
+  }
+}

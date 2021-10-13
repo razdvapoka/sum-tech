@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useCallback } from 'react'
+import { useVideo } from 'react-use'
 import cn from 'classnames'
 
 import { Page } from '../page'
@@ -85,6 +86,19 @@ const Home = ({ page }) => {
     }
   }, [])
 
+  const [video, videoState, videoControls] = useVideo({
+    src: page.fields.video.fields.file.url,
+    poster: page.fields.videoCover.fields.file.url,
+  })
+
+  const toggleVideo = useCallback(() => {
+    if (videoState.paused) {
+      videoControls.play()
+    } else {
+      videoControls.pause()
+    }
+  }, [videoState, videoControls])
+
   return (
     <Page
       headerText={page.fields.headerText}
@@ -118,6 +132,21 @@ const Home = ({ page }) => {
           </div>
         </div>
         <div className="grid mt-36 sm:mt-12">
+          <div className="col-6 sm:hidden" />
+          <div className="col-17 sm:col-6">
+            <div className="cursor-pointer relative" onClick={toggleVideo}>
+              {video}
+              <div
+                className={cn(
+                  'absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2',
+                  styles.playButton,
+                  { hidden: !videoState.paused }
+                )}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="grid mt-36 sm:mt-12">
           <div className="col-4 sm:hidden" />
           <div className="col-20 sm:col-6">
             <Keywords keywords={page.fields.keywords} />
@@ -131,6 +160,7 @@ const Home = ({ page }) => {
             </Markdown>
           </div>
         </div>
+        {closestSeminar && <ClosestSeminar {...closestSeminar.fields} />}
         <Lem
           photo={page.fields.lemPhoto.fields.file.url}
           bio={page.fields.lemBio}
@@ -143,7 +173,6 @@ const Home = ({ page }) => {
       >
         <div className={styles.anchorTarget} id="seminars" />
         <Heading>Seminars</Heading>
-        {closestSeminar && <ClosestSeminar {...closestSeminar.fields} />}
         <Seminars
           items={page.fields.seminars}
           description={page.fields.seminarsDescription}

@@ -29,7 +29,11 @@ module.exports = {
       {}
     ),
 
-    extend: {},
+    extend: {
+      inset: {
+        '1/2': '50%',
+      },
+    },
   },
   variants: {
     textColor: ['responsive', 'odd', 'hover'],
