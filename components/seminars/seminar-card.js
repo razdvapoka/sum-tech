@@ -38,11 +38,13 @@ const SeminarCard = ({ seminar }) => {
                     ? '00.00'
                     : format(new Date(seminar.fields.date), 'dd.MM'))}
               </div>
-              <h3>
-                {seminar.fields.isComingSoon
-                  ? 'coming soon'
-                  : seminar.fields.name}
-              </h3>
+              <h3
+                dangerouslySetInnerHTML={{
+                  __html: seminar.fields.isComingSoon
+                    ? 'coming soon'
+                    : seminar.fields.name,
+                }}
+              />
             </div>
             <div>
               {!seminar.fields.isComingSoon && (

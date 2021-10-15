@@ -14,7 +14,8 @@ const ClosestSeminar = ({ slug, name, date }) => {
           <div
             lang="en"
             className={cn('text-purple', styles.name)}
-          >{`‘${name}’`}</div>
+            dangerouslySetInnerHTML={{ __html: `‘${name}’` }}
+          />
           <div>starts on</div>
           <div>{format(new Date(date), 'MMMM dd, yyyy')}</div>
         </a>

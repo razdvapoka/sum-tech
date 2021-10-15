@@ -127,7 +127,7 @@ const Seminar = ({ isOpen, seminar }) => {
             <div key={seminar.sys.id} className="px-1">
               <div className="grid">
                 <div className="col-23-s sm:col-10-s text-xxl sm:text-s4">
-                  <Typograf className={cn('text-purple', styles.seminarName)}>
+                  <Typograf className="text-purple">
                     {seminar.fields.name}
                   </Typograf>
                   {seminar.fields.leaders.map((leader) => (
